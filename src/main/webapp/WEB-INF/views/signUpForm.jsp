@@ -1,7 +1,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-  <div class="login-form-container">
+  <div class="signUp-form-container">
   		<div class="jumbotron">
   		    <c:url var="signUpUrl" value="/signUp" />
   			<form:form action="${signUpUrl}" method="post" modelAttribute="user">
@@ -30,5 +30,6 @@
 				  </div>
 				    <form:button type="submit" class="btn btn-primary">S'inscrire</form:button>
   			</form:form>
+  				<a href="<c:url value='index' />">Vous avez un compte? connexion</a>
   		</div>
  </div>

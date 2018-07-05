@@ -23,10 +23,17 @@ public class MainController {
 	  
 	  
 	  @RequestMapping(value = "/", method = RequestMethod.GET)
+	    public String defaultPage(ModelMap model) {
+		  	model.addAttribute("user", new User());
+	        return "index";
+	  }
+	  
+	  @RequestMapping(value = "index", method = RequestMethod.GET)
 	    public String signInPage(ModelMap model) {
 		  	model.addAttribute("user", new User());
 	        return "index";
 	  }
+	  
 	  
 	  @RequestMapping(value ="/index" , method = RequestMethod.POST)
 	    public String signInUser(@ModelAttribute User user, BindingResult result) {

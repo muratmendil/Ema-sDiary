@@ -17,5 +17,6 @@
 				  </div>
 				   <form:button type="submit" class="btn btn-primary">Se Connecter</form:button>
 		</form:form>
+		<a href="<c:url value='signUp' />">Vous n'avez pas de compte? inscription</a>
 	</div>
 </div>

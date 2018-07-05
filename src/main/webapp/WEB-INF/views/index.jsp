@@ -17,7 +17,6 @@
 </head>
 <body>
 	<%@ include file="loginForm.jsp"%>
-	<a href="<c:url value='signUp' />">Inscription</a>
 	<a href="<c:url value='profil' />">Profil</a>
 	<a href="<c:url value='article' />">Article</a>
 </body>
