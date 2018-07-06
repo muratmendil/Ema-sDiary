@@ -3,12 +3,13 @@ package com.formation.config;
 import org.springframework.core.annotation.Order;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+//Configuration de l'app
 @Order(1)
 public class WebAppInitializer  extends AbstractAnnotationConfigDispatcherServletInitializer{
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class<?>[]{RootConfig.class};
+		return new Class<?>[]{RootConfig.class, SecurityConfig.class};
 	}
 
 	@Override
