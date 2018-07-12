@@ -1,11 +1,12 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.formation</groupId>
-  <artifactId>EMA</artifactId>
-  <version>0.0.1</version>
-  <packaging>war</packaging>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.formation</groupId>
+	<artifactId>EMA</artifactId>
+	<version>0.0.1</version>
+	<packaging>war</packaging>
 
-		<properties>
+	<properties>
 
 		<!-- Generic properties -->
 		<java.version>1.8</java.version>
@@ -14,10 +15,11 @@
 
 		<!-- Spring -->
 		<spring-framework.version>4.2.4.RELEASE</spring-framework.version>
+		<springsecurity.version>4.0.4.RELEASE</springsecurity.version>
 
 		<!-- Hibernate / JPA -->
 		<hibernate.version>4.2.1.Final</hibernate.version>
-		
+
 		<!-- Connector J Mysql -->
 		<jdbc.mysql.version>5.1.38</jdbc.mysql.version>
 
@@ -28,6 +30,20 @@
 	</properties>
 
 	<dependencies>
+
+		<!-- Spring Security -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${springsecurity.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${springsecurity.version}</version>
+		</dependency>
+		
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -79,36 +95,35 @@
 		</dependency>
 
 
-	<!-- Spring data -->
-		<dependency> 
-		 	<groupId>org.springframework.data</groupId> 
-		 	<artifactId>spring-data-jpa</artifactId> 
-		 	<version>1.10.2.RELEASE</version> 
-		</dependency> 
-		<dependency> 
-		 	<groupId>mysql</groupId> 
-		 	<artifactId>mysql-connector-java</artifactId> 
-		 	<version>5.1.38</version> 
-		</dependency> 
-			
-	<dependency>
-		<groupId>javax.validation</groupId>
-		<artifactId>validation-api</artifactId>
-		<version>1.1.0.Final</version>
-	</dependency>
-	<dependency>
-	   <groupId>javax.el</groupId>
-	   <artifactId>javax.el-api</artifactId>
-	   <version>2.2.4</version>
-	</dependency>
+		<!-- Spring data -->
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+			<version>1.10.2.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.38</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>1.1.0.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.el</groupId>
+			<artifactId>javax.el-api</artifactId>
+			<version>2.2.4</version>
+		</dependency>
 
 
-	<dependency>
-		<groupId>org.hibernate</groupId>
-		<artifactId>hibernate-validator</artifactId>
-		<version>5.2.4.Final</version>
-	</dependency>
-
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>5.2.4.Final</version>
+		</dependency>
 
 		<!-- Other Web dependencies -->
 		<dependency>
@@ -128,24 +143,24 @@
 			<version>2.2</version>
 			<scope>provided</scope>
 		</dependency>
-		
-		<dependency> 
-		 	<groupId>javax.validation</groupId> 
-		 	<artifactId>validation-api</artifactId> 
-		 	<version>1.1.0.Final</version> 
-		</dependency> 
-		 
-		 <dependency> 
-		    	<groupId>javax.el</groupId>    
-		 	<artifactId>javax.el-api</artifactId> 
-		    	<version>2.2.4</version> 
-		</dependency> 
-		 
-		<dependency> 
-		 	<groupId>org.hibernate</groupId> 
-		 	<artifactId>hibernate-validator</artifactId> 
-		 	<version>5.2.4.Final</version> 
-		</dependency> 
+
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>1.1.0.Final</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.el</groupId>
+			<artifactId>javax.el-api</artifactId>
+			<version>2.2.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>5.2.4.Final</version>
+		</dependency>
 
 
 		<dependency>
