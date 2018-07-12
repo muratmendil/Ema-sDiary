@@ -14,6 +14,6 @@
 	crossorigin="anonymous">
 </head> 
 <body> 
-	<%@ include file="signUpForm.jsp" %>
+	<%@ include file="logic/signUpForm.jsp" %>
 </body> 
 </html>
