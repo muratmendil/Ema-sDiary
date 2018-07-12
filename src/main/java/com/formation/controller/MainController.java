@@ -1,11 +1,11 @@
 package com.formation.controller;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -19,9 +19,8 @@ import com.formation.service.UserService;
 public class MainController {
 
 	  @Autowired
-	  private UserService service;
-	  
-	  
+	  private UserService userService;
+
 	  @RequestMapping(value = "/", method = RequestMethod.GET)
 	    public String defaultPage(ModelMap model) {
 		  	model.addAttribute("user", new User());
@@ -34,20 +33,20 @@ public class MainController {
 	        return "index";
 	  }
 	  
-	  
+	 
 	  @RequestMapping(value ="/index" , method = RequestMethod.POST)
 	    public String signInUser(@ModelAttribute User user, BindingResult result) {
 	 
-	        User us = service.findByEmail(user.getEmail(), user.getPassword());
+	        User us = userService.findByEmail(user.getEmail(), user.getPassword());
 	        if(us != null){
-		        return "profil";
+		        return "home";
 	        }
 	        return null;
 	    }
 	  
 	  @RequestMapping(value ="/signUp" , method = RequestMethod.POST)
 	    public String signUpUser(@ModelAttribute User user, BindingResult result) {
-	        service.createUser(user);
+	        userService.createUser(user);
 	        return "index";
 	    }
 	  
@@ -57,7 +56,6 @@ public class MainController {
 		  	model.addAttribute("user", new User());
 	        return "signUp";
 	    }
-	  
 	  
 	  @RequestMapping(value = "/profil", method = RequestMethod.GET)
 	    public String profil() {
