@@ -20,13 +20,13 @@ import com.formation.model.User;
 public class ObjectifDaoImpl implements ObjectifDao {
 
 	
-	private static final Logger logger = LoggerFactory.getLogger(UserDaoImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger(ObjectifDaoImpl.class);
 	
 	@PersistenceContext
 	private EntityManager objectifManager;
 	
 	@Override
-	public Object createObjectif(Objectif objectif) {
+	public Objectif createObjectif(Objectif objectif) {
 		return objectifManager.merge(objectif);
 	}
 

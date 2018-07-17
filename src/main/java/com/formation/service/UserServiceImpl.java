@@ -1,5 +1,7 @@
 package com.formation.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +27,12 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User findByEmail(String email, String password) {
 		return userDao.findByEmail(email, password);
+	}
+
+	@Override
+	public List<User> findById() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -4,10 +4,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.Size;
 
 @Entity
-public class User {
+public class User{
 	
 	@Id
 	@GeneratedValue
@@ -17,7 +19,6 @@ public class User {
 	@Column(name = "firstName")
 	@Size(min = 2, max = 20)
 	private String firstName;
-	
 	
 	@Column(name = "lastName")
 	@Size(min = 2, max = 20)
@@ -38,13 +39,14 @@ public class User {
 //	@Size(min = 4, max = 15)
 	private String birthDate;
 	
-	
+	@OneToOne
+	@JoinColumn(name="DIARY_ID")
+	Diary diary;
 
 	public int getId() {
 		return id;
 	}
-
-
+	
 	public void setId(int id) {
 		this.id = id;
 	}

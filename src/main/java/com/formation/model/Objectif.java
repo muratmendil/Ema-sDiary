@@ -1,6 +1,6 @@
 package com.formation.model;
 
-import java.util.Date;
+
 import java.util.List;
 
 import javax.persistence.Column;
@@ -15,20 +15,26 @@ import javax.persistence.OneToOne;
 @Entity
 public class Objectif {
 
+
 	@Id
 	@GeneratedValue
 	@Column(name = "id")
 	private int id;
 	
-	@Column(name = "NAME")
+	@Override
+	public String toString() {
+		return "Objectif [name=" + name + ", startDate=" + startDate + ", endDate=" + endDate + "]";
+	}
+
+	@Column(name = "name")
 	private String name;
 	
-	@Column(name = "START_DATE")
-	private Date startDate;
+	@Column(name = "startDate")
+	private String startDate;
 	
 
-	@Column(name = "END_DATE")
-	private Date endDate;
+	@Column(name = "endDate")
+	private String endDate;
 
 	@OneToMany(mappedBy="objectif")
 	private List<Task> tasks;
@@ -41,19 +47,6 @@ public class Objectif {
 	@JoinColumn(name="GRAPH_ID")
 	private Graphic graphic;
 	
-	
-	public Objectif(){
-		
-	}
-
-	public Objectif(String name, Date startDate, Date endDate) {
-		super();
-		this.name = name;
-		this.startDate = startDate;
-		this.endDate = endDate;
-	}
-	
-
 	public String getName() {
 		return name;
 	}
@@ -62,19 +55,21 @@ public class Objectif {
 		this.name = name;
 	}
 
-	public Date getStartDate() {
+	public String getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(Date startDate) {
+	public void setStartDate(String startDate) {
 		this.startDate = startDate;
 	}
 
-	public Date getEndDate() {
+	public String getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(Date endDate) {
+	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
 }
+	
+
