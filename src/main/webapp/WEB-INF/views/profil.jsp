@@ -21,17 +21,17 @@
 						class="img-rounded img-responsive" />
 				</div>
 				<div class="col-sm-6 col-md-8">
-					<c:forEach items="${users}" var="user"> 
 
-					<h4>${user.lastName}</h4>
+					<h4>${users.lastName}</h4>
+					<h4>${users.birthDate}</h4>
 						<small><cite title="San Francisco, USA">San
 								Francisco, USA <i class="glyphicon glyphicon-map-marker"> </i>
 						</cite></small>
 						<p>
-							<i class="glyphicon glyphicon-envelope"></i> ${user.email}<br />
+							<i class="glyphicon glyphicon-envelope"></i>${users.lastName}<br />
 							<i class="glyphicon glyphicon-globe"></i><a
-								href="http://www.jquery2dotnet.com"> www.jquery2dotnet.com</a> <br />
-							<i class="glyphicon glyphicon-gift"></i> ${user.birthDate}
+								href="http://www.jquery2dotnet.com">${users.password}</a> <br />
+							<i class="glyphicon glyphicon-gift"></i> ${users.id}
 						</p>
 						<!-- Split button -->
 						<div class="btn-group">
@@ -49,7 +49,6 @@
 								<li><a href="#">Github</a></li>
 							</ul>
 						</div>
-					</c:forEach>
 				</div>
 			</div>
 			<a href="<c:url value='/logout' />">Logout</a> 

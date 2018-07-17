@@ -1,13 +1,10 @@
 package com.formation.controller;
 
-<<<<<<< HEAD
-=======
 import java.util.List;
 
 import javax.persistence.Id;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
->>>>>>> acc7cdd0f0e50b04ac7edd63728db073ae10bf4f
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -29,56 +26,6 @@ import com.formation.service.UserService;
 @SessionAttributes("user")
 public class MainController {
 
-<<<<<<< HEAD
-	  @Autowired
-	  private UserService userService;
-
-	  @RequestMapping(value = "/", method = RequestMethod.GET)
-	    public String defaultPage(ModelMap model) {
-		  	model.addAttribute("user", new User());
-	        return "index";
-	  }
-	  
-	  @RequestMapping(value = "index", method = RequestMethod.GET)
-	    public String signInPage(ModelMap model) {
-		  	model.addAttribute("user", new User());
-	        return "index";
-	  }
-	  
-	 
-	  @RequestMapping(value ="/index" , method = RequestMethod.POST)
-	    public String signInUser(@ModelAttribute User user, BindingResult result) {
-	 
-	        User us = userService.findByEmail(user.getEmail(), user.getPassword());
-	        if(us != null){
-		        return "home";
-	        }
-	        return null;
-	    }
-	  
-	  @RequestMapping(value ="/signUp" , method = RequestMethod.POST)
-	    public String signUpUser(@ModelAttribute User user, BindingResult result) {
-	        userService.createUser(user);
-	        return "index";
-	    }
-	  
-	  
-	  @RequestMapping(value = "/signUp", method = RequestMethod.GET)
-	    public String signUp(ModelMap model) {
-		  	model.addAttribute("user", new User());
-	        return "signUp";
-	    }
-	  
-	  @RequestMapping(value = "/profil", method = RequestMethod.GET)
-	    public String profil() {
-	        return "profil";
-	    }
-	  
-	  @RequestMapping(value = "/article", method = RequestMethod.GET)
-	    public String article() {
-	        return "article";
-	    }
-=======
 	private String getPrincipal() {
 		String userName = null;
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -107,10 +54,12 @@ public class MainController {
 	}
 
 	@RequestMapping(value = "/index", method = RequestMethod.POST)
-	public String signInUser(@ModelAttribute User user, BindingResult result) {
-
+	public String signInUser(@ModelAttribute User user, BindingResult result,ModelMap model) {
+		System.out.println("***** iciiii ****");
 		User us = service.findByEmail(user.getEmail(), user.getPassword());
+		System.out.println("** "+us);
 		if (us != null) {
+			model.addAttribute("users", us);
 			return "profil";
 		}
 		return null;
@@ -131,7 +80,6 @@ public class MainController {
 	@RequestMapping(value = "/profil", method = RequestMethod.GET)
 	public String profil(ModelMap model) {
 		
-
         List<User> users = service.findById();
         model.addAttribute("users", users);
         
@@ -161,5 +109,4 @@ public class MainController {
 		return "accessDenied";
 	}
 
->>>>>>> acc7cdd0f0e50b04ac7edd63728db073ae10bf4f
 }

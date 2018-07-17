@@ -98,4 +98,12 @@ public class User {
 	public void setBirthDate(String birthDate) {
 		this.birthDate = birthDate;
 	}
+
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
+				+ ", password=" + password + ", birthDate=" + birthDate + "]";
+	}
+	
 }
