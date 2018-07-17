@@ -10,15 +10,17 @@ import com.formation.model.Objectif;
 
 
 @Service
-public class ObjctifServiceImpl implements ObjectifService {
+public class ObjectifServiceImpl implements ObjectifService {
 
 	@Autowired
 	private ObjectifDao objectifDao;
 	
 	
 	@Override
-	public Object createObjectif(Objectif objectif) {
-		return objectifDao.createObjectif(objectif);
+	public Objectif createObjectif(Objectif objectif) {
+		Objectif obj = null;
+		 obj =  objectifDao.createObjectif(objectif);
+		return obj;
 	}
 
 	@Override
