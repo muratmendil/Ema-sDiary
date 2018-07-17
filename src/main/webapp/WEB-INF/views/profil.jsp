@@ -52,7 +52,7 @@
 					</c:forEach>
 				</div>
 			</div>
+			<a href="<c:url value='/logout' />">Logout</a> 
 		</div>
 	</div>
-</div>
 </div>
