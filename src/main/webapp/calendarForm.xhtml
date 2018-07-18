@@ -53,9 +53,13 @@
                  <div class="row">
                     <div class="col-xs-12">
                         <label class="col-xs-4" for="objectif">Objectifs</label>
-		                <select name="objectif">
-		                 
-						</select>
+		                  <h:selectOneMenu value="mainController.selectObjectif">
+		                    <f:selectItem
+						        itemValue=""
+						        itemLabel=""/>
+			                    <f:selectItems value="#{mainController.getObjectifs()}" var="objectif"
+	                               itemLabel="#{objectif.getName()}" itemValue="#{objectif}"></f:selectItems>
+		                	</h:selectOneMenu>
 					</div>
 				 </div>
             </div>

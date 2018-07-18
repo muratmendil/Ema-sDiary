@@ -68,6 +68,18 @@ $(document).ready(function() {
             });
 
         },
+        eventDragStop: function (event, jsEvent, ui, view) {
+        	
+        	//TODO Save Event
+        	
+        	
+        },
+        
+        drop: function (date, jsEvent, ui, resourceId) {   
+        	
+        	
+        	
+        },
         editable: true,
         eventLimit: true
        

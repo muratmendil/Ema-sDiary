@@ -8,23 +8,11 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
-import com.formation.dao.UserDaoImpl;
 import com.formation.model.Objectif;
 import com.formation.model.Task;
 import com.formation.model.User;
@@ -40,6 +28,11 @@ public class MainController {
 	private User user;
 	private Objectif objectif;
 	private Task task;
+	private User current_user;
+	
+	private Objectif selectObjectif;
+	
+	public List<Objectif> objectifs = new ArrayList<>();
 
 	@Autowired
 	private UserService userService;
@@ -50,6 +43,7 @@ public class MainController {
 	public User getUser() {
 		return user;
 	}
+
 
 	public UserService getUserService() {
 		return userService;
@@ -83,8 +77,16 @@ public class MainController {
 	public void init() {
 		objectif = new Objectif();
 		user = new User();
+		this.current_user = new User();
+		//this.objectifs = getObjectifs();
 	}
 
+	
+	
+	public String sayHello(){
+		return "hello";
+	}
+	
 	public String index() {
 		return "index";
 	}
@@ -103,6 +105,7 @@ public class MainController {
 		return "signUp";
 	}
 
+<<<<<<< HEAD
 //	public String logUser() {
 //		User logUser = null;
 //		logUser = userService.findByEmail(user.getEmail(), user.getPassword());
@@ -116,19 +119,28 @@ public class MainController {
 	public String logUser() {
 		User logUser = null;
 		logUser = userService.findByEmail(user.getEmail(), user.getPassword());
+=======
+
+	public String getCurrentUserName(){
+		return SessionUtils.getUserName();
+	}
+	
+	
+	public String logUser() {
+		User logUser = userService.findByEmail(user.getEmail(), user.getPassword());
+>>>>>>> a33932aa5b69bbba2c23ead6c0800fd6c48b0043
 		if (logUser != null) {
-			user = logUser;
-			return valide(user.getEmail(), user.getPassword());
+			return valide(logUser);
 		}
 		return null;
 	}
 
-	String valide(String email, String password) {
-
-		boolean valid = userService.validate(email, password);
+	String valide(User user) {
+		boolean valid = userService.validate(user.getEmail(), user.getPassword());
 		if (valid) {
 			HttpSession session = SessionUtils.getSession();
-			session.setAttribute("username", email);
+			session.setAttribute("username",user.getName() );
+			session.setAttribute("userId", user.getId());
 			return "home";
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
@@ -137,13 +149,19 @@ public class MainController {
 		}
 	}
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> a33932aa5b69bbba2c23ead6c0800fd6c48b0043
 	public String createUser() {
 		User us = userService.createUser(this.user);
 		return "index";
 	}
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> a33932aa5b69bbba2c23ead6c0800fd6c48b0043
 	public String createObjectif() {
 		System.out.println("Obj");
 		System.out.println(this.objectif);
@@ -161,9 +179,9 @@ public class MainController {
 	}
 
 	public String createTask() {
-
 		return "home";
 	}
+<<<<<<< HEAD
 
 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
@@ -184,14 +202,23 @@ public class MainController {
 			userName = ((UserDetails) principal).getUsername();
 		} else {
 			userName = principal.toString();
+=======
+	
+	public List<Objectif> getObjectifs(){
+		int id = SessionUtils.getUserId();
+		List<Objectif> objectifs = objectifService.getAll(id);
+		
+		if(objectifs != null && objectifs.size() > 0){
+			
+			return objectifs;
+>>>>>>> a33932aa5b69bbba2c23ead6c0800fd6c48b0043
 		}
-		return userName;
+		return null;
 	}
-
-	@RequestMapping(value = "/Access_Denied", method = RequestMethod.GET)
-	public String accessDeniedPage(ModelMap model) {
-		model.addAttribute("user", getPrincipal());
-		return "accessDenied";
-	}
-
+	
+	/*
+	public List<Objectif> getObjectifs(){
+		int id = SessionUtils.getUserId();
+		return objectifService.getAll(id);
+	} */
 }

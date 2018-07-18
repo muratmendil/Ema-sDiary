@@ -53,7 +53,10 @@ public class UserDaoImpl implements UserDao, Serializable {
 		return "index";
 	}
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> a33932aa5b69bbba2c23ead6c0800fd6c48b0043
 	@Override
 	public User findByEmail(String email, String password) {
 		String sql = "SELECT user.* FROM user AS user WHERE email = ? && password = ?";
