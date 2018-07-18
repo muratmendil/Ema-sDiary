@@ -10,6 +10,7 @@ public interface UserService {
 	User findById(int id);
 	User findByEmail(String email, String password);
 	List<User> findById();
+	boolean validate(String email, String password);
 }
 
 

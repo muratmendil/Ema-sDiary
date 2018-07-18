@@ -4,6 +4,8 @@ import java.util.Properties;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.DriverManager;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -20,7 +22,12 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
+<<<<<<< HEAD
 @ComponentScan(basePackages = {"com.formation"})
+=======
+@ComponentScan(basePackages = { "com.formation" }, excludeFilters = {
+		@Filter(type = FilterType.ANNOTATION, value = EnableWebMvc.class) })
+>>>>>>> 654a39b349f75817112fefe1b01c0b16fea70ebc
 @EnableTransactionManagement
 public class RootConfig {
 
@@ -33,7 +40,7 @@ public class RootConfig {
 		dataSource.setPassword("");
 		return dataSource;
 	}
-	
+
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
@@ -53,12 +60,29 @@ public class RootConfig {
 		properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
 		return properties;
 	}
-	
+
 	@Bean
 	public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
 		JpaTransactionManager transactionManager = new JpaTransactionManager();
 		transactionManager.setEntityManagerFactory(emf);
 		return transactionManager;
 	}
-}
 
+	public static Connection getConnection() {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ema", "root", "");
+			return con;
+		} catch (Exception ex) {
+			System.out.println("Database.getConnection() Error -->" + ex.getMessage());
+			return null;
+		}
+	}
+
+	public static void close(Connection con) {
+		try {
+			con.close();
+		} catch (Exception ex) {
+		}
+	}
+}

@@ -22,6 +22,9 @@
   				 <h:commandButton action="#{mainController.logUser}"
 			value="Login" class="btn btn-primary"></h:commandButton>
 			
+			<h:commandButton action="#{mainController.user.validateUsernamePassword()}"
+			value="CONNEXION AVEC SESSION" class="btn btn-primary"></h:commandButton>
+			
 			</h:form>
 			<h:form>
 				<h:commandLink value="Inscription" action="#{mainController.goToSignUp}"/>

@@ -31,8 +31,12 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<User> findById() {
-		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public boolean validate(String email, String password) {
+		return userDao.validate(email,  password);
 	}
 
 }
