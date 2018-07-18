@@ -105,21 +105,6 @@ public class MainController {
 		return "signUp";
 	}
 
-<<<<<<< HEAD
-//	public String logUser() {
-//		User logUser = null;
-//		logUser = userService.findByEmail(user.getEmail(), user.getPassword());
-//		if (logUser != null) {
-//			user = logUser;
-//			return "home";
-//		}
-//		return null;
-//	}
-
-	public String logUser() {
-		User logUser = null;
-		logUser = userService.findByEmail(user.getEmail(), user.getPassword());
-=======
 
 	public String getCurrentUserName(){
 		return SessionUtils.getUserName();
@@ -128,7 +113,6 @@ public class MainController {
 	
 	public String logUser() {
 		User logUser = userService.findByEmail(user.getEmail(), user.getPassword());
->>>>>>> a33932aa5b69bbba2c23ead6c0800fd6c48b0043
 		if (logUser != null) {
 			return valide(logUser);
 		}
@@ -149,19 +133,11 @@ public class MainController {
 		}
 	}
 
-<<<<<<< HEAD
-
-=======
->>>>>>> a33932aa5b69bbba2c23ead6c0800fd6c48b0043
 	public String createUser() {
 		User us = userService.createUser(this.user);
 		return "index";
 	}
 
-<<<<<<< HEAD
-
-=======
->>>>>>> a33932aa5b69bbba2c23ead6c0800fd6c48b0043
 	public String createObjectif() {
 		System.out.println("Obj");
 		System.out.println(this.objectif);
@@ -181,28 +157,6 @@ public class MainController {
 	public String createTask() {
 		return "home";
 	}
-<<<<<<< HEAD
-
-
-	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		if (auth != null) {
-			new SecurityContextLogoutHandler().logout(request, response, auth);
-		}
-		return "redirect:/login?logout";
-	}
-
-
-	private String getPrincipal() {
-		String userName = null;
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-		if (principal instanceof UserDetails) {
-			userName = ((UserDetails) principal).getUsername();
-		} else {
-			userName = principal.toString();
-=======
 	
 	public List<Objectif> getObjectifs(){
 		int id = SessionUtils.getUserId();
@@ -211,7 +165,6 @@ public class MainController {
 		if(objectifs != null && objectifs.size() > 0){
 			
 			return objectifs;
->>>>>>> a33932aa5b69bbba2c23ead6c0800fd6c48b0043
 		}
 		return null;
 	}
