@@ -1,22 +1,26 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<title>login</title>
+</h:head>
+<h:body>
+		<h:form>
+		<h3>JSF Login Logout</h3>
+		<h:outputText value="Username" />
+		<h:inputText id="username" value="#{login.user}"></h:inputText>
+		<h:message for="username"></h:message>
+		<br></br><br></br>
+		
+		<h:outputText value="Password" />
+		<h:inputSecret id="password" value="#{login.pwd}"></h:inputSecret>
+		<h:message for="password"></h:message>
+		<br></br><br></br>
+		
+		<h:commandButton action="#{login.validateUsernamePassword}"
+			value="Login"></h:commandButton>
+	</h:form>
+</h:body>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<div class="login-form-container">
-	<div class="jumbotron">
-		<c:url var="loginUrl" value="/index" />
-		<form:form action="${loginUrl}" method="post" modelAttribute="user">
-			<h3 class="text-center">Connexion</h3>
-  				<br>
-  				 <div class="form-group">
-				    <form:label path="email" for="exampleFormControlInput1">Email </form:label>
-				    <form:input path="email" class="form-control" id="exampleFormControlInput1" name="email" placeholder="name@example.com"/>
-				 </div>
-				  <div class="form-group">
-				    <form:label path="password" for="exampleFormControlInput1">Password</form:label>
-				    <form:input path="password" class="form-control" id="exampleFormControlInput1" name="password" placeholder="******"/>
-				  </div>
-				   <form:button type="submit" class="btn btn-primary">Se Connecter</form:button>
-		</form:form>
-		<a href="<c:url value='signUp' />">Vous n'avez pas de compte? inscription</a>
-	</div>
-</div>
+</html>

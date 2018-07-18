@@ -2,15 +2,18 @@
 <html lang="en"
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:f="http://xmlns.jcp.org/jsf/core"
-    xmlns:h="http://xmlns.jcp.org/jsf/html"
-    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+        xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+            xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:jsf="http://java.sun.com/jsf" 
+     xmlns:p="http://primefaces.org/ui">
     <h:head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>JSF 2.2 - Spring - JPA - I18N</title>
-
-		<script type="text/javascript" 
-		  	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js">
-		</script>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+		<title>JSF 2.2 - Spring - JPA - I18N</title>
+		
+	<h:outputStylesheet library="css" name="home.css" />
+		<h:outputScript library="js" name="vendor/jquery.min.js" />
+	
 		<script type="text/javascript" 
 		  	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
 		</script>
@@ -26,15 +29,17 @@
 		
 		<h:outputScript library="js" name="vendor/moment-with-locales.min.js" />
 		<h:outputScript library="js" name="vendor/fullcalendar.js" />
-		<h:outputScript library="js" name="vendor/bootstrap-datetimepicker.min.js" />	
+		<h:outputScript library="js" name="vendor/bootstrap-datetimepicker.min.js" />
 </h:head>
 <h:body>
-	<h1 class="centered">A basic instance of fullCalendar</h1>
+	<ui:include src="header.xhtml"></ui:include>
+
 	<!-- The calendar container -->
 	<div id="calendar"></div>
 	<div id='datepicker'></div>
-	
+
 	<ui:include src="calendarForm.xhtml"></ui:include>
    	<h:outputScript library="js" name="agenda/calendarLogic.js" />
+   	
 </h:body>
 </html>

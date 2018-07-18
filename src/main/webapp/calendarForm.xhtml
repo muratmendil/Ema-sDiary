@@ -3,7 +3,8 @@
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:f="http://xmlns.jcp.org/jsf/core"
     xmlns:h="http://xmlns.jcp.org/jsf/html"
-    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
     <h:head>
 		<meta charset="utf-8" />
 		<title>JSF 2.2 - Spring - JPA - I18N</title>
@@ -17,6 +18,7 @@
                 <h4 class="modal-title">Create new event</h4>
             </div>
             <div class="modal-body">
+            		
                 <div class="row">
                     <div class="col-xs-12">
                         <label class="col-xs-4" for="name">Nom</label>
@@ -73,29 +75,33 @@
                 <button type="button" class="close" data-dismiss="modal2" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">Create new event</h4>
             </div>
-            <h:form>
+            <h:form id="form">
 				<div class="modal-body">
 	                <div class="row">
 	                    <div class="col-xs-12">
-	                         <h:outputText value="Nom de l'objectif" />
-							<h:inputText value="#{mainController.objectif.name}" class="form-control"></h:inputText>
+                    		  <label class="col-xs-4" for="objectif">Nom</label>
+	                          <h:inputText value="#{mainController.objectif.name}"></h:inputText>
 	                    </div>
 	                </div>
 	                <div class="row">
 	                    <div class="col-xs-12">
-	                        <label class="col-xs-4" for="starts-at">Ends at</label>
-	                        <input type="text" name="starts_at" id="starts-at" />
+					   		  <label class="col-xs-4" for="objectif">Date de début</label>
+	                          <h:inputText value="#{mainController.objectif.startDate}" class="starts-at2"></h:inputText>
 	                    </div>
 	                </div>
 	                <div class="row">
 	                   <div class="col-xs-12">
-	                        <label class="col-xs-4" for="ends-at">Ends at</label>
-	                        <input type="text" name="ends_at" id="ends-at" />
+                  			  <label class="col-xs-4" for="objectif">Date de fin</label>
+	                          <h:inputText value="#{mainController.objectif.endDate}" class="ends-at2"></h:inputText>
 	                    </div>
 	                </div>
             	</div>
-  				 <h:commandButton action="#{mainController.createObjectif}"
-			value="Login" class="btn btn-primary"></h:commandButton>
+            	<div class="modal-footer">
+               
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <h:commandButton action="#{mainController.createObjectif}"
+				value="Save event" class="btn btn-primary"></h:commandButton>
+            	</div>
 			</h:form>
         </div>
     </div>

@@ -1,8 +1,11 @@
-<script>
+
+
 $(document).ready(function() {
     $("#starts-at, #ends-at").datetimepicker();
+    $(".starts-at2, .ends-at2").datetimepicker();
 
     $('#calendar').fullCalendar({
+    	contentHeight: 500,
     	locale: 'fr',
         header: {
             left: 'prev,next today',
@@ -77,4 +80,3 @@ $('#newObjectifButton').on('click', function() {
 	$('#modal2').modal('show');
 	
 });
-</script>

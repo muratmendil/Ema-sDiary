@@ -14,7 +14,7 @@ public class Task implements Serializable {
 
 	@Id
 	@GeneratedValue
-	@Column(name = "ID")
+	@Column(name = "task_id")
 	private int id;
 	
 	@Column(name = "name")
@@ -38,6 +38,10 @@ public class Task implements Serializable {
 
 	@ManyToOne
 	private Objectif objectif;
+	
+
+	@ManyToOne
+	private Diary diary;
 	
 	public Task(){
 		

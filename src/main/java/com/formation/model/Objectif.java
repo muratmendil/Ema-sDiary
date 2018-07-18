@@ -1,6 +1,7 @@
 package com.formation.model;
 
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -9,30 +10,40 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-@Entity
-public class Objectif {
+import org.springframework.transaction.annotation.Transactional;
 
+@Entity
+@Transactional
+public class Objectif implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 	@Id
 	@GeneratedValue
-	@Column(name = "id")
+	@Column(name = "objectif_id")
 	private int id;
 	
-	@Override
-	public String toString() {
-		return "Objectif [name=" + name + ", startDate=" + startDate + ", endDate=" + endDate + "]";
-	}
-
 	@Column(name = "name")
 	private String name;
 	
 	@Column(name = "startDate")
 	private String startDate;
 	
-
 	@Column(name = "endDate")
 	private String endDate;
 
@@ -44,8 +55,12 @@ public class Objectif {
 	private List<Objectif> suggestions;
 	
 	@OneToOne
-	@JoinColumn(name="GRAPH_ID")
+	@JoinColumn(name="graphic_id")
 	private Graphic graphic;
+	
+	
+	@ManyToOne
+	private User user;
 	
 	public String getName() {
 		return name;
@@ -67,8 +82,21 @@ public class Objectif {
 		return endDate;
 	}
 
+	
+	public void reset(){
+		this.name = "";
+		this.startDate = null;
+		this.endDate = null;
+	}
+	
+
 	public void setEndDate(String endDate) {
 		this.endDate = endDate;
+	}
+	
+	@Override
+	public String toString() {
+		return "Objectif [name=" + name + ", startDate=" + startDate + ", endDate=" + endDate + "]";
 	}
 }
 	

@@ -1,0 +1,10 @@
+.container-fluid{
+ background: #04A3ED !important;
+}
+
+
+#calendar{
+	width: 80%;
+	margin: 0 auto;
+	margin-top: 3%;
+}

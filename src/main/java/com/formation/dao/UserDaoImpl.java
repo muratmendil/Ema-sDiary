@@ -29,7 +29,6 @@ public class UserDaoImpl implements UserDao {
 		return userManager.find(User.class, id);
 	}
 
-
 	@Override
 	public User findByEmail(String email, String password) {
 		String sql = "SELECT user.* FROM user AS user WHERE email = ? && password = ?";

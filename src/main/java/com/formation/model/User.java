@@ -1,19 +1,32 @@
 package com.formation.model;
 
+import java.io.Serializable;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Size;
 
+import org.springframework.transaction.annotation.Transactional;
+
 @Entity
-public class User{
+@Transactional
+public class User implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue
-	@Column(name = "id")
+	@Column(name = "user_id")
 	private int id;
 	
 	@Column(name = "firstName")
@@ -38,11 +51,16 @@ public class User{
 	@Column(name = "birthDate")
 //	@Size(min = 4, max = 15)
 	private String birthDate;
-	
-	@OneToOne
-	@JoinColumn(name="DIARY_ID")
-	Diary diary;
 
+	
+
+	@OneToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name="diary_id")
+	private Diary diary;
+	
+	@OneToMany(mappedBy="user", cascade = CascadeType.ALL)
+	private List<Objectif> objectifs;
+	
 	public int getId() {
 		return id;
 	}
@@ -77,6 +95,7 @@ public class User{
 	}
 
 
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
@@ -99,5 +118,13 @@ public class User{
 
 	public void setBirthDate(String birthDate) {
 		this.birthDate = birthDate;
+	}
+	
+	public List<Objectif> getObjectifs() {
+		return objectifs;
+	}
+
+	public void setObjectifs(List<Objectif> objectifs) {
+		this.objectifs = objectifs;
 	}
 }

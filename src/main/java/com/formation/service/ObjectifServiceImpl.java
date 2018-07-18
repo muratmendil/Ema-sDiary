@@ -29,7 +29,7 @@ public class ObjectifServiceImpl implements ObjectifService {
 	}
 
 	@Override
-	public List<Objectif> getAll() {
-		return objectifDao.getAll();
+	public List<Objectif> getAll(int id) {
+		return objectifDao.getAll(id);
 	}
 }

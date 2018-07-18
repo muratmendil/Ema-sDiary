@@ -36,11 +36,8 @@ public class ObjectifDaoImpl implements ObjectifDao {
 	}
 
 	@Override
-	public List<Objectif> getAll() {
-		String sql = "SELECT objectif.* FROM objectif";
-		Query query = objectifManager.createNativeQuery(sql, Objectif.class);
-	
-		List<Objectif> objectifs = query.getResultList();
-		return objectifs;
+	public List<Objectif> getAll(int id) {
+		User user =objectifManager.find(User.class, id); 
+		return user.getObjectifs();
 	}
 }
