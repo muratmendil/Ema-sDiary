@@ -1,5 +1,6 @@
 package com.formation.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -38,6 +39,11 @@ public class ObjectifDaoImpl implements ObjectifDao {
 	@Override
 	public List<Objectif> getAll(int id) {
 		User user =objectifManager.find(User.class, id); 
-		return user.getObjectifs();
+		
+		System.out.println("start"+user);
+		if(user.getObjectifs() != null){
+			return user.getObjectifs();
+		}
+		return new ArrayList<Objectif>();
 	}
 }

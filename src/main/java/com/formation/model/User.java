@@ -1,15 +1,11 @@
 package com.formation.model;
 
 import java.io.Serializable;
-<<<<<<< HEAD
 import java.util.List;
 
 import javax.persistence.CascadeType;
-=======
 
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
->>>>>>> 654a39b349f75817112fefe1b01c0b16fea70ebc
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,28 +15,14 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.servlet.http.HttpSession;
 import javax.validation.constraints.Size;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 
-import com.formation.dao.UserDaoImpl;
 import com.formation.service.SessionUtils;
-
-import org.hibernate.Session;
-
 import org.springframework.transaction.annotation.Transactional;
 
 @Entity
-<<<<<<< HEAD
 @Transactional
-public class User implements Serializable{
-	
-	/**
-	 * 
-	 */
-=======
 public class User implements Serializable {
 
->>>>>>> 654a39b349f75817112fefe1b01c0b16fea70ebc
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -67,13 +49,6 @@ public class User implements Serializable {
 	@Column(name = "birthDate")
 	private String birthDate;
 
-<<<<<<< HEAD
-	
-=======
-	@OneToOne
-	@JoinColumn(name = "DIARY_ID")
-	Diary diary;
->>>>>>> 654a39b349f75817112fefe1b01c0b16fea70ebc
 
 	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name="diary_id")
@@ -110,11 +85,7 @@ public class User implements Serializable {
 		return email;
 	}
 
-<<<<<<< HEAD
 
-
-=======
->>>>>>> 654a39b349f75817112fefe1b01c0b16fea70ebc
 	public void setEmail(String email) {
 		this.email = email;
 	}
@@ -134,7 +105,6 @@ public class User implements Serializable {
 	public void setBirthDate(String birthDate) {
 		this.birthDate = birthDate;
 	}
-<<<<<<< HEAD
 	
 	public List<Objectif> getObjectifs() {
 		return objectifs;
@@ -142,16 +112,10 @@ public class User implements Serializable {
 
 	public void setObjectifs(List<Objectif> objectifs) {
 		this.objectifs = objectifs;
-=======
+	}
 
 	public String getName() {
 		return firstName + " " + lastName;
-	}
-
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", password=" + password + ", birthDate=" + birthDate + "]";
 	}
 
 	
@@ -160,6 +124,13 @@ public class User implements Serializable {
 		HttpSession session = SessionUtils.getSession();
 		session.invalidate();
 		return "login";
->>>>>>> 654a39b349f75817112fefe1b01c0b16fea70ebc
 	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
+				+ ", password=" + password + ", birthDate=" + birthDate + ", objectifs=" + objectifs + "]";
+	}
+	
+	
 }

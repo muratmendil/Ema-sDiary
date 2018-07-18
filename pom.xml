@@ -167,15 +167,9 @@
 
 
 		<dependency>
-<<<<<<< HEAD
-		    <groupId>org.primefaces</groupId>
-		    <artifactId>primefaces</artifactId>
-		    <version>6.1</version>
-=======
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
 			<version>6.2</version>
->>>>>>> 654a39b349f75817112fefe1b01c0b16fea70ebc
 		</dependency>
 
 
