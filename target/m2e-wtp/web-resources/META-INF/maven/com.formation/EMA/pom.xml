@@ -167,15 +167,10 @@
 
 
 		<dependency>
-<<<<<<< HEAD
-		    <groupId>org.primefaces</groupId>
-		    <artifactId>primefaces</artifactId>
-		    <version>6.1</version>
-=======
+
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
 			<version>6.2</version>
->>>>>>> 654a39b349f75817112fefe1b01c0b16fea70ebc
 		</dependency>
 
 
@@ -189,18 +184,6 @@
 			<artifactId>jsf-impl</artifactId>
 			<version>2.2.17</version>
 		</dependency>
-<<<<<<< HEAD
-		
-			<dependency>
-		<groupId>javax.enterprise</groupId>
-		<artifactId>cdi-api</artifactId>
-		<version>2.0</version>
-		<scope>provided</scope>
-		</dependency>
-	</dependencies>
-	
-	
-=======
 
 		<dependency>
 			<groupId>com.sun.el</groupId>
@@ -217,7 +200,6 @@
 	</dependencies>
 
 
->>>>>>> 654a39b349f75817112fefe1b01c0b16fea70ebc
 	<build>
 		<plugins>
 			<plugin>

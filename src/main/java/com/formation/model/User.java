@@ -1,15 +1,13 @@
 package com.formation.model;
 
 import java.io.Serializable;
-<<<<<<< HEAD
+
 import java.util.List;
 
 import javax.persistence.CascadeType;
-=======
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
->>>>>>> 654a39b349f75817112fefe1b01c0b16fea70ebc
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,17 +28,9 @@ import org.hibernate.Session;
 import org.springframework.transaction.annotation.Transactional;
 
 @Entity
-<<<<<<< HEAD
 @Transactional
-public class User implements Serializable{
-	
-	/**
-	 * 
-	 */
-=======
 public class User implements Serializable {
 
->>>>>>> 654a39b349f75817112fefe1b01c0b16fea70ebc
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -67,21 +57,13 @@ public class User implements Serializable {
 	@Column(name = "birthDate")
 	private String birthDate;
 
-<<<<<<< HEAD
-	
-=======
-	@OneToOne
-	@JoinColumn(name = "DIARY_ID")
-	Diary diary;
->>>>>>> 654a39b349f75817112fefe1b01c0b16fea70ebc
-
 	@OneToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn(name="diary_id")
+	@JoinColumn(name = "diary_id")
 	private Diary diary;
-	
-	@OneToMany(mappedBy="user", cascade = CascadeType.ALL)
+
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<Objectif> objectifs;
-	
+
 	public int getId() {
 		return id;
 	}
@@ -110,11 +92,6 @@ public class User implements Serializable {
 		return email;
 	}
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 654a39b349f75817112fefe1b01c0b16fea70ebc
 	public void setEmail(String email) {
 		this.email = email;
 	}
@@ -134,15 +111,14 @@ public class User implements Serializable {
 	public void setBirthDate(String birthDate) {
 		this.birthDate = birthDate;
 	}
-<<<<<<< HEAD
-	
+
 	public List<Objectif> getObjectifs() {
 		return objectifs;
 	}
 
 	public void setObjectifs(List<Objectif> objectifs) {
 		this.objectifs = objectifs;
-=======
+	}
 
 	public String getName() {
 		return firstName + " " + lastName;
@@ -154,12 +130,11 @@ public class User implements Serializable {
 				+ ", password=" + password + ", birthDate=" + birthDate + "]";
 	}
 
-	
 	// logout event, invalidate session
 	public String logout() {
 		HttpSession session = SessionUtils.getSession();
 		session.invalidate();
 		return "login";
->>>>>>> 654a39b349f75817112fefe1b01c0b16fea70ebc
 	}
+
 }

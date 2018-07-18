@@ -93,31 +93,27 @@ public class MainController {
 		return "home";
 	}
 
-<<<<<<< HEAD
-=======
+
 	public String goToProfil() {
 		System.out.println("++" + user);
 		return "profil";
 	}
 
->>>>>>> 654a39b349f75817112fefe1b01c0b16fea70ebc
 	public String goToSignUp() {
 		return "signUp";
 	}
 
-	public String logUser() {
-		User logUser = null;
-		logUser = userService.findByEmail(user.getEmail(), user.getPassword());
-		if (logUser != null) {
-			user = logUser;
-			return "home";
-		}
-		return null;
-	}
+//	public String logUser() {
+//		User logUser = null;
+//		logUser = userService.findByEmail(user.getEmail(), user.getPassword());
+//		if (logUser != null) {
+//			user = logUser;
+//			return "home";
+//		}
+//		return null;
+//	}
 
-<<<<<<< HEAD
-=======
-	public String amqUser() {
+	public String logUser() {
 		User logUser = null;
 		logUser = userService.findByEmail(user.getEmail(), user.getPassword());
 		if (logUser != null) {
@@ -141,13 +137,13 @@ public class MainController {
 		}
 	}
 
->>>>>>> 654a39b349f75817112fefe1b01c0b16fea70ebc
+
 	public String createUser() {
 		User us = userService.createUser(this.user);
 		return "index";
 	}
 
-<<<<<<< HEAD
+
 	public String createObjectif() {
 		System.out.println("Obj");
 		System.out.println(this.objectif);
@@ -169,7 +165,7 @@ public class MainController {
 		return "home";
 	}
 
-=======
+
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -179,7 +175,7 @@ public class MainController {
 		return "redirect:/login?logout";
 	}
 
->>>>>>> 654a39b349f75817112fefe1b01c0b16fea70ebc
+
 	private String getPrincipal() {
 		String userName = null;
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();

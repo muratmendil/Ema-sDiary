@@ -40,8 +40,6 @@ public class UserDaoImpl implements UserDao, Serializable {
 		return userManager.find(User.class, id);
 	}
 
-<<<<<<< HEAD
-=======
 	@Override
 	public String logout() {
 		String user = null;
@@ -55,7 +53,7 @@ public class UserDaoImpl implements UserDao, Serializable {
 		return "index";
 	}
 
->>>>>>> 654a39b349f75817112fefe1b01c0b16fea70ebc
+
 	@Override
 	public User findByEmail(String email, String password) {
 		String sql = "SELECT user.* FROM user AS user WHERE email = ? && password = ?";

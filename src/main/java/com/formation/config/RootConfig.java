@@ -22,12 +22,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
-<<<<<<< HEAD
-@ComponentScan(basePackages = {"com.formation"})
-=======
-@ComponentScan(basePackages = { "com.formation" }, excludeFilters = {
+@ComponentScan(basePackages = {"com.formation"}, excludeFilters = {
 		@Filter(type = FilterType.ANNOTATION, value = EnableWebMvc.class) })
->>>>>>> 654a39b349f75817112fefe1b01c0b16fea70ebc
 @EnableTransactionManagement
 public class RootConfig {
 
