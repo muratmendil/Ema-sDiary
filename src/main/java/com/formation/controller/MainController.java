@@ -1,16 +1,14 @@
 package com.formation.controller;
 
-<<<<<<< HEAD
-import java.util.List;
-
-import javax.persistence.Id;
-=======
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
->>>>>>> d2ea29f04d45eb977657f9298113736130d0d485
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -19,12 +17,15 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.formation.dao.UserDaoImpl;
 import com.formation.model.Objectif;
 import com.formation.model.User;
 import com.formation.service.ObjectifService;
+import com.formation.service.SessionUtils;
 import com.formation.service.UserService;
 
 @Named
@@ -32,20 +33,12 @@ import com.formation.service.UserService;
 @RequestScoped
 public class MainController {
 
-<<<<<<< HEAD
-	private String getPrincipal() {
-		String userName = null;
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-=======
-	
 	private User user;
 	private Objectif objectif;
->>>>>>> d2ea29f04d45eb977657f9298113736130d0d485
 
 	@Autowired
 	private UserService userService;
-	
-	
+
 	@Autowired
 	private ObjectifService objectifService;
 
@@ -56,7 +49,7 @@ public class MainController {
 	public UserService getUserService() {
 		return userService;
 	}
-	
+
 	public ObjectifService getObjectifService() {
 		return objectifService;
 	}
@@ -65,23 +58,10 @@ public class MainController {
 		this.objectifService = objectifService;
 	}
 
-
 	public void setUserService(UserService userService) {
 		this.userService = userService;
 	}
 
-<<<<<<< HEAD
-	@RequestMapping(value = "/index", method = RequestMethod.POST)
-	public String signInUser(@ModelAttribute User user, BindingResult result,ModelMap model) {
-		System.out.println("***** iciiii ****");
-		User us = service.findByEmail(user.getEmail(), user.getPassword());
-		System.out.println("** "+us);
-		if (us != null) {
-			model.addAttribute("users", us);
-			return "profil";
-		}
-		return null;
-=======
 	public void setUser(User user) {
 		this.user = user;
 	}
@@ -92,7 +72,6 @@ public class MainController {
 
 	public void setObjectif(Objectif objectif) {
 		this.objectif = objectif;
->>>>>>> d2ea29f04d45eb977657f9298113736130d0d485
 	}
 
 	@PostConstruct
@@ -108,48 +87,64 @@ public class MainController {
 	public String goToHome() {
 		return "home";
 	}
-	
+
+	public String goToProfil() {
+		System.out.println("++" + user);
+		return "profil";
+	}
+
 	public String goToSignUp() {
 		return "signUp";
 	}
 
-<<<<<<< HEAD
-	@RequestMapping(value = "/profil", method = RequestMethod.GET)
-	public String profil(ModelMap model) {
-		
-        List<User> users = service.findById();
-        model.addAttribute("users", users);
-        
-      
-		return "profil";
-=======
 	public String logUser() {
-
 		User logUser = null;
-
 		logUser = userService.findByEmail(user.getEmail(), user.getPassword());
 		if (logUser != null) {
+			user = logUser;
 			return "home";
 		}
 		return null;
->>>>>>> d2ea29f04d45eb977657f9298113736130d0d485
 	}
-	
-	
+
+	public String amqUser() {
+		User logUser = null;
+		logUser = userService.findByEmail(user.getEmail(), user.getPassword());
+		if (logUser != null) {
+			user = logUser;
+			return valide(user.getEmail(), user.getPassword());
+		}
+		return null;
+	}
+
+	String valide(String email, String password) {
+
+		boolean valid = userService.validate(email, password);
+		if (valid) {
+			HttpSession session = SessionUtils.getSession();
+			session.setAttribute("username", email);
+			return "home";
+		} else {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
+					"Incorrect Username and Passowrd", "Please enter correct username and Password"));
+			return "login";
+		}
+	}
+
 	public String createUser() {
-	User us = userService.createUser(this.user);
-		
+		User us = userService.createUser(this.user);
 		return "index";
 	}
-	
-	
-	public String createObjectif() {
-		System.out.println(this.objectif);
-		Objectif obj = this.objectifService.createObjectif(this.objectif);
-		return "home";
+
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if (auth != null) {
+			new SecurityContextLogoutHandler().logout(request, response, auth);
+		}
+		return "redirect:/login?logout";
 	}
-	
-	
+
 	private String getPrincipal() {
 		String userName = null;
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -160,15 +155,6 @@ public class MainController {
 			userName = principal.toString();
 		}
 		return userName;
-	}
-
-	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		if (auth != null) {
-			new SecurityContextLogoutHandler().logout(request, response, auth);
-		}
-		return "redirect:/login?logout";
 	}
 
 	@RequestMapping(value = "/Access_Denied", method = RequestMethod.GET)
