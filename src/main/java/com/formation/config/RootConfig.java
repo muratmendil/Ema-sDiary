@@ -24,10 +24,12 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @Configuration
 @ComponentScan(basePackages = { "com.formation" }, excludeFilters = {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		@Filter(type = FilterType.ANNOTATION, value = EnableWebMvc.class) })
 =======
+=======
+>>>>>>> 216dbdff4710a612221f14a8d2ee07440fc4adcd
 @Filter(type = FilterType.ANNOTATION, value = EnableWebMvc.class) })
->>>>>>> profil
 @EnableTransactionManagement
 public class RootConfig {
 

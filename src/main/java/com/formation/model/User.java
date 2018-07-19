@@ -4,13 +4,6 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-
-<<<<<<< HEAD
-
-=======
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
->>>>>>> profil
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -54,10 +47,6 @@ public class User implements Serializable {
 	@Column(name = "birthDate")
 	private String birthDate;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> profil
 	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name="diary_id")
 	private Diary diary;
@@ -93,10 +82,6 @@ public class User implements Serializable {
 		return email;
 	}
 
-<<<<<<< HEAD
-
-=======
->>>>>>> profil
 	public void setEmail(String email) {
 		this.email = email;
 	}
@@ -116,11 +101,7 @@ public class User implements Serializable {
 	public void setBirthDate(String birthDate) {
 		this.birthDate = birthDate;
 	}
-<<<<<<< HEAD
-	
-=======
 
->>>>>>> profil
 	public List<Objectif> getObjectifs() {
 		return objectifs;
 	}
@@ -133,16 +114,6 @@ public class User implements Serializable {
 		return firstName + " " + lastName;
 	}
 
-<<<<<<< HEAD
-	
-=======
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", password=" + password + ", birthDate=" + birthDate + "]";
-	}
-
->>>>>>> profil
 	// logout event, invalidate session
 	public String logout() {
 		HttpSession session = SessionUtils.getSession();
@@ -150,14 +121,17 @@ public class User implements Serializable {
 		return "login";
 	}
 
-<<<<<<< HEAD
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
 				+ ", password=" + password + ", birthDate=" + birthDate + ", objectifs=" + objectifs + "]";
 	}
-	
-	
-=======
->>>>>>> profil
+
+	public Diary getDiary() {
+		return diary;
+	}
+
+	public void setDiary(Diary diary) {
+		this.diary = diary;
+	}
 }
