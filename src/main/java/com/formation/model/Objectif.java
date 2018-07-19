@@ -1,6 +1,5 @@
 package com.formation.model;
 
-
 import java.io.Serializable;
 import java.util.List;
 
@@ -38,6 +37,22 @@ public class Objectif implements Serializable{
 	@Column(name = "objectif_id")
 	private int id;
 	
+	public List<Task> getTasks() {
+		return tasks;
+	}
+
+	public void setTasks(List<Task> tasks) {
+		this.tasks = tasks;
+	}
+
+	public Graphic getGraphic() {
+		return graphic;
+	}
+
+	public void setGraphic(Graphic graphic) {
+		this.graphic = graphic;
+	}
+
 	@Column(name = "name")
 	private String name;
 	
@@ -54,11 +69,10 @@ public class Objectif implements Serializable{
     @ElementCollection(targetClass=Objectif.class)
 	private List<Objectif> suggestions;
 	
-	@OneToOne
+    @OneToOne
 	@JoinColumn(name="graphic_id")
 	private Graphic graphic;
-	
-	
+    
 	@ManyToOne
 	private User user;
 	

@@ -1,7 +1,7 @@
 
 
 $(document).ready(function() {
-    $("#starts-at, #ends-at").datetimepicker();
+    $(".starts-at, .ends-at").datetimepicker();
     $(".starts-at2, .ends-at2").datetimepicker();
 
     $('#calendar').fullCalendar({
@@ -20,15 +20,17 @@ $(document).ready(function() {
             // You could fill in the start and end fields based on the parameters
             $('#modal1').modal('show');
             $('#modal1').find('input').val('');
-            $('#modal1').find('#starts-at').val(start);
-            $('#modal1').find('#ends-at').val(end);
+            $('#modal1').find('.starts-at').val(start);
+            $('#modal1').find('.ends-at').val(end);
+            
+            /*
             $('#save-event').on('click', function() {
                 var name = $('#name').val();
                 if (name) {
                     var eventData = {
                         title: name,
-                        start: $('#starts-at').val(),
-                        end: $('#ends-at').val()
+                        start: $('.starts-at').val(),
+                        end: $('.ends-at').val()
                     };
                     $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
                 }
@@ -39,21 +41,22 @@ $(document).ready(function() {
 
                 // hide modal
                 $('.modal').modal('hide');
-            });
+            });*/
         },
         eventClick: function(event, element) {
             // Display the modal and set the values to the event values.
             $('#modal1').modal('show');
             $('#modal1').find('#name').val(event.title);
-            $('#modal1').find('#starts-at').val(event.start);
-            $('#modal1').find('#ends-at').val(event.end);
+            $('#modal1').find('.starts-at').val(event.start);
+            $('#modal1').find('.ends-at').val(event.end);
             
+            /*
             $('#save-event').on('click', function() {
                 var name = $('#name').val();
                 if (name) {
                 	event.title = name;
-                	event.start = $('#starts-at').val();
-                	event.end = $('#ends-at').val();
+                	event.start = $('.starts-at').val();
+                	event.end = $('.ends-at').val();
                 	
                 	$('#calendar').fullCalendar("updateEvent", event[0]);
 
@@ -65,7 +68,7 @@ $(document).ready(function() {
 
                 // hide modal
                 $('#modal1').modal('hide');
-            });
+            });*/
 
         },
         eventDragStop: function (event, jsEvent, ui, view) {

@@ -26,6 +26,15 @@ public class HomeController {
 	private Objectif objectif;
 	private Task task;
 	
+	public Task getTask() {
+		return task;
+	}
+
+
+	public void setTask(Task task) {
+		this.task = task;
+	}
+
 	private Objectif selectObjectif;
 	
 	public List<Objectif> objectifs = new ArrayList<>();
@@ -73,6 +82,7 @@ public class HomeController {
 	public void init() {
 		objectif = new Objectif();
 		user = new User();
+		task = new Task();
 	}
 
 	public String goToProfil() {
@@ -85,6 +95,7 @@ public class HomeController {
 	}
 	
 	public String createObjectif() {
+		
 		List<Objectif> objectifs = new ArrayList<Objectif>();
 		objectifs.add(this.objectif);
 		User user = userService.findById(1);
@@ -98,8 +109,8 @@ public class HomeController {
 		return "/home/home";
 	}
 
-	
 	public String createTask() {
+		System.out.println("debutt"+ this.selectObjectif.toString());
 		return "/home/home";
 	}
 	
