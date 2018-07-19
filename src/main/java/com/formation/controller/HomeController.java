@@ -4,11 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.RequestScoped;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,13 +20,17 @@ import com.formation.service.UserService;
 @Named
 @Controller
 @RequestScoped
-public class MainController {
+public class HomeController {
 
 	private User user;
 	private Objectif objectif;
 	private Task task;
+<<<<<<< HEAD:src/main/java/com/formation/controller/MainController.java
 	private User current_user;
 
+=======
+	
+>>>>>>> task:src/main/java/com/formation/controller/HomeController.java
 	private Objectif selectObjectif;
 
 	public List<Objectif> objectifs = new ArrayList<>();
@@ -76,6 +77,7 @@ public class MainController {
 	public void init() {
 		objectif = new Objectif();
 		user = new User();
+<<<<<<< HEAD:src/main/java/com/formation/controller/MainController.java
 		this.current_user = new User();
 		// this.objectifs = getObjectifs();
 	}
@@ -92,15 +94,16 @@ public class MainController {
 		return "home";
 	}
 
+=======
+	}
+
+>>>>>>> task:src/main/java/com/formation/controller/HomeController.java
 	public String goToProfil() {
 		System.out.println("++" + user);
-		return "profil";
+		return "/profil/profil";
 	}
 
-	public String goToSignUp() {
-		return "signUp";
-	}
-
+<<<<<<< HEAD:src/main/java/com/formation/controller/MainController.java
 <<<<<<< HEAD
 =======
 	// public String logUser() {
@@ -146,9 +149,13 @@ public class MainController {
 		return "index";
 	}
 
+=======
+	public String getCurrentUserName(){
+		return SessionUtils.getUserName();
+	}
+	
+>>>>>>> task:src/main/java/com/formation/controller/HomeController.java
 	public String createObjectif() {
-		System.out.println("Obj");
-		System.out.println(this.objectif);
 		List<Objectif> objectifs = new ArrayList<Objectif>();
 		objectifs.add(this.objectif);
 		User user = userService.findById(1);
@@ -159,11 +166,12 @@ public class MainController {
 			this.objectif.reset();
 		}
 
-		return "home";
+		return "/home/home";
 	}
 
+	
 	public String createTask() {
-		return "home";
+		return "/home/home";
 	}
 <<<<<<< HEAD
 	
@@ -185,9 +193,12 @@ public class MainController {
 		}
 		return null;
 	}
+<<<<<<< HEAD:src/main/java/com/formation/controller/MainController.java
 
 	/*
 	 * public List<Objectif> getObjectifs(){ int id = SessionUtils.getUserId();
 	 * return objectifService.getAll(id); }
 	 */
+=======
+>>>>>>> task:src/main/java/com/formation/controller/HomeController.java
 }
