@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,12 +28,6 @@ public class HomeController {
 	private User user;
 	private Objectif objectif;
 	private Task task;
-<<<<<<< HEAD:src/main/java/com/formation/controller/MainController.java
-	private User current_user;
-
-=======
-	
->>>>>>> task:src/main/java/com/formation/controller/HomeController.java
 	private Objectif selectObjectif;
 
 	public List<Objectif> objectifs = new ArrayList<>();
@@ -77,84 +74,17 @@ public class HomeController {
 	public void init() {
 		objectif = new Objectif();
 		user = new User();
-<<<<<<< HEAD:src/main/java/com/formation/controller/MainController.java
-		this.current_user = new User();
-		// this.objectifs = getObjectifs();
 	}
 
-	public String sayHello() {
-		return "hello";
-	}
-
-	public String index() {
-		return "index";
-	}
-
-	public String goToHome() {
-		return "home";
-	}
-
-=======
-	}
-
->>>>>>> task:src/main/java/com/formation/controller/HomeController.java
 	public String goToProfil() {
 		System.out.println("++" + user);
 		return "/profil/profil";
 	}
-
-<<<<<<< HEAD:src/main/java/com/formation/controller/MainController.java
-<<<<<<< HEAD
-=======
-	// public String logUser() {
-	// User logUser = null;
-	// logUser = userService.findByEmail(user.getEmail(), user.getPassword());
-	// if (logUser != null) {
-	// user = logUser;
-	// return "home";
-	// }
-	// return null;
-	// }
->>>>>>> profil
-
 	
 	public String getCurrentUserName() {
 		return SessionUtils.getUserName();
 	}
 
-	public String logUser() {
-		User logUser = userService.findByEmail(user.getEmail(), user.getPassword());
-		if (logUser != null) {
-			return valide(logUser);
-		}
-		return null;
-	}
-
-	String valide(User user) {
-		boolean valid = userService.validate(user.getEmail(), user.getPassword());
-		if (valid) {
-			HttpSession session = SessionUtils.getSession();
-			session.setAttribute("username", user.getName());
-			session.setAttribute("userId", user.getId());
-			return "home";
-		} else {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
-					"Incorrect Username and Passowrd", "Please enter correct username and Password"));
-			return "login";
-		}
-	}
-
-	public String createUser() {
-		User us = userService.createUser(this.user);
-		return "index";
-	}
-
-=======
-	public String getCurrentUserName(){
-		return SessionUtils.getUserName();
-	}
-	
->>>>>>> task:src/main/java/com/formation/controller/HomeController.java
 	public String createObjectif() {
 		List<Objectif> objectifs = new ArrayList<Objectif>();
 		objectifs.add(this.objectif);
@@ -173,32 +103,15 @@ public class HomeController {
 	public String createTask() {
 		return "/home/home";
 	}
-<<<<<<< HEAD
 	
 	public List<Objectif> getObjectifs(){
-=======
-
-	public List<Objectif> getObjectifs() {
->>>>>>> profil
 		int id = SessionUtils.getUserId();
 		List<Objectif> objectifs = objectifService.getAll(id);
 
 		if (objectifs != null && objectifs.size() > 0) {
 
 			return objectifs;
-<<<<<<< HEAD
-=======
-
->>>>>>> profil
 		}
 		return null;
 	}
-<<<<<<< HEAD:src/main/java/com/formation/controller/MainController.java
-
-	/*
-	 * public List<Objectif> getObjectifs(){ int id = SessionUtils.getUserId();
-	 * return objectifService.getAll(id); }
-	 */
-=======
->>>>>>> task:src/main/java/com/formation/controller/HomeController.java
 }

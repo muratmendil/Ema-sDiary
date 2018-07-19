@@ -1,6 +1,6 @@
 .gradle
 build/
-
+src/com/formation/config/RootConfig.java
 # Ignore Gradle GUI config
 gradle-app.setting
 
