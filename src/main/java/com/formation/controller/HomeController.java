@@ -4,11 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.RequestScoped;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -88,8 +85,6 @@ public class HomeController {
 	}
 	
 	public String createObjectif() {
-		System.out.println("Obj");
-		System.out.println(this.objectif);
 		List<Objectif> objectifs = new ArrayList<Objectif>();
 		objectifs.add(this.objectif);
 		User user = userService.findById(1);
