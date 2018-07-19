@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import com.formation.model.User;
-
+import com.formation.service.DiaryService;
 import com.formation.service.SessionUtils;
 import com.formation.service.UserService;
 
@@ -24,7 +24,7 @@ public class LoginController {
 	
 	@Autowired
 	private UserService userService;
-
+	
 	
 	public User getUser() {
 		return user;
@@ -56,8 +56,8 @@ public class LoginController {
 	}
 
 
-	public String getCurrentUserName(){
-		return SessionUtils.getUserName();
+	public String getCurrentUserFistName(){
+		return SessionUtils.getUserFirstName();
 	}
 	
 	
@@ -73,8 +73,12 @@ public class LoginController {
 		boolean valid = userService.validate(user.getEmail(), user.getPassword());
 		if (valid) {
 			HttpSession session = SessionUtils.getSession();
-			session.setAttribute("username",user.getName() );
+			session.setAttribute("firstName",user.getFirstName());
+			session.setAttribute("lastName",user.getLastName());
+			session.setAttribute("email",user.getEmail());
 			session.setAttribute("userId", user.getId());
+			session.setAttribute("birthDate", user.getBirthDate());
+
 			return "/home/home";
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,

@@ -90,9 +90,15 @@ public class HomeController {
 		System.out.println("++" + user);
 		return "/profil/profil";
 	}
+<<<<<<< HEAD
 	
 	public String getCurrentUserName() {
 		return SessionUtils.getUserName();
+=======
+
+	public String getCurrentUserFirstName(){
+		return SessionUtils.getUserFirstName();
+>>>>>>> task
 	}
 
 	public String createObjectif() {

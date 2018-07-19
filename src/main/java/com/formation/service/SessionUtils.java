@@ -14,9 +14,24 @@ public class SessionUtils {
 		return (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
 	}
 
-	public static String getUserName() {
+	public static String getUserFirstName() {
 		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-		return session.getAttribute("username").toString();
+		return session.getAttribute("firstName").toString();
+	}
+	
+	public static String getUserLastName() {
+		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+		return session.getAttribute("lastName").toString();
+	}
+	
+	public static String getUserEmail() {
+		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+		return session.getAttribute("email").toString();
+	}
+	
+	public static String getUserBirthDate() {
+		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+		return session.getAttribute("birthDate").toString();
 	}
 
 	public static int getUserId() {
