@@ -13,26 +13,24 @@
   				<br></br>
   				 <div class="form-group">
 	  				 <h:outputText value="Username" />
-					<h:inputText id="username" value="#{mainController.user.email}" class="form-control"></h:inputText>
+					<h:inputText id="username" value="#{loginController.user.email}" class="form-control"></h:inputText>
   				 </div>
 			 	 <div class="form-group">
 	  				 <h:outputText value="Password" />
-					<h:inputSecret id="password" value="#{mainController.user.password}"></h:inputSecret>
+					<h:inputSecret id="password" value="#{loginController.user.password}"></h:inputSecret>
   				 </div>
-  				 <h:commandButton action="#{mainController.logUser}"
+  				 <h:commandButton action="#{loginController.logUser}"
 			value="Login" class="btn btn-primary"></h:commandButton>
 			
-			<h:commandButton action="#{mainController.logUser}"
+			<h:commandButton action="#{loginController.logUser}"
 			value="CONNEXION AVEC SESSION" class="btn btn-primary"></h:commandButton>
 			
 			</h:form>
 			<h:form>
-				<h:commandLink value="Inscription" action="#{mainController.goToSignUp}"/>
+				<h:commandLink value="Inscription" action="#{loginController.goToSignUp}"/>
 			
 			</h:form>
-			
 		</div>
-		
 	</div>
 </h:body>
 </html>
