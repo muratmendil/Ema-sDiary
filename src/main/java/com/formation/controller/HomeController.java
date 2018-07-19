@@ -4,11 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.RequestScoped;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -76,6 +73,19 @@ public class HomeController {
 		user = new User();
 	}
 
+
+	public String sayHello() {
+		return "hello";
+	}
+
+	public String index() {
+		return "index";
+	}
+
+	public String goToHome() {
+		return "home";
+	}
+
 	public String goToProfil() {
 		System.out.println("++" + user);
 		return "/profil/profil";
@@ -103,7 +113,7 @@ public class HomeController {
 	public String createTask() {
 		return "/home/home";
 	}
-	
+
 	public List<Objectif> getObjectifs(){
 		int id = SessionUtils.getUserId();
 		List<Objectif> objectifs = objectifService.getAll(id);
@@ -114,4 +124,5 @@ public class HomeController {
 		}
 		return null;
 	}
+
 }
