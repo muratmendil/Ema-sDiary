@@ -1,20 +1,12 @@
 package com.formation.model;
 
 import java.io.Serializable;
-<<<<<<< HEAD
-
-=======
->>>>>>> a33932aa5b69bbba2c23ead6c0800fd6c48b0043
 import java.util.List;
 
 import javax.persistence.CascadeType;
 
-<<<<<<< HEAD
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-=======
-
->>>>>>> a33932aa5b69bbba2c23ead6c0800fd6c48b0043
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -58,10 +50,6 @@ public class User implements Serializable {
 	@Column(name = "birthDate")
 	private String birthDate;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> a33932aa5b69bbba2c23ead6c0800fd6c48b0043
 	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "diary_id")
 	private Diary diary;
@@ -97,10 +85,6 @@ public class User implements Serializable {
 		return email;
 	}
 
-<<<<<<< HEAD
-=======
-
->>>>>>> a33932aa5b69bbba2c23ead6c0800fd6c48b0043
 	public void setEmail(String email) {
 		this.email = email;
 	}
@@ -120,11 +104,7 @@ public class User implements Serializable {
 	public void setBirthDate(String birthDate) {
 		this.birthDate = birthDate;
 	}
-<<<<<<< HEAD
 
-=======
-	
->>>>>>> a33932aa5b69bbba2c23ead6c0800fd6c48b0043
 	public List<Objectif> getObjectifs() {
 		return objectifs;
 	}
@@ -137,16 +117,12 @@ public class User implements Serializable {
 		return firstName + " " + lastName;
 	}
 
-<<<<<<< HEAD
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
 				+ ", password=" + password + ", birthDate=" + birthDate + "]";
 	}
 
-=======
-	
->>>>>>> a33932aa5b69bbba2c23ead6c0800fd6c48b0043
 	// logout event, invalidate session
 	public String logout() {
 		HttpSession session = SessionUtils.getSession();
@@ -154,14 +130,4 @@ public class User implements Serializable {
 		return "login";
 	}
 
-<<<<<<< HEAD
-=======
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", password=" + password + ", birthDate=" + birthDate + ", objectifs=" + objectifs + "]";
-	}
-	
-	
->>>>>>> a33932aa5b69bbba2c23ead6c0800fd6c48b0043
 }

@@ -6,17 +6,12 @@ import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.formation.config.RootConfig;
 import com.formation.model.User;
 
 @Repository
@@ -53,10 +48,6 @@ public class UserDaoImpl implements UserDao, Serializable {
 		return "index";
 	}
 
-<<<<<<< HEAD
-
-=======
->>>>>>> a33932aa5b69bbba2c23ead6c0800fd6c48b0043
 	@Override
 	public User findByEmail(String email, String password) {
 		String sql = "SELECT user.* FROM user AS user WHERE email = ? && password = ?";
