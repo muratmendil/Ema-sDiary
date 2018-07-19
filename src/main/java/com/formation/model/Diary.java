@@ -27,11 +27,23 @@ public class Diary implements Serializable{
 	@Column(name = "diary_id")
 	private int id;
 	
+	@Column(name = "name")
+	private String name;
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	@OneToMany(mappedBy="diary")
 	private List<Task> tasks;
 	
 	@OneToOne(mappedBy="diary")
 	private User user;
+	
 
 	public List<Task> getTasks() {
 		return tasks;

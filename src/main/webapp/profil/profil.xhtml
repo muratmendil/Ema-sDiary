@@ -20,7 +20,7 @@
 </h:head>
 
 <h:body>
-<ui:include src="header.xhtml"></ui:include>
+<ui:include src="/header/header.xhtml"></ui:include>
 	<div class="container">
 		<div class="view-account">
 			<section class="module">
@@ -32,12 +32,12 @@
 								style="margin: auto" />
 							<ul class="meta list list-unstyled">
 								<li class="name"><h:outputText
-										value="#{mainController.user.firstName}  #{mainController.user.lastName}" />
+										value="#{profilController.getCurrentUserFirstName()}  #{profilController.getCurrentUserLastName()}" />
 									<label class="label label-info">UX Designer</label></li>
 								<li class="email"><a href="#"><h:outputText
-											value="#{mainController.user.email}" /></a></li>
+											value="#{profilController.getCurrentUserEmail()}" /></a></li>
 								<li class="activity"><h:outputText
-										value="#{mainController.user.birthDate}" /></li>
+										value="#{profilController.getCurrentUserBirthDate()}" /></li>
 							</ul>
 						</div>
 						<nav class="side-menu">

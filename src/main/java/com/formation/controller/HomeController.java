@@ -80,8 +80,8 @@ public class HomeController {
 		return "/profil/profil";
 	}
 
-	public String getCurrentUserName(){
-		return SessionUtils.getUserName();
+	public String getCurrentUserFirstName(){
+		return SessionUtils.getUserFirstName();
 	}
 	
 	public String createObjectif() {
