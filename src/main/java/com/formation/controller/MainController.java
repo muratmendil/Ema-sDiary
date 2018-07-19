@@ -29,9 +29,9 @@ public class MainController {
 	private Objectif objectif;
 	private Task task;
 	private User current_user;
-	
+
 	private Objectif selectObjectif;
-	
+
 	public List<Objectif> objectifs = new ArrayList<>();
 
 	@Autowired
@@ -43,7 +43,6 @@ public class MainController {
 	public User getUser() {
 		return user;
 	}
-
 
 	public UserService getUserService() {
 		return userService;
@@ -78,15 +77,13 @@ public class MainController {
 		objectif = new Objectif();
 		user = new User();
 		this.current_user = new User();
-		//this.objectifs = getObjectifs();
+		// this.objectifs = getObjectifs();
 	}
 
-	
-	
-	public String sayHello(){
+	public String sayHello() {
 		return "hello";
 	}
-	
+
 	public String index() {
 		return "index";
 	}
@@ -94,7 +91,6 @@ public class MainController {
 	public String goToHome() {
 		return "home";
 	}
-
 
 	public String goToProfil() {
 		System.out.println("++" + user);
@@ -105,12 +101,24 @@ public class MainController {
 		return "signUp";
 	}
 
+<<<<<<< HEAD
+=======
+	// public String logUser() {
+	// User logUser = null;
+	// logUser = userService.findByEmail(user.getEmail(), user.getPassword());
+	// if (logUser != null) {
+	// user = logUser;
+	// return "home";
+	// }
+	// return null;
+	// }
+>>>>>>> profil
 
-	public String getCurrentUserName(){
+	
+	public String getCurrentUserName() {
 		return SessionUtils.getUserName();
 	}
-	
-	
+
 	public String logUser() {
 		User logUser = userService.findByEmail(user.getEmail(), user.getPassword());
 		if (logUser != null) {
@@ -123,7 +131,7 @@ public class MainController {
 		boolean valid = userService.validate(user.getEmail(), user.getPassword());
 		if (valid) {
 			HttpSession session = SessionUtils.getSession();
-			session.setAttribute("username",user.getName() );
+			session.setAttribute("username", user.getName());
 			session.setAttribute("userId", user.getId());
 			return "home";
 		} else {
@@ -157,21 +165,29 @@ public class MainController {
 	public String createTask() {
 		return "home";
 	}
+<<<<<<< HEAD
 	
 	public List<Objectif> getObjectifs(){
+=======
+
+	public List<Objectif> getObjectifs() {
+>>>>>>> profil
 		int id = SessionUtils.getUserId();
 		List<Objectif> objectifs = objectifService.getAll(id);
-		
-		if(objectifs != null && objectifs.size() > 0){
-			
+
+		if (objectifs != null && objectifs.size() > 0) {
+
 			return objectifs;
+<<<<<<< HEAD
+=======
+
+>>>>>>> profil
 		}
 		return null;
 	}
-	
+
 	/*
-	public List<Objectif> getObjectifs(){
-		int id = SessionUtils.getUserId();
-		return objectifService.getAll(id);
-	} */
+	 * public List<Objectif> getObjectifs(){ int id = SessionUtils.getUserId();
+	 * return objectifService.getAll(id); }
+	 */
 }

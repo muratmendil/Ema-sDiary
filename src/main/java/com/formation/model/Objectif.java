@@ -68,7 +68,7 @@ public class Objectif implements Serializable{
 
 	public void setName(String name) {
 		this.name = name;
-	}
+	} 
 
 	public String getStartDate() {
 		return startDate;
