@@ -23,6 +23,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
 @ComponentScan(basePackages = { "com.formation" }, excludeFilters = {
+<<<<<<< HEAD
 		@Filter(type = FilterType.ANNOTATION, value = EnableWebMvc.class) })
 =======
 @Filter(type = FilterType.ANNOTATION, value = EnableWebMvc.class) })
