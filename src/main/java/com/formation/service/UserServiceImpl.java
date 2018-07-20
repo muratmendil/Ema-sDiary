@@ -43,12 +43,12 @@ public class UserServiceImpl implements UserService {
 	public User findByEmail(String email, String password) {
 		User logUser = userDao.findByEmail(email, password);
 		if (logUser != null) {
-			HttpSession session = SessionUtils.getSession();
+			/*HttpSession session = SessionUtils.getSession();
 			session.setAttribute("firstName",logUser.getFirstName());
 			session.setAttribute("lastName",logUser.getLastName());
 			session.setAttribute("email",logUser.getEmail());
 			session.setAttribute("userId", logUser.getId());
-			session.setAttribute("birthDate", logUser.getBirthDate());
+			session.setAttribute("birthDate", logUser.getBirthDate());*/
 			return logUser;
 		}
 		else{
@@ -63,17 +63,5 @@ public class UserServiceImpl implements UserService {
 		return null;
 	}
 
-<<<<<<< HEAD
-	@Override
-	public boolean validate(String email, String password) {
-		return userDao.validate(email,  password);
-	}
 
-	@Override
-	public User updateUser(User user) {
-		return userDao.updateUser(user);
-	}
-
-=======
->>>>>>> 0623032f2e9e75ac99f57525fec2e582c330aaff
 }

@@ -103,12 +103,7 @@ public class User implements Serializable {
 	public void setBirthDate(String birthDate) {
 		this.birthDate = birthDate;
 	}
-<<<<<<< HEAD
 
-=======
-	
-	
->>>>>>> task
 	public List<Objectif> getObjectifs() {
 		return objectifs;
 	}

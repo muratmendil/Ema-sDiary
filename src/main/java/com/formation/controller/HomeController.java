@@ -27,8 +27,7 @@ public class HomeController {
 	private User user;
 	private Objectif objectif;
 	private Task task;
-<<<<<<< HEAD
-=======
+
 	
 	public Task getTask() {
 		return task;
@@ -39,7 +38,6 @@ public class HomeController {
 		this.task = task;
 	}
 
->>>>>>> task
 	private Objectif selectObjectif;
 
 	public List<Objectif> objectifs = new ArrayList<>();

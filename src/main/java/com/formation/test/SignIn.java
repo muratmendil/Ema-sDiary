@@ -16,15 +16,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = RootConfig.class)
-public class LoginTest {
-	private final Logger logger = org.slf4j.LoggerFactory.getLogger(LoginTest.class);
+public class SignIn {
+	private final Logger logger = org.slf4j.LoggerFactory.getLogger(SignIn.class);
 
 	@Autowired
 	UserService repo;
 
 	@Test
 	public void test() {
-		User yarrak = repo.findByEmail("larenaa@live.fr", "12345");
+	
+		User yarrak = repo.createUser(user);
 		Assert.assertNotNull(yarrak);
 
 		logger.info(yarrak.toString());

@@ -58,29 +58,4 @@ public class UserDaoImpl implements UserDao, Serializable {
 		User user = (User) query.getSingleResult();
 		return user;
 	}
-<<<<<<< HEAD
-
-	@Override
-	public boolean validate(String email, String password) {
-		
-		String sql = "SELECT * FROM user AS user WHERE email = ? && password = ?";
-		Query query = userManager.createNativeQuery(sql, User.class);
-		query.setParameter(1, email);
-		query.setParameter(2, password);
-		
-		User user = (User) query.getSingleResult();
-		
-		if(user != null){
-			return true;
-		}
-		return false;
-	}
-
-	@Override
-	public User updateUser(User user) {
-		return userManager.merge(user);
-	}
-
-=======
->>>>>>> 0623032f2e9e75ac99f57525fec2e582c330aaff
 }

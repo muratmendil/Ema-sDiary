@@ -1,6 +1,5 @@
 package com.formation.controller;
 
-
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.RequestScoped;
@@ -21,11 +20,10 @@ import com.formation.service.UserService;
 public class LoginController {
 
 	private User user;
-	
+
 	@Autowired
 	private UserService userService;
-	
-	
+
 	public User getUser() {
 		return user;
 	}
@@ -34,7 +32,6 @@ public class LoginController {
 		return userService;
 	}
 
-	
 	public void setUserService(UserService userService) {
 		this.userService = userService;
 	}
@@ -43,7 +40,6 @@ public class LoginController {
 		this.user = user;
 	}
 
-	
 	@PostConstruct
 	public void init() {
 		user = new User();
@@ -53,32 +49,12 @@ public class LoginController {
 		return "/signUp/signUp";
 	}
 
-	
 	public String logUser() {
 		User logUser = userService.findByEmail(user.getEmail(), user.getPassword());
-<<<<<<< HEAD
 		if (logUser != null) {
-			return valide(logUser);
-		}
-		return null;
-	}
-	
-	String valide(User user) {
-		boolean valid = userService.validate(user.getEmail(), user.getPassword());
-		if (valid) {
-			HttpSession session = SessionUtils.getSession();
-			session.setAttribute("firstName",user.getFirstName());
-			session.setAttribute("lastName",user.getLastName());
-			session.setAttribute("email",user.getEmail());
-			session.setAttribute("userId", user.getId());
-			session.setAttribute("birthDate", user.getBirthDate());
-
-=======
-		if(logUser != null){
->>>>>>> 0623032f2e9e75ac99f57525fec2e582c330aaff
 			return "/home/home";
-		}else{
-			return "index";
 		}
+		return "index";
 	}
+
 }
