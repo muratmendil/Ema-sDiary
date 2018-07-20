@@ -8,5 +8,4 @@ public interface UserDao{
 	User findById(int id);
 	User findByEmail(String email, String password);
 	String logout();
-	boolean validate(String email, String password);
 }
