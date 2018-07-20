@@ -58,6 +58,7 @@ public class UserDaoImpl implements UserDao, Serializable {
 		User user = (User) query.getSingleResult();
 		return user;
 	}
+<<<<<<< HEAD
 
 	@Override
 	public boolean validate(String email, String password) {
@@ -80,4 +81,6 @@ public class UserDaoImpl implements UserDao, Serializable {
 		return userManager.merge(user);
 	}
 
+=======
+>>>>>>> 0623032f2e9e75ac99f57525fec2e582c330aaff
 }

@@ -56,8 +56,69 @@ public class Task implements Serializable {
 		this.priorityLevel = priorityLevel;
 		this.objectif = objectif;
 	}
-	
-	
 
-	// TODO getter and setter
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
+	public String getPlace() {
+		return place;
+	}
+
+	public void setPlace(String place) {
+		this.place = place;
+	}
+
+	public int getSuccessLevel() {
+		return successLevel;
+	}
+
+	public void setSuccessLevel(int successLevel) {
+		this.successLevel = successLevel;
+	}
+
+	public int getPriorityLevel() {
+		return priorityLevel;
+	}
+
+	public void setPriorityLevel(int priorityLevel) {
+		this.priorityLevel = priorityLevel;
+	}
+
+	public Objectif getObjectif() {
+		return objectif;
+	}
+
+	public void setObjectif(Objectif objectif) {
+		this.objectif = objectif;
+	}
+
+	public Diary getDiary() {
+		return diary;
+	}
+
+	public void setDiary(Diary diary) {
+		this.diary = diary;
+	}
+	
 }
