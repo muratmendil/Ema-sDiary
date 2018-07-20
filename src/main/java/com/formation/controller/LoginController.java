@@ -68,7 +68,7 @@ public class LoginController {
 		}
 		return null;
 	}
-
+	
 	String valide(User user) {
 		boolean valid = userService.validate(user.getEmail(), user.getPassword());
 		if (valid) {
