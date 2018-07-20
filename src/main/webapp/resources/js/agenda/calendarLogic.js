@@ -3,7 +3,6 @@
 $(document).ready(function() {
     $(".starts-at, .ends-at").datetimepicker();
     $(".starts-at2, .ends-at2").datetimepicker();
-
     $('#calendar').fullCalendar({
     	contentHeight: 500,
     	locale: 'fr',
@@ -19,6 +18,7 @@ $(document).ready(function() {
             // Display the modal.
             // You could fill in the start and end fields based on the parameters
             $('#modal1').modal('show');
+            $(".bout").html("rtrrtrtrtt");
             $('#modal1').find('input').val('');
             $('#modal1').find('.starts-at').val(start);
             $('#modal1').find('.ends-at').val(end);
@@ -46,6 +46,7 @@ $(document).ready(function() {
         eventClick: function(event, element) {
             // Display the modal and set the values to the event values.
             $('#modal1').modal('show');
+            $(".bout").html("rtrrtrtrtt");
             $('#modal1').find('#name').val(event.title);
             $('#modal1').find('.starts-at').val(event.start);
             $('#modal1').find('.ends-at').val(event.end);

@@ -30,13 +30,11 @@ public class LoginController {
 		return user;
 	}
 
-
 	public UserService getUserService() {
 		return userService;
 	}
 
 	
-
 	public void setUserService(UserService userService) {
 		this.userService = userService;
 	}
@@ -55,35 +53,13 @@ public class LoginController {
 		return "/signUp/signUp";
 	}
 
-
-	public String getCurrentUserFistName(){
-		return SessionUtils.getUserFirstName();
-	}
-	
 	
 	public String logUser() {
 		User logUser = userService.findByEmail(user.getEmail(), user.getPassword());
-		if (logUser != null) {
-			return valide(logUser);
-		}
-		return null;
-	}
-
-	String valide(User user) {
-		boolean valid = userService.validate(user.getEmail(), user.getPassword());
-		if (valid) {
-			HttpSession session = SessionUtils.getSession();
-			session.setAttribute("firstName",user.getFirstName());
-			session.setAttribute("lastName",user.getLastName());
-			session.setAttribute("email",user.getEmail());
-			session.setAttribute("userId", user.getId());
-			session.setAttribute("birthDate", user.getBirthDate());
-
+		if(logUser != null){
 			return "/home/home";
-		} else {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
-					"Incorrect Username and Passowrd", "Please enter correct username and Password"));
-			return "login";
+		}else{
+			return "index";
 		}
 	}
 }

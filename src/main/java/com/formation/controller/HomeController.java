@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.inject.Named;
 
@@ -17,7 +18,8 @@ import com.formation.service.ObjectifService;
 import com.formation.service.SessionUtils;
 import com.formation.service.UserService;
 
-@Named
+
+@ManagedBean
 @Controller
 @RequestScoped
 public class HomeController {
@@ -95,22 +97,12 @@ public class HomeController {
 	}
 	
 	public String createObjectif() {
-		
-		List<Objectif> objectifs = new ArrayList<Objectif>();
-		objectifs.add(this.objectif);
-		User user = userService.findById(1);
-		if (user != null) {
-			user.setObjectifs(objectifs);
-			this.objectif.setUser(user);
-			userService.createUser(user);
-			this.objectif.reset();
-		}
-
+		objectifService.createObjectif(this.objectif);
 		return "/home/home";
 	}
 
 	public String createTask() {
-		System.out.println("debutt"+ this.selectObjectif.toString());
+		
 		return "/home/home";
 	}
 	
