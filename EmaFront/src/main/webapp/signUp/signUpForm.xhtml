@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html">
+	<h:head>
+		<title>login</title>
+	</h:head>
+	<h:body>
+		<div class="login-form-container">
+			<div class="jumbotron">
+				<h:form>
+					<h3 class="text-center">Inscription</h3>
+	  				<br></br>
+	  				<div class="form-group">
+		  				<h:outputText value="Prenom" />
+						<h:inputText id="firstName" value="#{signUpController.user.firstName}" class="form-control"></h:inputText>
+	  				</div>
+	  				<div class="form-group">
+  				 		<h:outputText value="Nom" />
+						<h:inputText id="lastName" value="#{signUpController.user.lastName}" class="form-control"></h:inputText>
+	  				</div>
+	  				<div class="form-group">
+		  				<h:outputText value="Email" />
+						<h:inputText id="username" value="#{signUpController.user.email}" class="form-control"></h:inputText>
+	  				</div>
+	  				<div class="form-group">
+		  				<h:outputText value="BirthDate" />
+						<h:inputText id="birthDate" value="#{signUpController.user.birthDate}" class="form-control"></h:inputText>
+	  				</div>
+			 		<div class="form-group">
+	  					<h:outputText value="Password" />
+						<h:inputSecret id="password" value="#{signUpController.user.password}"></h:inputSecret>
+  					</div>
+  					<h:commandButton action="#{signUpController.createUser}" value="S'inscrire" class="btn btn-primary" />
+				</h:form>
+			</div>
+		</div>
+	</h:body>
+</html>

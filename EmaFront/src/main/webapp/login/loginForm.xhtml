@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<!-- <html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui"> -->
+
+
+<h:head>
+	<title>login</title>
+</h:head>
+<h:body>
+	<div class="login-form-container">
+		<div class="jumbotron">
+			<h:form>
+				<h:panelGrid id="grid" columns="3" cellpadding="5">
+					<h3 class="text-center">Connexion</h3>
+					<br></br>
+					<p:tooltip />
+					<h:form>
+						<p:messages id="messages" showDetail="true" closable="true">
+							<p:autoUpdate />
+						</p:messages>
+					</h:form>					
+					<div class="form-group">
+					 <p:outputLabel value="Username : " />
+						<p:inputText id="username" value="#{loginController.user.email}"
+							class="form-control" required="true" />
+					</div>
+					<div class="form-group">
+						<p:outputLabel value="Password : " />
+						<h:inputSecret id="password"
+							value="#{loginController.user.password}" required="true" />
+					</div>
+
+					<p:commandButton action="#{loginController.logUser}"
+						value="CONNEXION" class="btn btn-primary" update="grid" />
+				</h:panelGrid>
+			</h:form>
+			<h:form>
+				<p:growl id="growl" life="2000" />
+				<p:commandButton value="Inscription" update="growl" id="withIcon"
+					icon="ui-icon-disk" action="#{loginController.goToSignUp}"
+					styleClass="ui-priority-primary" />
+			</h:form>
+		</div>
+
+
+	</div>
+</h:body>
+</html>
