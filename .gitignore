@@ -1,4 +1,5 @@
-src/main/java/com/formation/config/RootConfig.java
+ EmaBack/src/main/java/com/formation/config/RootConfig.java
+ EmaBack/target/classes/com/formation/config/RootConfig.class
 # Compiled class file
 *.class
 
