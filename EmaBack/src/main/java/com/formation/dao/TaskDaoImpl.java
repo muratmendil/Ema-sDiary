@@ -2,12 +2,17 @@ package com.formation.dao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.formation.model.Task;
 
+@Repository
+@Transactional
 public class TaskDaoImpl implements TaskDao {
 	
 private static final Logger logger = LoggerFactory.getLogger(ObjectifDaoImpl.class);
@@ -24,4 +29,15 @@ private static final Logger logger = LoggerFactory.getLogger(ObjectifDaoImpl.cla
 	public Task findById(int id) {
 		return taskManager.find(Task.class, id);
 	}
+
+	@Override
+	public void deleteTask(int id) {
+		String sql = "DELETE task.* FROM task AS task WHERE task_id = ?";
+		Query query = taskManager.createNativeQuery(sql, Task.class);
+		query.setParameter(1, id);
+		int res = query.executeUpdate();
+		System.out.println("++++++++++++");
+		System.out.println(res);
+	}
+
 }

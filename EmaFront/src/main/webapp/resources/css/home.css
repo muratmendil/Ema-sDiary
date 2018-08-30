@@ -3,3 +3,25 @@
 	margin: 0 auto;
 	margin-top: 3%;
 }
+	
+	
+	#calendar .fc-toolbar .fc-right .fc-button-group .fc-month-button, 
+	#calendar .fc-toolbar .fc-right .fc-button-group .fc-agendaWeek-button, #calendar .fc-toolbar .fc-right .btn-group .fc-prev-button,
+	#calendar .fc-toolbar .fc-right .fc-button-group .fc-agendaDay-button, #calendar .fc-toolbar .fc-right .fc-button-group .fc-button{
+    	 background: #007bff;
+	    	border-color: #007bff;
+    	 color: #fff;
+	}
+
+	
+	#calendar .fc-toolbar .fc-right .fc-button-group button:active, #calendar .fc-toolbar .fc-right .fc-button-group button:focus, #calendar .fc-toolbar .fc-right .fc-button-group button.active {
+	  	color: #fff;
+	    background-color: blue;
+	}
+	
+	
+	.fc-prev-button, .fc-next-button , .fc-today-button{
+	  	color: #fff;
+	    background: #007bff !important;
+	    border-color: #007bff !important;
+	}

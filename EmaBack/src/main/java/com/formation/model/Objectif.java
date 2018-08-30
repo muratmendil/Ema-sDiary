@@ -1,6 +1,24 @@
 package com.formation.model;
 
+
 import java.io.Serializable;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+import org.springframework.transaction.annotation.Transactional;
+
+
 import java.util.List;
 
 import javax.persistence.Column;
@@ -16,7 +34,6 @@ import javax.persistence.OneToOne;
 import org.springframework.transaction.annotation.Transactional;
 
 @Entity
-@Transactional
 public class Objectif implements Serializable{
 
 	/**
@@ -24,26 +41,10 @@ public class Objectif implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
 	@Id
 	@GeneratedValue
 	@Column(name = "objectif_id")
 	private int id;
-	
-	public List<Task> getTasks() {
-		return tasks;
-	}
-
-	public void setTasks(List<Task> tasks) {
-		this.tasks = tasks;
-	}
 
 	@Column(name = "name")
 	private String name;
@@ -54,17 +55,24 @@ public class Objectif implements Serializable{
 	@Column(name = "endDate")
 	private String endDate;
 
-	@OneToMany(mappedBy="objectif")
+	@OneToMany(mappedBy = "objectif")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Task> tasks;
-	
 	
     @ElementCollection(targetClass=Objectif.class)
 	private List<Objectif> suggestions;
 	
-    
 	@ManyToOne
 	private User user;
 	
+	public List<Task> getTasks() {
+		return tasks;
+	}
+
+	public void setTasks(List<Task> tasks) {
+		this.tasks = tasks;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -85,6 +93,21 @@ public class Objectif implements Serializable{
 		return endDate;
 	}
 
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 	
 	public void reset(){
 		this.name = "";
@@ -96,10 +119,10 @@ public class Objectif implements Serializable{
 		this.endDate = endDate;
 	}
 	
+	
 	@Override
 	public String toString() {
 		return "Objectif [name=" + name + ", startDate=" + startDate + ", endDate=" + endDate + "]";
 	}
-}
 	
-
+}

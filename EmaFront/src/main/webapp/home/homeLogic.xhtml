@@ -34,6 +34,7 @@
 	
 	    	    $('#calendar').fullCalendar({
 	    	        themeSystem: 'jquery-ui',
+	    	        
 	    	    	contentHeight: 500,
 	    	    	locale: 'fr',
 	    	        header: {
@@ -76,9 +77,9 @@
 	    	        },
 	    	        timezone: "UTC",
 	    	        droppable: true, // this allows things to be dropped onto the calendar
+	    	        resizable: true,
 	    	        editable: true,
 	    	        evenStartEditable: true,
-	    	        dragOpacity: .95,
 	    	        eventDrop: function (event, delta, revertFunc) {
 	    	        	let eventId = event._id;
 	    	        	let eventStart = moment(event.start.format('YYYY/MM/DD hh:mm'));
@@ -89,6 +90,10 @@
     	        	    }else{
     	        	        revertFunc();
     	        	    }
+	    	          },
+	    	          function( view ) {
+	    	        	  
+	    	        	  
 	    	          },
 	    	          eventDurationEditable: true,
 	    	          eventResize : function( event, delta, revertFunc, jsEvent, ui, view ) { 

@@ -12,6 +12,11 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Task implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue
 	@Column(name = "task_id")
@@ -20,11 +25,12 @@ public class Task implements Serializable {
 	@Column(name = "name")
 	private String name;
 	
+
 	@Column(name = "startDate")
-	private Date startDate;
+	private String startDate;
 	
 	@Column(name = "endDate")
-	private Date endDate;
+	private String endDate;
 
 	@Column(name = "place")
 	private String place;
@@ -40,20 +46,15 @@ public class Task implements Serializable {
 	private Objectif objectif;
 
 	
-	public Task(){
-		
+	public int getId() {
+		return id;
 	}
 
-	public Task(String name, Date startDate, Date endDate, String place, int priorityLevel, Objectif objectif) {
-		super();
-		this.name = name;
-		this.startDate = startDate;
-		this.endDate = endDate;
-		this.place = place;
-		this.priorityLevel = priorityLevel;
-		this.objectif = objectif;
+	public void setId(int id) {
+		this.id = id;
 	}
 
+	
 	public String getName() {
 		return name;
 	}
@@ -62,19 +63,19 @@ public class Task implements Serializable {
 		this.name = name;
 	}
 
-	public Date getStartDate() {
+	public String getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(Date startDate) {
+	public void setStartDate(String startDate) {
 		this.startDate = startDate;
 	}
 
-	public Date getEndDate() {
+	public String getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(Date endDate) {
+	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
 
@@ -109,5 +110,11 @@ public class Task implements Serializable {
 	public void setObjectif(Objectif objectif) {
 		this.objectif = objectif;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Task [id=" + id + ", name=" + name + ", startDate=" + startDate + ", endDate=" + endDate + ", place="
+				+ place + ", successLevel=" + successLevel + ", priorityLevel=" + priorityLevel + ", objectif="
+				+ objectif + "]";
+	}
 }

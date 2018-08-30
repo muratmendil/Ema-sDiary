@@ -7,20 +7,30 @@
 	<h:head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 		<title>JSF 2.2 - Spring - JPA - I18N</title>
-		
 		<h:outputStylesheet library="css" name="home.css" />
-		<h:outputStylesheet library="css" name="vendor/bootstrap.min.css" />
-		<h:outputStylesheet library="css" name="vendor/sb-admin.min.css" />
-		<h:outputStylesheet library="css" name="vendor/fullcalendar.css" />
-		<h:outputStylesheet library="css" name="vendor/bootstrap-datetimepicker.min.css" />
-		
 		<h:outputScript library="js" name="vendor/jquery.min.js" />
+		<script type="text/javascript"
+			src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+			integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+			crossorigin="anonymous">
+		</script>
+		<h:outputStylesheet library="css" name="vendor/bootstrap.min.css" />
+		<h:outputStylesheet library="css" name="vendor/fullcalendar.css" />
+		
+		<h:outputStylesheet library="css"
+			name="vendor/bootstrap-datetimepicker.min.css" />
+		<script type="text/javascript"
+			src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+			integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+			crossorigin="anonymous">	
+		</script>
 		<h:outputScript library="js" name="vendor/moment-with-locales.min.js" />
-		<h:outputScript library="js" name="vendor/bootstrap-datetimepicker.min.js" />
-		<h:outputScript library="js" name="vendor/bootstrap.min.js" />
 		<h:outputScript library="js" name="vendor/fullcalendar.js" />
+		<h:outputScript library="js"
+			name="vendor/bootstrap-datetimepicker.min.js" />
 	</h:head>
 	<h:body>
+		
 		<ui:include src="/header/header.xhtml"></ui:include>
 		<h:form>
 			<h:commandLink value="Aller sur la page profil"
@@ -40,7 +50,5 @@
                 action="#{taskController.updateTaskDrag}"
                 style="display: none"/>	 
 		</h:form>
-		
-		
 	</h:body>
 </html>
