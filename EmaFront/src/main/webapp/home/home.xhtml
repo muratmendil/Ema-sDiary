@@ -3,29 +3,22 @@
 		xmlns:f="http://xmlns.jcp.org/jsf/core"
 		xmlns:h="http://xmlns.jcp.org/jsf/html"
 		xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+		
 	<h:head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 		<title>JSF 2.2 - Spring - JPA - I18N</title>
+		
 		<h:outputStylesheet library="css" name="home.css" />
-		<h:outputScript library="js" name="vendor/jquery.min.js" />
-		<script type="text/javascript"
-			src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-			integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-			crossorigin="anonymous">
-		</script>
 		<h:outputStylesheet library="css" name="vendor/bootstrap.min.css" />
+		<h:outputStylesheet library="css" name="vendor/sb-admin.min.css" />
 		<h:outputStylesheet library="css" name="vendor/fullcalendar.css" />
-		<h:outputStylesheet library="css"
-			name="vendor/bootstrap-datetimepicker.min.css" />
-		<script type="text/javascript"
-			src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-			integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-			crossorigin="anonymous">	
-		</script>
+		<h:outputStylesheet library="css" name="vendor/bootstrap-datetimepicker.min.css" />
+		
+		<h:outputScript library="js" name="vendor/jquery.min.js" />
 		<h:outputScript library="js" name="vendor/moment-with-locales.min.js" />
+		<h:outputScript library="js" name="vendor/bootstrap-datetimepicker.min.js" />
+		<h:outputScript library="js" name="vendor/bootstrap.min.js" />
 		<h:outputScript library="js" name="vendor/fullcalendar.js" />
-		<h:outputScript library="js"
-			name="vendor/bootstrap-datetimepicker.min.js" />
 	</h:head>
 	<h:body>
 		<ui:include src="/header/header.xhtml"></ui:include>
@@ -36,10 +29,18 @@
 
 		<!-- The calendar container -->
 		<div id="calendar"></div>
+	
 		<div id='datepicker'></div>
-
-		<ui:include src="taskModal.xhtml"></ui:include>
-		<ui:include src="objectifModal.xhtml"></ui:include>
-		<h:outputScript library="js" name="agenda/calendarLogic.js" />
+		<ui:include src="homeLogic.xhtml"></ui:include>		
+		<h:form id="updateDragEventForm">
+			 <h:inputHidden id="eventId" value="#{taskController.eventId}" />
+			 <h:inputHidden id="eventStart" value="#{taskController.eventStart}" />
+			 <h:inputHidden id="eventEnd" value="#{taskController.eventEnd}" />	
+			 <h:commandButton id="submitDragButton"
+                action="#{taskController.updateTaskDrag}"
+                style="display: none"/>	 
+		</h:form>
+		
+		
 	</h:body>
 </html>

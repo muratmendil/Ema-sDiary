@@ -14,13 +14,13 @@ import com.formation.model.User;
 import com.formation.service.SessionUtils;
 import com.formation.service.UserService;
 
+@SuppressWarnings({ "restriction", "unused" })
 @Named
 @Controller
 @RequestScoped
 public class LoginController {
 
 	private User user;
-	
 	@Autowired
 	private UserService userService;
 	
@@ -52,8 +52,11 @@ public class LoginController {
 	}
 
 	public String goToSignUp() {
+		System.out.println("____________");
 		return "/signUp/signUp?faces-redirect=true";
 	}
+
+	
 
 	
 	public String logUser() {

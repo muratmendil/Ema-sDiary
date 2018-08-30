@@ -1,0 +1,41 @@
+/** GLOBALE */
+body {
+	background-color:#bbb;
+}
+.nopadding{
+	padding:0!important;
+}
+.padding-left-15{
+	padding-left:15px!important;
+}
+
+/**SPE*/
+.container .margin-top-100{
+	margin-top:100px;
+}
+.container .form-connection {
+	background-color:#fff;
+	padding:15px;
+	border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.container .border-bottom {
+	border-bottom:1px solid #ccc;
+	border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+	background-color: #eee;
+	padding-top:10px;
+	padding-bottom:10px;
+	
+}
+.container .head-connection {
+	font-size:22px;
+}
+.custom-input {
+	border: none;
+    box-shadow: none;
+    border-bottom: 1px solid #ccc;
+    border-radius: unset;
+}
+.custom-input:focus {outline:none;border-color:#ccc;box-shadow:none;}
