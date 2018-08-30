@@ -10,12 +10,13 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.formation.model.Task;
+import com.formation.model.User;
 
 @Repository
 @Transactional
 public class TaskDaoImpl implements TaskDao {
 	
-private static final Logger logger = LoggerFactory.getLogger(ObjectifDaoImpl.class);
+private static final Logger logger = LoggerFactory.getLogger(TaskDaoImpl.class);
 	
 	@PersistenceContext
 	private EntityManager taskManager;
@@ -39,5 +40,4 @@ private static final Logger logger = LoggerFactory.getLogger(ObjectifDaoImpl.cla
 		System.out.println("++++++++++++");
 		System.out.println(res);
 	}
-
 }

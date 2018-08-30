@@ -12,14 +12,12 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.servlet.http.HttpSession;
 import javax.validation.constraints.Size;
 
-import com.formation.service.SessionUtils;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.formation.service.SessionUtils;
 
 @Entity
 @Transactional

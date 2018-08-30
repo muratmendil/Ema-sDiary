@@ -1,5 +1,6 @@
 package com.formation.controller;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,14 +16,40 @@ import com.formation.model.Task;
 import com.formation.model.User;
 import com.formation.service.ObjectifService;
 import com.formation.service.SessionUtils;
+import com.formation.service.TaskService;
 import com.formation.service.UserService;
 
 @Named
 @Controller
 @RequestScoped
-public class HomeController {
+public class HomeController implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	private User user;
+	private Objectif objectif;
+	private Task task;
+	private Objectif selectObjectif;
+	public List<Objectif> objectifs;
+
+	public HomeController() {
+		task = new Task();
+	}
+
+	@Autowired
+	private UserService userService;
+
+	@Autowired
+	private ObjectifService objectifService;
+	
+
+	public User getUser() {
+		return user;
+	}
+
 	public Objectif getSelectObjectif() {
 		return selectObjectif;
 	}
@@ -31,38 +58,17 @@ public class HomeController {
 		this.selectObjectif = selectObjectif;
 	}
 
-
 	public void setObjectifs(List<Objectif> objectifs) {
 		this.objectifs = objectifs;
 	}
-
-	private Objectif objectif;
-	private Task task;
 	
 	public Task getTask() {
 		return task;
 	}
 
-
 	public void setTask(Task task) {
 		this.task = task;
 	}
-
-	private Objectif selectObjectif;
-	
-	public List<Objectif> objectifs = new ArrayList<Objectif>();
-
-	@Autowired
-	private UserService userService;
-
-	@Autowired
-	private ObjectifService objectifService;
-
-	public User getUser() {
-		return user;
-	}
-
-
 	public UserService getUserService() {
 		return userService;
 	}
@@ -96,6 +102,8 @@ public class HomeController {
 		objectif = new Objectif();
 		user = new User();
 		task = new Task();
+		selectObjectif = new Objectif();
+		objectifs = new ArrayList<Objectif>();
 	}
 
 	public String goToProfil() {
@@ -110,10 +118,6 @@ public class HomeController {
 		return "/home/home";
 	}
 
-	public String createTask() {
-		
-		return null;
-	}
 	
 	public List<Objectif> getObjectifs(){
 		SessionUtils session = SessionUtils.getInstance();
@@ -123,7 +127,6 @@ public class HomeController {
 		}
 		List<Objectif> objectifs = objectifService.getAll(currentUser.getId());
 		if(objectifs != null && objectifs.size() > 0){
-			
 			return objectifs;
 		}
 		return null;

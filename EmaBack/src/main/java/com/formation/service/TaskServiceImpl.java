@@ -10,20 +10,20 @@ import com.formation.model.Task;
 public class TaskServiceImpl implements TaskService{
 	
 	@Autowired
-	TaskDao taskDao;
+	private TaskDao takDao;
 
 	@Override
 	public Task createTask(Task task) {
-		return taskDao.createTask(task);
+		return takDao.createTask(task);
 	}
 
 	@Override
 	public Task findById(int id) {
-		return taskDao.findById(id);
+		return takDao.findById(id);
 	}
 
 	@Override
 	public void deleteTask(int id) {
-		taskDao.deleteTask(id);
+		takDao.deleteTask(id);	
 	}
 }

@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import com.formation.model.User;
 import com.formation.service.UserService;
 
-@SuppressWarnings("restriction")
 @Named
 @Controller
 @RequestScoped
@@ -43,18 +42,12 @@ public class SignUpController{
 	
 	@PostConstruct
 	public void init() {
-		System.out.println("++++++++++++++");
 		user = new User();
 	}
 
 	
 	public String index() {
 		return "/login/index";
-	}
-	
-	public String goToSignIn() {
-		System.out.println("____________");
-		return "/index.xhtml?faces-redirect=true";
 	}
 
 	public String createUser() {
