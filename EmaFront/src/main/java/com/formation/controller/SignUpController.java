@@ -45,11 +45,9 @@ public class SignUpController{
 		user = new User();
 	}
 
-	
-	public String index() {
-		return "/login/index";
+	public String goToSignIn() {
+		return "/index?faces-redirect=true";
 	}
-
 	public String createUser() {
 		System.out.println("debut");
 		User user = userService.createUser(this.user);

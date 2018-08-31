@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -56,7 +57,12 @@ public class UserDaoImpl implements UserDao, Serializable {
 		query.setParameter(1, email);
 		query.setParameter(2, password);
 
-		User user = (User) query.getSingleResult();
+		User user = null;
+		try {
+		    user = (User) query.getSingleResult();
+		} catch (NoResultException e) {
+			logger.debug("No result forund for... ");
+		}
 		return user;
 	}
 }

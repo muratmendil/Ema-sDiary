@@ -5,30 +5,35 @@
     xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
     xmlns:p="http://primefaces.org/ui">
 	<div class="container">
-		<div class="col-md-offset-4 col-md-4 nopadding margin-top-100">
-			
-				<div class="col-xs-12 border-bottom head-connection text-center">Connexion</div>
-				<div class="col-xs-12 form-connection">
-					<h:form>
-						<div class="form-group">
-							<h:outputLabel for="username" class="control-label">Username</h:outputLabel>
-							<h:inputText id="username" value="#{loginController.user.email}" class="form-control form-control-lg custom-input"></h:inputText>
-		  				 </div>
-					 	 <div class="form-group">
-					 	 	<h:outputLabel for="password" class="control-label">Password</h:outputLabel>
-							<h:inputSecret id="password" value="#{loginController.user.password}" class="form-control form-control-lg custom-input"></h:inputSecret>
-		  				 </div>
-			  			<div class="text-center">
-							<h:commandButton action="#{loginController.logUser}" value="CONNEXION" class="btn btn-primary"></h:commandButton><br/>
-						</div>
-						
-					</h:form>
-					<h:form>
-						<div class="text-center">
-							<h:commandLink value="Vous n'ètes pas encore inscrit ?" action="#{loginController.goToSignUp}"/><br/>
-						</div>
-					</h:form>
-				</div>
+		<div class="col-md-offset-4 col-md-4 nopadding margin-top-100">			
+			<p:tooltip />
+			<h:form>
+			    <p:messages id="messages" showDetail="true" closable="true">
+			        <p:autoUpdate />
+			    </p:messages>
+			</h:form>
+			<div class="col-xs-12 border-bottom head-connection text-center">Connexion</div>
+			<div class="col-xs-12 form-connection">
+				<h:form>
+					<div class="form-group">
+						<h:outputLabel for="username" class="control-label">Username</h:outputLabel>
+						<h:inputText id="username" value="#{loginController.user.email}" class="form-control form-control-lg custom-input"></h:inputText>
+	  				 </div>
+				 	 <div class="form-group">
+				 	 	<h:outputLabel for="password" class="control-label">Password</h:outputLabel>
+						<h:inputSecret id="password" value="#{loginController.user.password}" class="form-control form-control-lg custom-input"></h:inputSecret>
+	  				 </div>
+		  			<div class="text-center">
+						<h:commandButton action="#{loginController.logUser}" value="CONNEXION" class="btn btn-primary" oncomplete="setTimeout(function() { PF('#messages').hide(1000); }, 3000);"></h:commandButton><br/>
+					</div>
+					
+				</h:form>
+				<h:form>
+					<div class="text-center">
+						<h:commandLink value="Vous n'ètes pas encore inscrit ?" action="#{loginController.goToSignUp}"/><br/>
+					</div>
+				</h:form>
+			</div>
 		</div>
 	</div>
 </ui:composition>

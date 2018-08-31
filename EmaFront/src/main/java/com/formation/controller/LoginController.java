@@ -24,7 +24,7 @@ public class LoginController {
 	private UserService userService;
 	
 	FacesContext context;
-	
+
 	
 	public User getUser() {
 		return user;
@@ -65,7 +65,7 @@ public class LoginController {
 		}else{
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
 					"Incorrect Username and Passowrd", "Please enter correct username and Password"));
-			return "index";
+			return null;
 		}
 	}
 	
