@@ -8,4 +8,5 @@ public interface UserDao{
 	User findById(int id);
 	User findByEmail(String email, String password);
 	String logout();
+	void deleteTask(int id);
 }

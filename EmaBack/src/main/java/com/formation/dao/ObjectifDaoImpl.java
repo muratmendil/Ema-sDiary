@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
 import org.slf4j.Logger;
@@ -28,7 +29,14 @@ public class ObjectifDaoImpl implements ObjectifDao {
 	
 	@Override
 	public Objectif createObjectif(Objectif objectif) {
-		return objectifManager.merge(objectif);
+		Objectif ob = null;
+		try {
+			ob = objectifManager.merge(objectif);
+
+		} catch (NoResultException e) {
+			logger.debug(" Objectif not created");
+		}
+		return ob;
 	}
 
 	@Override
@@ -39,11 +47,6 @@ public class ObjectifDaoImpl implements ObjectifDao {
 	@Override
 	public List<Objectif> getAll(int id) {
 		User user =objectifManager.find(User.class, id); 
-		
-		System.out.println("start"+user);
-		if(user.getObjectifs() != null){
-			return user.getObjectifs();
-		}
-		return new ArrayList<Objectif>();
+		return user.getObjectifs();
 	}
 }

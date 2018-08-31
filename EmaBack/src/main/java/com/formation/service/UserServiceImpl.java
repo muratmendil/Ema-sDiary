@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.formation.dao.UserDao;
+import com.formation.exeption.ErrorExeption;
 import com.formation.model.User;
 
 @Service
@@ -16,18 +17,24 @@ public class UserServiceImpl implements UserService {
 	private UserDao userDao;
 	
 	@Override
-	public User createUser(User user) {
-		return userDao.createUser(user);
+	public User createUser(User user) throws ErrorExeption {
+		if(user.newAccountfieldNotEmpty()){
+			return userDao.createUser(user);
+		}
+		throw new ErrorExeption("Champs vide", "Un ou plusieurs champs sont vide");
 	}
 
 	@Override
-	public User findById(int id) {
+	public User findById(int id){
 		return userDao.findById(id);
 	}
 
 	@Override
-	public User findByEmail(String email, String password) {
-		return userDao.findByEmail(email, password);
+	public User findByEmail(String email, String password) throws ErrorExeption {
+		if(email != null  && password != null){
+			return userDao.findByEmail(email, password);
+		}
+		throw new ErrorExeption("Champs vide", "Un ou plusieurs champs sont vide");
 	}
 
 	@Override
@@ -35,4 +42,8 @@ public class UserServiceImpl implements UserService {
 		return null;
 	}
 
+	@Override
+	public void deleteTask(int id) {
+		userDao.deleteTask(id);
+	}
 }

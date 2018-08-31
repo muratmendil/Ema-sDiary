@@ -10,6 +10,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+
+import com.formation.exeption.ErrorExeption;
 import com.formation.model.User;
 import com.formation.service.SessionUtils;
 import com.formation.service.UserService;
@@ -55,18 +57,24 @@ public class LoginController {
 	}
 	
 	public String logUser() {
-		User logUser = userService.findByEmail(user.getEmail(), user.getPassword());
-		if(logUser != null){
-			
-			SessionUtils session = SessionUtils.getInstance();
-			session.setAttribute("current_user", logUser);
-	        
-			return "/home/home?faces-redirect=true";
-		}else{
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
-					"Incorrect Username and Passowrd", "Please enter correct username and Password"));
-			return null;
+		User logUser;
+		try {
+			logUser = userService.findByEmail(user.getEmail(), user.getPassword());
+			if(logUser != null){
+				
+				SessionUtils session = SessionUtils.getInstance();
+				session.setAttribute("current_user", logUser);
+		        
+				return "/home/home?faces-redirect=true";
+			}else{
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
+						"Incorrect Username and Passowrd", "Please enter correct username and Password"));
+				return null;
+			}
+		} catch (ErrorExeption e) {
+			System.out.println(e.getExeptionMessage());
 		}
+		return null;
 	}
 	
 	public String logOut(){

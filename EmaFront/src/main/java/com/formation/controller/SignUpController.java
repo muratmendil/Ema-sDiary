@@ -7,6 +7,8 @@ import javax.faces.bean.RequestScoped;
 import javax.inject.Named;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+
+import com.formation.exeption.ErrorExeption;
 import com.formation.model.User;
 import com.formation.service.UserService;
 
@@ -50,11 +52,17 @@ public class SignUpController{
 	}
 	public String createUser() {
 		System.out.println("debut");
-		User user = userService.createUser(this.user);
-		if(user != null){
-			return "/index";
-		}else{
-			return "/index";
+		User user;
+		try {
+			user = userService.createUser(this.user);
+			if(user != null){
+				return "/index";
+			}else{
+				return "/index";
+			}
+		} catch (ErrorExeption e) {
+			System.out.println(e.getExeptionMessage());
 		}
+		return null;
 	}
 }

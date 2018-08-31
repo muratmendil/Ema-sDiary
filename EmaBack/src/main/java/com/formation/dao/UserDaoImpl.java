@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.formation.model.Task;
 import com.formation.model.User;
 
 @Repository
@@ -64,5 +65,13 @@ public class UserDaoImpl implements UserDao, Serializable {
 			logger.debug("No result forund for... ");
 		}
 		return user;
+	}
+
+	@Override
+	public void deleteTask(int id) {
+		String sql = "DELETE user.* FROM user AS user WHERE user_id = ?";
+		Query query = userManager.createNativeQuery(sql, User.class);
+		query.setParameter(1, id);
+		int res = query.executeUpdate();
 	}
 }

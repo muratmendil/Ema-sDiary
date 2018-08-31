@@ -13,12 +13,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.SystemPropertyUtils;
 
+import com.formation.exeption.ErrorExeption;
 import com.formation.model.Objectif;
 import com.formation.model.Task;
 import com.formation.model.User;
 import com.formation.service.ObjectifService;
 import com.formation.service.SessionUtils;
 import com.formation.service.TaskService;
+import com.sun.el.parser.ELParserTreeConstants;
 
 
 @Named
@@ -128,19 +130,33 @@ public class TaskController implements Serializable {
 		if(selectObjectif != null){
 			this.task.setObjectif(selectObjectif);
 		}
-		taskService.createTask(this.task);
+		try {
+			taskService.createTask(this.task);
+		} catch (ErrorExeption e) {
+			System.out.println(e.getExeptionMessage());
+		}
 		this.task = new Task();
 		return "/home/home";
 	}
 	
 	public String updateTask() {
-		Task task = taskService.findById(eventId);
-		task.setName(this.task.getName());
-		task.setStartDate(this.task.getStartDate());
-		task.setEndDate(this.task.getEndDate());
-		task.setPlace(this.task.getPlace());
-		task.setPriorityLevel(this.task.getPriorityLevel()); 
-		taskService.createTask(task);
+		Task task = null;
+		try {
+			task = taskService.findById(eventId);
+			task.setName(this.task.getName());
+			task.setStartDate(this.task.getStartDate());
+			task.setEndDate(this.task.getEndDate());
+			task.setPlace(this.task.getPlace());
+			task.setPriorityLevel(this.task.getPriorityLevel()); 
+		} catch (ErrorExeption e) {
+			System.out.println(e.getExeptionMessage());
+		}
+		
+		try {
+			taskService.createTask(task);
+		} catch (ErrorExeption e) {
+			System.out.println(e.getExeptionMessage());
+		}
 		return "/home/home";
 	}
 	
@@ -152,10 +168,20 @@ public class TaskController implements Serializable {
 	
 	
 	public String updateTaskDrag() {
-		Task task = taskService.findById(eventId);
-		task.setStartDate(eventStart);
-		task.setEndDate(eventEnd);
-		taskService.createTask(task);
+		Task task;
+		try {
+			task = taskService.findById(eventId);
+			task.setStartDate(eventStart);
+			task.setEndDate(eventEnd);
+		} catch (ErrorExeption e) {
+			System.out.println(e.getExeptionMessage());
+		}
+		
+		try {
+			taskService.createTask(this.task);
+		} catch (ErrorExeption e) {
+			System.out.println(e.getExeptionMessage());
+		}
 		return "/home/home";
 	}
 	
@@ -165,10 +191,13 @@ public class TaskController implements Serializable {
 		if(currentUser == null){
 			System.out.println("session4 null");
 		}
-		List<Objectif> objectifs = objectifService.getAll(currentUser.getId());
-		if(objectifs != null && objectifs.size() > 0){
-			this.objectifs = objectifs;
-			return objectifs;
+		List<Objectif> objectifs;
+		try {
+			objectifs = objectifService.getAll(currentUser.getId());
+				this.objectifs = objectifs;
+				return objectifs;
+		} catch (ErrorExeption e) {
+			System.out.println(e.getExeptionMessage());
 		}
 		return null;
 	}
@@ -179,13 +208,16 @@ public class TaskController implements Serializable {
 		SessionUtils session = SessionUtils.getInstance();
 		User currentUser = (User) session.getAttribute("current_user");		
 		
-		List<Objectif> objectifs = objectifService.getAll(currentUser.getId());
-		if(objectifs != null && objectifs.size() > 0){
-				for(Objectif ob : objectifs){
-					if(ob.getTasks().size() > 0){
-						tasks.addAll(ob.getTasks());
-					}
+		List<Objectif> objectifs;
+		try {
+			objectifs = objectifService.getAll(currentUser.getId());
+			for(Objectif ob : objectifs){
+				if(ob.getTasks().size() > 0){
+					tasks.addAll(ob.getTasks());
 				}
+			}
+		} catch (ErrorExeption e) {
+			System.out.println(e.getExeptionMessage());
 		}
 		return tasks;
 	}

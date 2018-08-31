@@ -134,6 +134,13 @@ public class User implements Serializable {
 		return "login";
 	}
 
+	public boolean newAccountfieldNotEmpty(){
+		if(this.firstName != null && this.lastName != null && this.email != null && this.birthDate != null && this.password != null){
+			return true;
+		}
+		return false;
+	}
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email

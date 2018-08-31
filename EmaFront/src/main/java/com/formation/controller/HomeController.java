@@ -11,6 +11,7 @@ import javax.inject.Named;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import com.formation.exeption.ErrorExeption;
 import com.formation.model.Objectif;
 import com.formation.model.Task;
 import com.formation.model.User;
@@ -114,20 +115,26 @@ public class HomeController implements Serializable {
 	public String createObjectif() {
 		SessionUtils session = SessionUtils.getInstance();
 		User currentUser = (User) session.getAttribute("current_user");
-		objectifService.createObjectif(currentUser.getId(), this.objectif);
+		try {
+			objectifService.createObjectif(currentUser.getId(), this.objectif);
+		} catch (ErrorExeption e) {
+			System.out.println(e.getExeptionMessage());
+		}
 		return "/home/home";
 	}
 
-	
 	public List<Objectif> getObjectifs(){
 		SessionUtils session = SessionUtils.getInstance();
 		User currentUser = (User) session.getAttribute("current_user");		
 		if(currentUser == null){
 			System.out.println("session4 null");
 		}
-		List<Objectif> objectifs = objectifService.getAll(currentUser.getId());
-		if(objectifs != null && objectifs.size() > 0){
+		List<Objectif> objectifs;
+		try {
+			objectifs = objectifService.getAll(currentUser.getId());
 			return objectifs;
+		} catch (ErrorExeption e) {
+			System.out.println(e.getExeptionMessage());
 		}
 		return null;
 	}

@@ -2,6 +2,7 @@ package com.formation.model;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -104,6 +105,12 @@ public class Objectif implements Serializable{
 		this.endDate = endDate;
 	}
 	
+	public boolean fieldNotEmpty(){
+		if(this.name != null && this.startDate != null && this.endDate != null){
+			return true;
+		}
+		return false;
+	}
 	
 	@Override
 	public String toString() {

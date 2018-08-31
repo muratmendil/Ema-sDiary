@@ -4,26 +4,35 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.formation.dao.TaskDao;
+import com.formation.exeption.ErrorExeption;
+import com.formation.model.Objectif;
 import com.formation.model.Task;
 
 @Service
 public class TaskServiceImpl implements TaskService{
 	
 	@Autowired
-	private TaskDao takDao;
+	private TaskDao taskDao;
 
 	@Override
-	public Task createTask(Task task) {
-		return takDao.createTask(task);
+	public Task createTask(Task task) throws ErrorExeption{
+		if(task.fieldNotEmpty()){
+			return taskDao.createTask(task);
+		}
+		throw new ErrorExeption("Champs vide", "Un ou plusieurs champs sont vide");
 	}
 
 	@Override
-	public Task findById(int id) {
-		return takDao.findById(id);
+	public Task findById(int id) throws ErrorExeption {
+		Task task = taskDao.findById(id);
+		if(task == null){
+			throw new ErrorExeption("Null value", "Cette tache n'existe pas");
+		}
+		return task;
 	}
 
 	@Override
 	public void deleteTask(int id) {
-		takDao.deleteTask(id);	
+		taskDao.deleteTask(id);	
 	}
 }

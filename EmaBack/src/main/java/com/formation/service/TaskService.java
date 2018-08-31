@@ -2,12 +2,13 @@ package com.formation.service;
 
 import java.util.List;
 
+import com.formation.exeption.ErrorExeption;
 import com.formation.model.Task;
 
 public interface TaskService {
 
-	 Task createTask(Task task);
-	 Task findById(int id);
+	 Task createTask(Task task) throws ErrorExeption;
+	 Task findById(int id) throws ErrorExeption;
 	 void deleteTask(int id);
 
 }

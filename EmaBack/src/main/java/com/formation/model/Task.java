@@ -114,6 +114,14 @@ public class Task implements Serializable {
 		this.objectif = objectif;
 	}
 
+	
+	public boolean fieldNotEmpty(){
+		if(this.name != null && this.startDate != null && this.endDate != null && this.place != null && this.objectif != null){
+			return true;
+		}
+		return false;
+	}
+	
 	@Override
 	public String toString() {
 		return "Task [id=" + id + ", name=" + name + ", startDate=" + startDate + ", endDate=" + endDate + ", place="
