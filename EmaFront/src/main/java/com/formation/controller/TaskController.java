@@ -120,20 +120,27 @@ public class TaskController implements Serializable {
 	
 	public String createTask() {
 		Objectif selectObjectif = new Objectif();
-		for(Objectif ob : objectifs){
-			if(ob.getId() == selectObjectifId){
-				selectObjectif = ob;
-				break;
+		
+		if(objectifs.size() > 0){
+			for(Objectif ob : objectifs){
+				if(ob.getId() == selectObjectifId){
+					selectObjectif = ob;
+					break;
+				}
 			}
+		}else{
+			System.out.println("---------");
 		}
 		
-		if(selectObjectif != null){
+		if(selectObjectif.fieldNotEmpty()){
 			this.task.setObjectif(selectObjectif);
-		}
-		try {
-			taskService.createTask(this.task);
-		} catch (ErrorExeption e) {
-			System.out.println(e.getExeptionMessage());
+			try {
+				taskService.createTask(this.task);
+			} catch (ErrorExeption e) {			
+				System.out.println("**********************");
+				System.out.println(e.getExeptionMessage());
+			}
+			this.task = new Task();
 		}
 		this.task = new Task();
 		return "/home/home";
@@ -168,7 +175,7 @@ public class TaskController implements Serializable {
 	
 	
 	public String updateTaskDrag() {
-		Task task;
+		Task task = null;
 		try {
 			task = taskService.findById(eventId);
 			task.setStartDate(eventStart);
@@ -178,7 +185,7 @@ public class TaskController implements Serializable {
 		}
 		
 		try {
-			taskService.createTask(this.task);
+			taskService.createTask(task);
 		} catch (ErrorExeption e) {
 			System.out.println(e.getExeptionMessage());
 		}

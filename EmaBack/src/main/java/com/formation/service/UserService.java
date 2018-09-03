@@ -11,7 +11,7 @@ public interface UserService {
 	User findById(int id);
 	User findByEmail(String email, String password) throws ErrorExeption;
 	List<User> findById();
-	void deleteTask(int id);
+	void deleteUser(int id);
 }
 
 

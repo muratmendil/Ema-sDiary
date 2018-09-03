@@ -67,7 +67,7 @@ public class ObjectifServiceImplTest {
 			System.out.println(e.getExeptionMessage());
 			Assert.assertNull(createObjectif);
 		} 
-		userService.deleteTask(createUser.getId());
+		userService.deleteUser(createUser.getId());
 	}
 
 	@Test
@@ -114,7 +114,7 @@ public class ObjectifServiceImplTest {
 			System.out.println(e.getExeptionMessage());
 		}
 		
-		userService.deleteTask(createUser.getId());
+		userService.deleteUser(createUser.getId());
 	}
 
 	@Test
@@ -166,6 +166,6 @@ public class ObjectifServiceImplTest {
 			System.out.println(e.getExeptionMessage());
 		}
 		
-		userService.deleteTask(createUser.getId());
+		userService.deleteUser(createUser.getId());
 	}
 }

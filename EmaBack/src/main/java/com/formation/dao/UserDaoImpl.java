@@ -68,7 +68,7 @@ public class UserDaoImpl implements UserDao, Serializable {
 	}
 
 	@Override
-	public void deleteTask(int id) {
+	public void deleteUser(int id) {
 		String sql = "DELETE user.* FROM user AS user WHERE user_id = ?";
 		Query query = userManager.createNativeQuery(sql, User.class);
 		query.setParameter(1, id);
