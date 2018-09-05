@@ -38,6 +38,14 @@ public class Objectif implements Serializable{
 	@Column(name = "startDate")
 	private String startDate;
 	
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
 	@Column(name = "endDate")
 	private String endDate;
 
@@ -50,6 +58,8 @@ public class Objectif implements Serializable{
 	
 	@ManyToOne
 	private User user;
+	
+	private String color;
 	
 	public List<Task> getTasks() {
 		return tasks;
@@ -111,10 +121,11 @@ public class Objectif implements Serializable{
 		}
 		return false;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Objectif [name=" + name + ", startDate=" + startDate + ", endDate=" + endDate + "]";
+		return "Objectif [name=" + name + ", startDate=" + startDate + ", endDate=" + endDate + ", tasks=" + tasks
+				+ ", color=" + color + "]";
 	}
 	
 }

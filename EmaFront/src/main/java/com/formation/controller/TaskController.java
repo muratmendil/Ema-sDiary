@@ -134,6 +134,7 @@ public class TaskController implements Serializable {
 		
 		if(selectObjectif.fieldNotEmpty()){
 			this.task.setObjectif(selectObjectif);
+			this.task.setColor(selectObjectif.getColor());
 			try {
 				taskService.createTask(this.task);
 			} catch (ErrorExeption e) {			
