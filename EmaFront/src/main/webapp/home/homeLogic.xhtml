@@ -15,6 +15,7 @@
 	                newEvent.title = '#{item.name}';
 	                newEvent.start = '#{item.startDate}';
 	                newEvent.end = '#{item.endDate}';
+	                newEvent.color = '#{item.color}';
 	                tabEvents[index] = newEvent;
 	                index++;
 		        </ui:repeat>
@@ -91,9 +92,11 @@
     	        	        revertFunc();
     	        	    }
 	    	          },
-	    	          function( view ) {
-	    	        	  
-	    	        	  
+	    	          eventRender: function(event, element) {
+	    	                  element.css({
+	    	                      'background-color': event.color,
+	    	                      'border-color': event.color
+	    	                  });
 	    	          },
 	    	          eventDurationEditable: true,
 	    	          eventResize : function( event, delta, revertFunc, jsEvent, ui, view ) { 

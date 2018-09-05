@@ -35,6 +35,15 @@ public class HomeController implements Serializable {
 	private Task task;
 	private Objectif selectObjectif;
 	public List<Objectif> objectifs;
+	private String objectifColor;
+
+	public String getObjectifColor() {
+		return objectifColor;
+	}
+
+	public void setObjectifColor(String objectifColor) {
+		this.objectifColor = objectifColor;
+	}
 
 	public HomeController() {
 		task = new Task();

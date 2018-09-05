@@ -38,6 +38,17 @@
 			                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 			                <h:commandButton action="#{homeController.createObjectif}" value="Save Objectif" class="btn btn-primary"></h:commandButton>
 		            	</div>
-					</h:form>
+		           
+			            <div class="row">
+		                   <div class="col-xs-12">
+		                         <h:selectOneMenu id="color" value="#{homeController.objectif.color}" style="width:150px">
+					                <f:selectItem itemLabel="Select coleur" itemValue="" noSelectionOption="true" />
+					                <f:selectItem itemLabel="Rouge" itemValue="#FF0000"/>
+            					    <f:selectItem itemLabel="Bleu" itemValue="#0000FF"/>
+            					    <f:selectItem itemLabel="Vert" itemValue="#00FF00"/>
+					            </h:selectOneMenu>	                  
+		                   </div>
+		               </div>
+			</h:form>
 	</h:body>
 </html>

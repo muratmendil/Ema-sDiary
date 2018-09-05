@@ -40,13 +40,22 @@ public class Task implements Serializable {
 	
 	@Column(name = "successLevel")
 	private int successLevel;
-	
 
 	@Column(name = "priorityLevel")
 	private int priorityLevel;
 
 	@ManyToOne
 	private Objectif objectif;
+
+	private String color;
+	
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
 
 	
 	public int getId() {
