@@ -1,0 +1,152 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    >
+    
+    	<script type="text/javascript">
+			function onLoad(){  
+				let tabEvents = [];
+			    let index = 0;
+				<ui:repeat value="#{taskController.getTasks()}" var="item">
+				  	var newEvent = new Object();  
+				  	newEvent._id = '#{item.id}';
+	                newEvent.title = '#{item.name}';
+	                newEvent.start = '#{item.startDate}';
+	                newEvent.end = '#{item.endDate}';
+	                newEvent.color = '#{item.color}';
+	                tabEvents[index] = newEvent;
+	                index++;
+		        </ui:repeat>
+		        return tabEvents;
+		     }
+			
+			let events = onLoad();
+		</script>
+     	<ui:include src="newTaskForm.xhtml"></ui:include>		
+      	<ui:include src="updateTaskForm.xhtml"></ui:include>			
+    	<script type="text/javascript">
+			let currentEvent;
+
+	    	$(document).ready(function() {
+	    	    $(".starts-at, .ends-at").datetimepicker();
+	    	    $(".starts-at2, .ends-at2").datetimepicker();
+	
+	    	    $('#calendar').fullCalendar({
+	    	        themeSystem: 'jquery-ui',
+	    	        
+	    	    	contentHeight: 500,
+	    	    	locale: 'fr',
+	    	        header: {
+	    	            left: 'prev,next today',
+	    	            center: 'title',
+	    	            right: 'month,agendaWeek,agendaDay,listMonth'
+	    	        },
+	    	        navLinks: true, // can click day/week names to navigate views
+	    	        selectable: true,
+	    	        selectHelper: true,
+	    	        weekNumbers: true,
+	    	        eventLimit: true,
+	    	        events: events,
+	    	        select: function(start, end) {
+	    	            // Display the modal.
+	    	            // You could fill in the start and end fields based on the parameters
+	    	            $('#modal1').modal('show');
+	    	            
+	    	            let formStart=moment(start).format('YYYY/MM/DD hh:mm');
+	
+	    	            let formEnd=moment(end).format('YYYY/MM/DD hh:mm');
+	
+	    	        	$('.starts-at').val(formStart);
+	    	        	$('.ends-at').val(formEnd);
+	
+	    	        },
+	    	        eventClick: function(event, element) {
+
+	    	            // Display the modal and set the values to the event values.
+	    	        	currentEvent = event;
+	    	          
+	    	            $('#modal2').modal('show');
+	    	            $('#modal2').find('.name').val(event.title);
+	    	            
+	    	            let formStart=moment(event.start).format('YYYY/MM/DD hh:mm');
+	    	            let formEnd=moment(event.end).format('YYYY/MM/DD hh:mm');
+	    	            $('#modal2').find('.starts-at').val(formStart);
+	    	            $('#modal2').find('.ends-at').val(formEnd);
+	    	            
+	    	        },
+	    	        timezone: "UTC",
+	    	        droppable: true, // this allows things to be dropped onto the calendar
+	    	        resizable: true,
+	    	        editable: true,
+	    	        evenStartEditable: true,
+	    	        eventDrop: function (event, delta, revertFunc) {
+	    	        	let eventId = event._id;
+	    	        	let eventStart = moment(event.start.format('YYYY/MM/DD hh:mm'));
+	    	        	let eventEnd = moment(event.end.format('YYYY/MM/DD hh:mm'));
+	    	        	
+	    	        	 if (confirm("Voulez vous modifié cette tache?")) {
+	    	        		 updateDragEvent(eventId, eventStart, eventEnd);
+    	        	    }else{
+    	        	        revertFunc();
+    	        	    }
+	    	          },
+	    	          eventRender: function(event, element) {
+	    	                  element.css({
+	    	                      'background-color': event.color,
+	    	                      'border-color': event.color
+	    	                  });
+	    	          },
+	    	          eventDurationEditable: true,
+	    	          eventResize : function( event, delta, revertFunc, jsEvent, ui, view ) { 
+	    	        	  
+	    	        	  
+	    	          }
+	    	        	    	       
+	    	    });
+	    	    $('.createTask').on('click', function() {
+	    	    	
+	    	        $('#calendar').fullCalendar('unselect');
+	
+	    	        // Clear modal inputs
+	    	        $('#modal1').find('input').val('');
+	
+	    	        // hide modal
+	    	        $('#modal1').modal('hide');
+	    	    });
+	    	   
+	    	});
+	
+	    	$('#newObjectifButton').on('click', function() {
+	
+	    		myFunction();
+	    		
+	    	});
+	
+	    	
+	    	function myFunction() {
+	    	    window.location.href = "/EmaFront/home/newObjectif.xhtml";
+	    	}
+	    	
+	    	function updateEvent() {
+	    		let eventId = currentEvent._id;
+	    	    document.getElementById("updateTaskForm:eventId").value = eventId;
+	    	}
+	    	
+	    	function deleteEvent() {
+	    		let eventId = currentEvent._id;
+	    	    document.getElementById("updateTaskForm:eventId").value = eventId;
+	    	}
+	    	
+	    	function updateDragEvent(eventId, eventStart, eventEnd){
+	    	
+	    			document.getElementById("updateDragEventForm:eventId").value = eventId;
+	  	    	    document.getElementById("updateDragEventForm:eventStart").value = eventStart;
+	  	    	    document.getElementById("updateDragEventForm:eventEnd").value = eventEnd;
+	  	    	    let button = document.getElementById('updateDragEventForm:submitDragButton');
+	  	    	    button.click(); 	
+	    	}
+		</script>
+
+</ui:composition>

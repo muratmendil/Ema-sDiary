@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+	<h:outputStylesheet library="css" name="profil.css" />
+	<h:outputScript library="js" name="profil.js" />
+	<link
+		href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+		rel="stylesheet" />
+	<link
+		href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
+		rel="stylesheet" id="bootstrap-css" />
+	<script
+		src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	<meta charset="utf-8" />
+	<title>Profil page</title>
+</h:head>
+
+<h:body>
+	<ui:include src="/header/header.xhtml"></ui:include>
+	<div class="container">
+		<div class="view-account">
+			<section class="module">
+				<div class="module-inner">
+					<div class="side-bar">
+						<div class="user-info">
+							<img class="img-profile img-circle img-responsive center-block"
+								src="https://bootdey.com/img/Content/avatar/avatar6.png" alt=""
+								style="margin: auto" />
+							<ul class="meta list list-unstyled">
+								<li class="name"><h:outputText
+										value="#{profilController.getCurrentUserFirstName()}  #{profilController.getCurrentUserLastName()}" />
+									<label class="label label-info">UX Designer</label></li>
+								<li class="email"><a href="#"><h:outputText
+											value="#{profilController.getCurrentUserEmail()}" /></a></li>
+								<li class="activity"><h:outputText
+										value="#{profilController.getCurrentUserBirthDate()}" /></li>
+							</ul>
+						</div>
+						<nav class="side-menu">
+							<ul class="nav nav-tabs">
+								<li class="active"><a data-toggle="tab" href="#home"><span
+										class="fa fa-user"></span> Profil</a></li>
+								<li><a data-toggle="tab" href="#menu1"><span
+										class="fa fa-cog"></span> Configuration</a></li>
+							</ul>
+						</nav>
+					</div>
+
+
+
+					<div class="content-panel">
+						<div class="content-header-wrapper">
+							<h2 class="title">Mon profil</h2>
+							<div class="actions">
+								<button class="btn btn-success">
+									<i class="fa fa-plus"></i> Créer un objectif
+								</button>
+							</div>
+						</div>
+						<div class="content-utilities">
+							<div class="page-nav">
+								<span class="indicator">View:</span>
+								<div class="btn-group" role="group">
+									<button class="active btn btn-default" data-toggle="tooltip"
+										data-placement="bottom" title=""
+										data-original-title="Grid View" id="drive-grid-toggle">
+										<i class="fa fa-th-large"></i>
+									</button>
+									<button class="btn btn-default" data-toggle="tooltip"
+										data-placement="bottom" title=""
+										data-original-title="List View" id="drive-list-toggle">
+										<i class="fa fa-list-ul"></i>
+									</button>
+								</div>
+							</div>
+							<div class="actions">
+								<div class="btn-group">
+									<button class="btn btn-default dropdown-toggle"
+										data-toggle="dropdown" type="button" aria-expanded="false">
+										All Items <span class="caret"></span>
+									</button>
+									<ul class="dropdown-menu">
+										<li><a href="#"><i class="fa fa-file"></i> Documents</a></li>
+										<li><a href="#"><i class="fa fa-file-image-o"></i>
+												Images</a></li>
+										<li><a href="#"><i class="fa fa-file-video-o"></i>
+												Media Files</a></li>
+										<li><a href="#"><i class="fa fa-folder"></i> Folders</a></li>
+									</ul>
+								</div>
+								<div class="btn-group">
+									<button class="btn btn-default dropdown-toggle"
+										data-toggle="dropdown" type="button" aria-expanded="false">
+										<i class="fa fa-filter"></i> Sorting <span class="caret"></span>
+									</button>
+									<ul class="dropdown-menu">
+										<li><a href="#">Newest first</a></li>
+										<li><a href="#">Oldest first</a></li>
+									</ul>
+								</div>
+								<div class="btn-group" role="group">
+									<button type="button" class="btn btn-default"
+										data-toggle="tooltip" data-placement="bottom" title=""
+										data-original-title="Refresh">
+										<i class="fa fa-refresh"></i>
+									</button>
+									<button type="button" class="btn btn-default"
+										data-toggle="tooltip" data-placement="bottom" title=""
+										data-original-title="Archive">
+										<i class="fa fa-archive"></i>
+									</button>
+
+									<button type="button" class="btn btn-default"
+										data-toggle="tooltip" data-placement="bottom" title=""
+										data-original-title="Report spam">
+										<i class="fa fa-exclamation-triangle"></i>
+									</button>
+									<button type="button" class="btn btn-default"
+										data-toggle="tooltip" data-placement="bottom" title=""
+										data-original-title="Delete">
+										<i class="fa fa-trash-o"></i>
+									</button>
+								</div>
+							</div>
+						</div>
+
+						<img class="img-profile img-circle img-responsive center-block"
+							src="https://bootdey.com/img/Content/avatar/avatar6.png" alt=""
+							style="margin: auto" />
+						<ul class="list-group center "
+							style="width: 60% !important; margin: auto; margin-top: 5%;">
+							<li class="list-group-item text-center active">Nom:</li>
+							<li class="list-group-item text-center">#{profilController.getCurrentUserLastName()}</li>
+							<li class="list-group-item text-center active">Prénom:</li>
+							<li class="list-group-item text-center">#{profilController.getCurrentUserFirstName()}</li>
+							<li class="list-group-item text-center active">Email:</li>
+							<li class="list-group-item text-center">#{profilController.getCurrentUserEmail()}</li>
+							<li class="list-group-item text-center active">Date de
+								naissance:</li>
+							<li class="list-group-item text-center">#{profilController.getCurrentUserBirthDate()}</li>
+						</ul>
+
+
+						<ul class="list-group center"
+							style="width: 60% !important; margin: auto; margin-top: 5%;">
+							<li class="list-group-item text-center active">Nom:</li>
+							<div class="form-group">
+								<h:inputText class="list-group-item text-center"
+									value="#{profilController.getCurrentUserLastName()}" />
+							</div>
+							<li class="list-group-item text-center active">Prénom:</li>
+							<div class="form-group">
+								<h:inputText class="list-group-item text-center"
+									value="#{profilController.getCurrentUserFirstName()}" />
+							</div>
+							<li class="list-group-item text-center active">Email:</li>
+							<div class="form-group">
+								<h:inputText class="list-group-item text-center"
+									value="#{profilController.getCurrentUserEmail()}" />
+							</div>
+							<div class="form-group">
+								<li class="list-group-item text-center active">Date de
+									naissance:</li>
+							</div>
+							<div class="form-group">
+								<h:inputText class="list-group-item text-center"
+									value="#{profilController.getCurrentUserBirthDate()}" />
+							</div>
+						</ul>
+						<h:form>
+							<h:commandButton action="#{loginController.updateUser}"
+								value="Enregistrer" class="btn btn-success"></h:commandButton>
+						</h:form>
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
+
+	<h:form>
+		<h:commandLink value="Expédier Colis"
+			action="#{mainController.goToHome}" />
+
+	</h:form>
+</h:body>
+</html>
