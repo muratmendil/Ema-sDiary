@@ -43,9 +43,7 @@
 				<version>2.0.2</version>
 				<configuration>
 					<source>${java.version}</source>
-					<target>${java.version}</target>
-					<fork>true</fork>
-					<executable>C:\Program Files\Java\jdk1.8.0_161\bin\javac</executable>
+					<target>${java.version}</target>			
 				</configuration>
 			</plugin>
 		</plugins>
