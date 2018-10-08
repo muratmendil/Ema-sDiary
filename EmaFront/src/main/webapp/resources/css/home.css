@@ -25,3 +25,12 @@
 	    background: #007bff !important;
 	    border-color: #007bff !important;
 	}
+	
+	
+	.custom-nav{
+		border-radius: 0px !important;
+		background : #B20000;
+	}
+	.custom-nav a{
+		color: white !important;
+	}
