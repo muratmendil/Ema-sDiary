@@ -1,5 +1,5 @@
 package com.formation.test;
-/*
+
 import static org.junit.Assert.*;
 
 import java.util.List;
@@ -24,7 +24,7 @@ import org.junit.runner.RunWith;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = RootConfig.class ) //java config */
 public class ObjectifServiceImplTest {
-	/*
+	
 	@Autowired
 	ObjectifService objectifService;
 	
@@ -167,5 +167,5 @@ public class ObjectifServiceImplTest {
 		}
 		
 		userService.deleteUser(createUser.getId());
-	} */
+	} 
 }

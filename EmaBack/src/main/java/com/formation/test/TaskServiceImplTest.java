@@ -1,5 +1,5 @@
 package com.formation.test;
-/*
+
 import static org.junit.Assert.*;
 
 import org.junit.Before;
@@ -22,7 +22,7 @@ import junit.framework.Assert;
 @ContextConfiguration(classes = RootConfig.class ) //java config*/
 public class TaskServiceImplTest {
 
-	/*
+	
 	@Autowired
 	TaskService taskService;
 	
@@ -127,5 +127,5 @@ public class TaskServiceImplTest {
 			Assert.assertNull(finalTask);
 			System.out.println(e.getExeptionMessage());
 		}
-	} */
+	} 
 }
