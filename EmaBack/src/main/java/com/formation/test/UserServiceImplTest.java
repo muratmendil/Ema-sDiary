@@ -1,5 +1,5 @@
 package com.formation.test;
-
+/*
 import static org.junit.Assert.*;
 
 import org.junit.Before;
@@ -16,11 +16,12 @@ import com.formation.model.User;
 import com.formation.service.UserService;
 
 import junit.framework.Assert;
-
+/*
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = RootConfig.class ) //java config
+@ContextConfiguration(classes = RootConfig.class ) //java config*/
 public class UserServiceImplTest {
 
+	/*
 	@Autowired
 	UserService userService;
 	
@@ -82,5 +83,5 @@ public class UserServiceImplTest {
 	@Test
 	public void testFindById() {
 		
-	}
+	} */
 }

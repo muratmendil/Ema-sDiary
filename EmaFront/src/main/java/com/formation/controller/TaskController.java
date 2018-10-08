@@ -6,12 +6,10 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.RequestScoped;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.SystemPropertyUtils;
 
 import com.formation.exeption.ErrorExeption;
 import com.formation.model.Objectif;
@@ -20,7 +18,6 @@ import com.formation.model.User;
 import com.formation.service.ObjectifService;
 import com.formation.service.SessionUtils;
 import com.formation.service.TaskService;
-import com.sun.el.parser.ELParserTreeConstants;
 
 
 @Named
