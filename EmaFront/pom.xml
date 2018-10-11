@@ -20,6 +20,15 @@
         <!--scope>compile</scope--> <!-- no need, that's the default -->
     </dependency>
 		
+		
+	<!--  Required WebService -->
+	<dependency>
+        <groupId>${project.groupId}</groupId> <!-- use the built-in properties instead -->
+        <artifactId>WebService</artifactId>
+        <version>${project.version}</version> <!-- use the built-in properties instead -->
+        <!--type>jar</type-->  <!-- no need, that's the default -->
+        <!--scope>compile</scope--> <!-- no need, that's the default -->
+    </dependency>
 
 		<dependency>
 			<groupId>mysql</groupId>
@@ -133,6 +142,23 @@
 			<artifactId>cdi-api</artifactId>
 			<version>2.0</version>
 			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-server</artifactId>
+			<version>1.8</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-json</artifactId>
+			<version>1.8</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-client</artifactId>
+			<version>1.8</version>
 		</dependency>
 	</dependencies>
 </project>
