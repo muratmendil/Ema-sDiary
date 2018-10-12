@@ -1,8 +1,5 @@
 package com.formation.api;
 
-import javax.persistence.Column;
-import javax.validation.constraints.Size;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -80,4 +77,5 @@ public class EmaAPIService {
 		return Response.status(200).entity(user).build();
 	 }
 }
+
 
