@@ -9,6 +9,8 @@ import javax.ws.rs.QueryParam;
 import com.formation.exeption.ErrorExeption;
 import com.formation.facade.Facade;
 import com.formation.model.User;
+
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.MediaType;
@@ -36,19 +38,22 @@ public class EmaAPIService {
 	@POST
 	@Path("/login")
 	@Produces(MediaType.APPLICATION_JSON)
-	 public Response loginUser(
-			 @QueryParam("email") String email,
-			 @QueryParam("password") String password){
-		User user = null;
+	 public Response loginUser(User user){
+		
+		User newUser = new User();
 		try {
-			user =  Facade.getInstance().getUserService().findByEmail(email, password);
+			System.out.println("Enter" +user);
+			user.setBirthDate("7 mars");
+			user.setFirstName("Emilin");
+			user.setLastName("Dadie");
+			user.setRole("admin");	
+						newUser =  Facade.getInstance().getUserService().findByEmail(user.getEmail(), user.getPassword());
 		} catch (ErrorExeption e) {
-			user = null;
-			return Response.status(200).entity(user).build();
+			e.getMessage();
 		}
-		return Response.status(200).entity(user).build();
+		return Response.status(200).entity(newUser).build();
+
 	 }
-	
 	
 	@POST
 	@Path("/signUp")

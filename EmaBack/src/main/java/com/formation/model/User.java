@@ -17,7 +17,6 @@ import javax.validation.constraints.Size;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import com.formation.service.SessionUtils;
 
 @Entity
 @Transactional
@@ -124,14 +123,6 @@ public class User implements Serializable {
 
 	public String getName() {
 		return firstName + " " + lastName;
-	}
-
-	
-	// logout event, invalidate session
-	public String logout() {
-		SessionUtils session = SessionUtils.getInstance();
-		session.invalide();
-		return "login";
 	}
 
 	public boolean newAccountfieldNotEmpty(){
