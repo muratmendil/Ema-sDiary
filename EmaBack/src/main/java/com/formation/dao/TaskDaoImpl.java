@@ -4,15 +4,19 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.formation.model.Task;
+import com.formation.model.User;
 
 @Repository
 @Transactional
 public class TaskDaoImpl implements TaskDao {
 	
+private static final Logger logger = LoggerFactory.getLogger(TaskDaoImpl.class);
 	
 	@PersistenceContext
 	private EntityManager taskManager;

@@ -7,7 +7,6 @@
   <modules>
   	<module>EmaFront</module>
   	<module>EmaBack</module>
-  	<module>WebService</module>
   	<module>WebServices</module>
   </modules>
   <dependencyManagement>

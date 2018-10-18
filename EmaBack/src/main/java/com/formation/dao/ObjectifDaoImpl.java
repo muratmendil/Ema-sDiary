@@ -7,6 +7,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.Query;
@@ -18,6 +20,9 @@ import com.formation.model.User;
 @Repository
 @Transactional
 public class ObjectifDaoImpl implements ObjectifDao {
+
+	
+	private static final Logger logger = LoggerFactory.getLogger(ObjectifDaoImpl.class);
 	
 	@PersistenceContext
 	private EntityManager objectifManager;
@@ -29,7 +34,7 @@ public class ObjectifDaoImpl implements ObjectifDao {
 			ob = objectifManager.merge(objectif);
 
 		} catch (NoResultException e) {
-
+			logger.debug(" Objectif not created");
 		}
 		return ob;
 	}
