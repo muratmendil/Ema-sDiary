@@ -8,6 +8,7 @@ import javax.persistence.CascadeType;
 
 
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -53,6 +54,13 @@ public class User implements Serializable {
 	@Column(name = "role")
 	private String role;
 
+	@ElementCollection(targetClass=String.class)
+	private List<String> lists = new ArrayList();
+	
+	public User(){
+		this.lists.add("toto");
+		this.lists.add("titi");
+	}
 	
 	public String getRole() {
 		return role;
@@ -125,10 +133,20 @@ public class User implements Serializable {
 		return false;
 	}
 
+	public List<String> getLists() {
+		return lists;
+	}
+
+	public void setLists(List<String> lists) {
+		this.lists = lists;
+	}
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", password=" + password + ", birthDate=" + birthDate + "]";
+				+ ", password=" + password + ", birthDate=" + birthDate + ", role=" + role + ", lists=" + lists + "]";
 	}
+	
+	
 	
 }
