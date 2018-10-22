@@ -17,7 +17,8 @@ import javax.validation.constraints.Size;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import com.formation.service.SessionUtils;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 
 @Entity
 @Transactional
@@ -61,8 +62,6 @@ public class User implements Serializable {
 		this.role = role;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy="user", cascade = CascadeType.ALL)
-	private List<Objectif> objectifs = new ArrayList<Objectif>();
 	
 	public int getId() {
 		return id;
@@ -113,27 +112,12 @@ public class User implements Serializable {
 		this.birthDate = birthDate;
 	}
 	
-	
-	public List<Objectif> getObjectifs() {
-		return objectifs;
-	}
-
-	public void setObjectifs(List<Objectif> objectifs) {
-		this.objectifs = objectifs;
-	}
 
 	public String getName() {
 		return firstName + " " + lastName;
 	}
 
 	
-	// logout event, invalidate session
-	public String logout() {
-		SessionUtils session = SessionUtils.getInstance();
-		session.invalide();
-		return "login";
-	}
-
 	public boolean newAccountfieldNotEmpty(){
 		if(this.firstName != null && this.lastName != null && this.email != null && this.birthDate != null && this.password != null){
 			return true;

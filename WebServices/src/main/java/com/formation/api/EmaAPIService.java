@@ -21,16 +21,14 @@ public class EmaAPIService {
 	@Path("/get")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getTrackInJSON() {
-
-		User user = new User();
-		user.setFirstName("Emilin");
-		user.setLastName("DADIE");
-		user.setEmail("dadie.emilin@gmail.com");
-		user.setPassword("azerty");
-		user.setBirthDate("7 mars");
-		user.setRole("admin");
-
-		return Response.status(200).entity(user).build();
+		User user2 = new User();
+		try {
+			user2 =  Facade.getInstance().getUserService().findByEmail("dadie.emilin@gmail.com", "azerty");
+			System.out.println(user2.toString());
+		} catch (ErrorExeption e) {
+			
+		}
+		return Response.status(200).entity(user2).build();
 	}
 	
 	@POST

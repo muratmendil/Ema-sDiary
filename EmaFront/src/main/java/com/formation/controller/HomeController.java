@@ -16,8 +16,6 @@ import com.formation.model.Objectif;
 import com.formation.model.Task;
 import com.formation.model.User;
 import com.formation.service.ObjectifService;
-import com.formation.service.SessionUtils;
-import com.formation.service.TaskService;
 import com.formation.service.UserService;
 
 @Named
@@ -133,6 +131,7 @@ public class HomeController implements Serializable {
 	}
 
 	public List<Objectif> getObjectifs(){
+		/*
 		SessionUtils session = SessionUtils.getInstance();
 		User currentUser = (User) session.getAttribute("current_user");		
 		if(currentUser == null){
@@ -144,7 +143,7 @@ public class HomeController implements Serializable {
 			return objectifs;
 		} catch (ErrorExeption e) {
 			System.out.println(e.getExeptionMessage());
-		}
+		}*/
 		return null;
 	}
 }

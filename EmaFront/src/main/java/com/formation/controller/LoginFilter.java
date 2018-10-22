@@ -1,4 +1,4 @@
-package com.formation.config;
+package com.formation.controller;
 
 import java.io.IOException;
 

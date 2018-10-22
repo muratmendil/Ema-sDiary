@@ -16,7 +16,6 @@ import com.formation.model.Objectif;
 import com.formation.model.Task;
 import com.formation.model.User;
 import com.formation.service.ObjectifService;
-import com.formation.service.SessionUtils;
 import com.formation.service.TaskService;
 
 
@@ -130,7 +129,7 @@ public class TaskController implements Serializable {
 		}
 		
 		if(selectObjectif.fieldNotEmpty()){
-			this.task.setObjectif(selectObjectif);
+			//this.task.setObjectif(selectObjectif);
 			this.task.setColor(selectObjectif.getColor());
 			try {
 				taskService.createTask(this.task);
@@ -217,9 +216,10 @@ public class TaskController implements Serializable {
 		try {
 			objectifs = objectifService.getAll(currentUser.getId());
 			for(Objectif ob : objectifs){
+				/*
 				if(ob.getTasks().size() > 0){
 					tasks.addAll(ob.getTasks());
-				}
+				}*/
 			}
 		} catch (ErrorExeption e) {
 			System.out.println(e.getExeptionMessage());

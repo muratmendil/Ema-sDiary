@@ -44,8 +44,7 @@ public class Task implements Serializable {
 	@Column(name = "priorityLevel")
 	private int priorityLevel;
 
-	@ManyToOne
-	private Objectif objectif;
+
 
 	private String color;
 	
@@ -115,17 +114,9 @@ public class Task implements Serializable {
 		this.priorityLevel = priorityLevel;
 	}
 
-	public Objectif getObjectif() {
-		return objectif;
-	}
-
-	public void setObjectif(Objectif objectif) {
-		this.objectif = objectif;
-	}
-
 	
 	public boolean fieldNotEmpty(){
-		if(this.name != null && this.startDate != null && this.endDate != null && this.place != null && this.objectif != null){
+		if(this.name != null && this.startDate != null && this.endDate != null && this.place != null){
 			return true;
 		}
 		return false;
@@ -134,7 +125,6 @@ public class Task implements Serializable {
 	@Override
 	public String toString() {
 		return "Task [id=" + id + ", name=" + name + ", startDate=" + startDate + ", endDate=" + endDate + ", place="
-				+ place + ", successLevel=" + successLevel + ", priorityLevel=" + priorityLevel + ", objectif="
-				+ objectif + "]";
+				+ place + ", successLevel=" + successLevel + ", priorityLevel=" + priorityLevel+"]";
 	}
 }

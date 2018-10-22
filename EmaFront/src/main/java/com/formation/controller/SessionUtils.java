@@ -1,4 +1,4 @@
-package com.formation.service;
+package com.formation.controller;
 
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;

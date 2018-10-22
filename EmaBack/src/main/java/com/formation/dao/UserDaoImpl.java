@@ -2,7 +2,6 @@ package com.formation.dao;
 
 import java.io.Serializable;
 
-import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
@@ -14,7 +13,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.formation.model.Task;
 import com.formation.model.User;
 
 @Repository
@@ -23,7 +21,6 @@ public class UserDaoImpl implements UserDao, Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private static final Logger logger = LoggerFactory.getLogger(UserDaoImpl.class);
 
 	@PersistenceContext
 	private EntityManager userManager;
@@ -42,12 +39,6 @@ public class UserDaoImpl implements UserDao, Serializable {
 	public String logout() {
 		String user = null;
 		String identifier = user;
-
-		// invalidate the session
-		logger.debug("invalidating session for '{}'", identifier);
-		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-
-		logger.info("logout successful for '{}'", identifier);
 		return "index";
 	}
 
@@ -62,7 +53,6 @@ public class UserDaoImpl implements UserDao, Serializable {
 		try {
 		    user = (User) query.getSingleResult();
 		} catch (NoResultException e) {
-			logger.debug("No result forund for... ");
 		}
 		return user;
 	}

@@ -4,32 +4,20 @@ import java.util.Properties;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.DriverManager;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.FilterType;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.filter.CorsFilter;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
 
 @Configuration
-@ComponentScan(basePackages = { "com.formation" }, excludeFilters = {
-		@Filter(type = FilterType.ANNOTATION, value = EnableWebMvc.class) })
+@ComponentScan(basePackages = { "com.formation" })
 @EnableTransactionManagement
 public class RootConfig {
 
@@ -57,10 +45,14 @@ public class RootConfig {
 	}
 
 	Properties additionalProperties() {
-		Properties properties = new Properties();
-		properties.setProperty("hibernate.hbm2ddl.auto", "update");
-		properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
-		return properties;
+		Properties p =  new Properties();
+		p.setProperty("hibernate.hbm2ddl.auto", "update");
+		p.setProperty("hibernate.enable_lazy_load_no_trans", "true");
+		p.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
+		p.setProperty("hibernate.show_sql", "false");
+		p.setProperty("hibernate.format_sql", "false");
+		p.setProperty("hibernate.use_sql_comments", "false");
+		return p;
 	}
 
 	@Bean
@@ -70,47 +62,4 @@ public class RootConfig {
 		return transactionManager;
 	}
 	
-	@Bean
-    public CorsFilter corsFilter() {
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        CorsConfiguration config = new CorsConfiguration();
-        config.setAllowCredentials(true);
-        config.addAllowedOrigin("*");
-        config.addAllowedHeader("*");
-        config.addAllowedMethod("OPTIONS");
-        config.addAllowedMethod("GET");
-        config.addAllowedMethod("POST");
-        config.addAllowedMethod("PUT");
-        config.addAllowedMethod("DELETE");
-        source.registerCorsConfiguration("/**", config);
-        return new CorsFilter(source);
-    }
-
-	@Bean
-    public WebMvcConfigurer corsConfigurer() {
-        return new WebMvcConfigurerAdapter() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/api/ema/get").allowedOrigins("http://localhost:8181/api/ema/get");
-            }
-        };
-    }
-	
-	public static Connection getConnection() {
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ema", "root", "");
-			return con;
-		} catch (Exception ex) {
-			System.out.println("Database.getConnection() Error -->" + ex.getMessage());
-			return null;
-		}
-	}
-
-	public static void close(Connection con) {
-		try {
-			con.close();
-		} catch (Exception ex) {
-		}
-	}
 }

@@ -30,13 +30,14 @@ public class ObjectifServiceImpl implements ObjectifService {
 		
 		if(newObjectif.fieldNotEmpty()){
 			User user = userDao.findById(id);
+			/*
 			List<Objectif> objectifs = user.getObjectifs();
 			Objectif finalObjectif;
 			objectifs.add(newObjectif);
 			user.setObjectifs(objectifs);
 			newObjectif.setUser(user);
 			finalObjectif = objectifDao.createObjectif(newObjectif);
-			return finalObjectif;
+			return finalObjectif; */
 		}
 		throw new ErrorExeption("Null value", "Un ou plusieurs propiété de objectif est null");
 	}

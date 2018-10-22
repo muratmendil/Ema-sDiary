@@ -58,7 +58,7 @@ public class TaskServiceImplTest {
 		task.setEndDate("2018/08/23 12:00");
 		task.setPlace("Paris");
 		task.setPriorityLevel(2);
-		task.setObjectif(createObjectif);
+		//task.setObjectif(createObjectif);
 		try {
 			createTask = taskService.createTask(task);
 			Assert.assertNotNull(createTask);
@@ -106,7 +106,7 @@ public class TaskServiceImplTest {
 		task.setEndDate("2018/08/23 12:00");
 		task.setPlace("Paris");
 		task.setPriorityLevel(2);
-		task.setObjectif(createObjectif);
+		//task.setObjectif(createObjectif);
 		try {
 			createTask = taskService.createTask(task);
 			Assert.assertNotNull(createTask);

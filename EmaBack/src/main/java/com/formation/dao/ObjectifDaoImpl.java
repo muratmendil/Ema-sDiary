@@ -7,11 +7,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import javax.persistence.Query;
 
 import com.formation.model.Objectif;
 import com.formation.model.User;
@@ -21,9 +18,7 @@ import com.formation.model.User;
 @Transactional
 public class ObjectifDaoImpl implements ObjectifDao {
 
-	
-	private static final Logger logger = LoggerFactory.getLogger(ObjectifDaoImpl.class);
-	
+		
 	@PersistenceContext
 	private EntityManager objectifManager;
 	
@@ -34,7 +29,6 @@ public class ObjectifDaoImpl implements ObjectifDao {
 			ob = objectifManager.merge(objectif);
 
 		} catch (NoResultException e) {
-			logger.debug(" Objectif not created");
 		}
 		return ob;
 	}
@@ -46,7 +40,7 @@ public class ObjectifDaoImpl implements ObjectifDao {
 
 	@Override
 	public List<Objectif> getAll(int id) {
-		User user =objectifManager.find(User.class, id); 
-		return user.getObjectifs();
+		//User user =objectifManager.find(User.class, id); 
+		return new ArrayList(); 
 	}
 }

@@ -12,7 +12,6 @@ import org.springframework.stereotype.Controller;
 
 import com.formation.exeption.ErrorExeption;
 import com.formation.model.User;
-import com.formation.service.SessionUtils;
 import com.formation.service.UserService;
 
 @Named
