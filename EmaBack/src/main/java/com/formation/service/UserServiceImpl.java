@@ -25,8 +25,12 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User findById(int id){
-		return userDao.findById(id);
+	public User findById(int id) throws ErrorExeption{
+		User user = userDao.findById(id);
+		if(user != null){
+			return user;
+		}
+		throw new ErrorExeption("User inexistant", "ce user n'existe pas");
 	}
 
 	@Override

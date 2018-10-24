@@ -45,7 +45,7 @@ public class EmaAPIService {
 			user =  Facade.getInstance().getUserService().findByEmail(user.getEmail(), user.getPassword());
 			return Response.status(200).entity(user).build();
 		} catch (ErrorExeption e) {
-			return Response.status(500).entity(e.getExeptionMessage()).build();
+			return Response.status(200).entity(e.getExeptionMessage()).build();
 		} 
 	 }
 	
@@ -57,7 +57,7 @@ public class EmaAPIService {
 			user =  Facade.getInstance().getUserService().createUser(user);
 			return Response.status(200).entity(user).build();
 		} catch (ErrorExeption e) {
-			return Response.status(500).entity(e.getExeptionMessage()).build();
+			return Response.status(200).entity(e.getExeptionMessage()).build();
 		} 
 	 }
 	
@@ -66,27 +66,37 @@ public class EmaAPIService {
 	@Path("user/{id}/objectifs")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getObjectifs(@PathParam("id") int id){
-		List<Objectif> objectifs = new ArrayList<>();
-		try {
-			objectifs =  Facade.getInstance().getObjectifService().findByUserId(id);
-			return Response.status(200).entity(objectifs).build();
+			try {
+				User user =  Facade.getInstance().getUserService().findById(id);
+				List<Objectif> objectifs = new ArrayList<>();
+				try {
+					objectifs =  Facade.getInstance().getObjectifService().findByUserId(id);
+					return Response.status(200).entity(objectifs).build();
 
-		} catch (ErrorExeption e) {
-			return Response.status(500).entity(e.getExeptionMessage()).build();
-		} 
+				} catch (ErrorExeption e) {
+					return Response.status(500).entity(e.getExeptionMessage()).build();
+				} 
+			} catch (ErrorExeption e1) {
+				return Response.status(401).entity(e1.getExeptionMessage()).build();
+			}
 	 }
 	
 	@GET
-	@Path("user/{id}/objectif/{id}/tasks")
+	@Path("user/{userId}/objectif/{objectifId}/tasks")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getObjectifTask(@PathParam("id") int id){
-		List<Task> tasks = new ArrayList<>();
+	public Response getObjectifTask(@PathParam("userId") int userId, @PathParam("objectifId") int objectifId){
 		try {
-			tasks =  Facade.getInstance().getTaskService().findByObjectifId(id);
-			return Response.status(200).entity(tasks).build();
+			User user =  Facade.getInstance().getUserService().findById(userId);
+			List<Task> tasks = new ArrayList<>();
+			try {
+				tasks =  Facade.getInstance().getTaskService().findByObjectifId(objectifId);
+				return Response.status(200).entity(tasks).build();
 
-		} catch (ErrorExeption e) {
-			return Response.status(500).entity(e.getExeptionMessage()).build();
+			} catch (ErrorExeption e) {
+				return Response.status(200).entity(e.getExeptionMessage()).build();
+			}
+		} catch (ErrorExeption e1) {
+			return Response.status(401).entity(e1.getExeptionMessage()).build();
 		}
 	 }
 }
