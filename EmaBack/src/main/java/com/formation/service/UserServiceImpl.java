@@ -19,7 +19,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User createUser(User user) throws ErrorExeption {
 		if(user.newAccountfieldNotEmpty()){
-			System.out.println("*********************");
 			return userDao.createUser(user);
 		}
 		throw new ErrorExeption("Champs vide", "Un ou plusieurs champs sont vide");
@@ -33,7 +32,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User findByEmail(String email, String password) throws ErrorExeption {
 		if(email != null  && password != null){
-			System.out.println("*********************");
 			return userDao.findByEmail(email, password);
 		}
 		throw new ErrorExeption("Champs vide", "Un ou plusieurs champs sont vide");

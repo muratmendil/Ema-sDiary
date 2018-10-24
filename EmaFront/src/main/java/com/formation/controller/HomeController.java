@@ -34,6 +34,7 @@ public class HomeController implements Serializable {
 	private Objectif selectObjectif;
 	public List<Objectif> objectifs;
 	private String objectifColor;
+	private int selectObjectifId;
 
 	public String getObjectifColor() {
 		return objectifColor;
@@ -46,6 +47,16 @@ public class HomeController implements Serializable {
 	public HomeController() {
 		task = new Task();
 	}
+
+	
+	public int getSelectObjectifId() {
+		return selectObjectifId;
+	}
+
+	public void setSelectObjectifId(int selectObjectifId) {
+		this.selectObjectifId = selectObjectifId;
+	}
+
 
 	@Autowired
 	private UserService userService;
@@ -122,8 +133,9 @@ public class HomeController implements Serializable {
 	public String createObjectif() {
 		SessionUtils session = SessionUtils.getInstance();
 		User currentUser = (User) session.getAttribute("current_user");
+		this.objectif.setUserId(currentUser.getId());
 		try {
-			objectifService.createObjectif(currentUser.getId(), this.objectif);
+			objectifService.createObjectif(this.objectif);
 		} catch (ErrorExeption e) {
 			System.out.println(e.getExeptionMessage());
 		}
@@ -139,11 +151,11 @@ public class HomeController implements Serializable {
 		}
 		List<Objectif> objectifs;
 		try {
-			objectifs = objectifService.getAll(currentUser.getId());
+			objectifs = objectifService.findByUserId(currentUser.getId());
 			return objectifs;
 		} catch (ErrorExeption e) {
 			System.out.println(e.getExeptionMessage());
-		}*/
+		} */
 		return null;
 	}
 }

@@ -2,18 +2,28 @@ package com.formation.model;
 
 import java.io.Serializable;
 import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
+import org.codehaus.jackson.map.annotate.JsonFilter;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 public class Objectif implements Serializable{
@@ -31,6 +41,9 @@ public class Objectif implements Serializable{
 	@Column(name = "startDate")
 	private String startDate;
 	
+	@Column(name = "user_id")
+	private int userId;
+	
 	public String getColor() {
 		return color;
 	}
@@ -42,12 +55,7 @@ public class Objectif implements Serializable{
 	@Column(name = "endDate")
 	private String endDate;
 
-	@ManyToOne
-	@JsonManagedReference
-	private User user;
-	
 	private String color;
-	
 
 	public String getName() {
 		return name;
@@ -69,13 +77,6 @@ public class Objectif implements Serializable{
 		return endDate;
 	}
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
 
 	public int getId() {
 		return id;
@@ -95,6 +96,15 @@ public class Objectif implements Serializable{
 		this.endDate = endDate;
 	}
 	
+	
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
 	public boolean fieldNotEmpty(){
 		if(this.name != null && this.startDate != null && this.endDate != null){
 			return true;
@@ -104,9 +114,9 @@ public class Objectif implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Objectif [name=" + name + ", startDate=" + startDate + ", endDate=" + endDate
-				+ ", color=" + color + "]";
+		return "Objectif [id=" + id + ", name=" + name + ", startDate=" + startDate + ", userId=" + userId
+				+ ", endDate=" + endDate + ", color=" + color + "]";
 	}
-	
+
 }
 	

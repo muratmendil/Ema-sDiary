@@ -12,17 +12,22 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Size;
 
+import org.codehaus.jackson.map.annotate.JsonFilter;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 
 @Entity
-@Transactional
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -53,14 +58,6 @@ public class User implements Serializable {
 	
 	@Column(name = "role")
 	private String role;
-
-	@ElementCollection(targetClass=String.class)
-	private List<String> lists = new ArrayList();
-	
-	public User(){
-		this.lists.add("toto");
-		this.lists.add("titi");
-	}
 	
 	public String getRole() {
 		return role;
@@ -133,20 +130,9 @@ public class User implements Serializable {
 		return false;
 	}
 
-	public List<String> getLists() {
-		return lists;
-	}
-
-	public void setLists(List<String> lists) {
-		this.lists = lists;
-	}
-
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", password=" + password + ", birthDate=" + birthDate + ", role=" + role + ", lists=" + lists + "]";
+				+ ", password=" + password + ", birthDate=" + birthDate + ", role=" + role + "]";
 	}
-	
-	
-	
 }

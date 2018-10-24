@@ -24,9 +24,6 @@ import com.formation.service.TaskService;
 @RequestScoped
 public class TaskController implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	private Task task;
@@ -41,7 +38,6 @@ public class TaskController implements Serializable {
 	@Autowired
 	private TaskService taskService;
 	
-
 	@Autowired
 	private ObjectifService objectifService;
 	
@@ -129,8 +125,14 @@ public class TaskController implements Serializable {
 		}
 		
 		if(selectObjectif.fieldNotEmpty()){
-			//this.task.setObjectif(selectObjectif);
-			this.task.setColor(selectObjectif.getColor());
+			
+			try {
+				Objectif ob = this.objectifService.findById(selectObjectifId);
+			} catch (ErrorExeption e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			this.task.setObjectifId(selectObjectifId);
 			try {
 				taskService.createTask(this.task);
 			} catch (ErrorExeption e) {			
@@ -177,6 +179,7 @@ public class TaskController implements Serializable {
 			task = taskService.findById(eventId);
 			task.setStartDate(eventStart);
 			task.setEndDate(eventEnd);
+			task.setObjectifId(selectObjectifId);
 		} catch (ErrorExeption e) {
 			System.out.println(e.getExeptionMessage());
 		}
@@ -189,41 +192,19 @@ public class TaskController implements Serializable {
 		return "/home/home";
 	}
 	
-	public List<Objectif> getObjectifs(){
-		SessionUtils session = SessionUtils.getInstance();
-		User currentUser = (User) session.getAttribute("current_user");		
-		if(currentUser == null){
-			System.out.println("session4 null");
-		}
-		List<Objectif> objectifs;
-		try {
-			objectifs = objectifService.getAll(currentUser.getId());
-				this.objectifs = objectifs;
-				return objectifs;
-		} catch (ErrorExeption e) {
-			System.out.println(e.getExeptionMessage());
-		}
-		return null;
-	}
-	
-	public List<Task> getTasks(){
+	public List<Task> getTasks() throws ErrorExeption{
 		List<Task> tasks = new ArrayList<Task>();
 		
 		SessionUtils session = SessionUtils.getInstance();
 		User currentUser = (User) session.getAttribute("current_user");		
-		
-		List<Objectif> objectifs;
+		System.out.println(currentUser.toString());
 		try {
-			objectifs = objectifService.getAll(currentUser.getId());
-			for(Objectif ob : objectifs){
-				/*
-				if(ob.getTasks().size() > 0){
-					tasks.addAll(ob.getTasks());
-				}*/
-			}
+			tasks = taskService.findByObjectifId(currentUser.getId());
+			return tasks;
 		} catch (ErrorExeption e) {
 			System.out.println(e.getExeptionMessage());
+			tasks = new ArrayList<Task>();
+			return tasks;
 		}
-		return tasks;
 	}
 }

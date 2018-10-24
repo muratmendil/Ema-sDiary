@@ -12,8 +12,11 @@ import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 @Configuration
@@ -61,5 +64,14 @@ public class RootConfig {
 		transactionManager.setEntityManagerFactory(emf);
 		return transactionManager;
 	}
+	@Bean
+	public Jackson2ObjectMapperBuilder jacksonBuilder() {
+	    Jackson2ObjectMapperBuilder b = new Jackson2ObjectMapperBuilder();
+	    b.mixIn(Object.class, IgnoreHibernatePropertiesInJackson.class);
+	    return b;
+	}
+	
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	private abstract class IgnoreHibernatePropertiesInJackson{ }
 	
 }

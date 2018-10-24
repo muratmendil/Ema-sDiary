@@ -1,5 +1,7 @@
 package com.formation.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,5 +36,14 @@ public class TaskServiceImpl implements TaskService{
 	@Override
 	public void deleteTask(int id) {
 		taskDao.deleteTask(id);	
+	}
+
+	@Override
+	public List<Task> findByObjectifId(int id) throws ErrorExeption{
+		List<Task> tasks = taskDao.findByObjectifId(id);
+		if(tasks.size() == 0){
+			throw new ErrorExeption("Aucune tache", "Cette utilisateur n'a aucune tache");
+		}
+		return tasks;
 	}
 }

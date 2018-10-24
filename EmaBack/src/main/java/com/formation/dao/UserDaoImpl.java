@@ -21,7 +21,6 @@ public class UserDaoImpl implements UserDao, Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-
 	@PersistenceContext
 	private EntityManager userManager;
 

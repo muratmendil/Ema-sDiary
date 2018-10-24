@@ -4,8 +4,8 @@
     xmlns:h="http://xmlns.jcp.org/jsf/html"
     xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
     >
-    
     	<script type="text/javascript">
+ 
 			function onLoad(){  
 				let tabEvents = [];
 			    let index = 0;
@@ -15,13 +15,12 @@
 	                newEvent.title = '#{item.name}';
 	                newEvent.start = '#{item.startDate}';
 	                newEvent.end = '#{item.endDate}';
-	                newEvent.color = '#{item.color}';
+	                newEvent.color = '#{item.objectifColor}';
 	                tabEvents[index] = newEvent;
 	                index++;
 		        </ui:repeat>
 		        return tabEvents;
 		     }
-			
 			let events = onLoad();
 		</script>
      	<ui:include src="newTaskForm.xhtml"></ui:include>		
@@ -66,15 +65,7 @@
 
 	    	            // Display the modal and set the values to the event values.
 	    	        	currentEvent = event;
-	    	          
-	    	            $('#modal2').modal('show');
-	    	            $('#modal2').find('.name').val(event.title);
-	    	            
-	    	            let formStart=moment(event.start).format('YYYY/MM/DD hh:mm');
-	    	            let formEnd=moment(event.end).format('YYYY/MM/DD hh:mm');
-	    	            $('#modal2').find('.starts-at').val(formStart);
-	    	            $('#modal2').find('.ends-at').val(formEnd);
-	    	            
+	    	    	    window.location.href = "/EmaFront/home/newTaskForm.xhtml";
 	    	        },
 	    	        timezone: "UTC",
 	    	        droppable: true, // this allows things to be dropped onto the calendar
@@ -148,5 +139,4 @@
 	  	    	    button.click(); 	
 	    	}
 		</script>
-
 </ui:composition>

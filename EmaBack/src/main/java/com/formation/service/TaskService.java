@@ -10,5 +10,6 @@ public interface TaskService {
 	 Task createTask(Task task) throws ErrorExeption;
 	 Task findById(int id) throws ErrorExeption;
 	 void deleteTask(int id);
+	 List<Task> findByObjectifId(int id) throws ErrorExeption;
 
 }
