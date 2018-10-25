@@ -24,10 +24,10 @@ import java.util.List;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.HeaderParam;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.ResponseBuilder;
 
-import org.codehaus.jackson.JsonGenerationException;
-import org.codehaus.jackson.map.JsonMappingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
@@ -42,10 +42,10 @@ public class EmaAPIService {
 	@Produces(MediaType.APPLICATION_JSON)
 	 public Response loginUser(User user){
 		try {
-			user =  Facade.getInstance().getUserService().findByEmail(user.getEmail(), user.getPassword());
-			return Response.status(200).entity(user).build();
+			User newUser =  Facade.getInstance().getUserService().findByEmail(user.getEmail(), user.getPassword());
+			return Response.ok().entity(newUser).build();
 		} catch (ErrorExeption e) {
-			return Response.status(200).entity(e.getExeptionMessage()).build();
+			return Response.status(Response.Status.UNAUTHORIZED).entity(e.getExeptionMessage()).build();
 		} 
 	 }
 	
@@ -55,30 +55,31 @@ public class EmaAPIService {
 	 public Response signUpUser(User user){
 		try {
 			user =  Facade.getInstance().getUserService().createUser(user);
-			return Response.status(200).entity(user).build();
+			return Response.status(201).entity(user).build();
 		} catch (ErrorExeption e) {
-			return Response.status(200).entity(e.getExeptionMessage()).build();
+			return Response.status(Response.Status.CONFLICT).entity(e.getExeptionMessage()).build();
 		} 
 	 }
-	
 	
 	@GET
 	@Path("user/{id}/objectifs")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getObjectifs(@PathParam("id") int id){
+		try {
+			User user =  Facade.getInstance().getUserService().findById(id);
+			List<Objectif> objectifs = new ArrayList<>();
 			try {
-				User user =  Facade.getInstance().getUserService().findById(id);
-				List<Objectif> objectifs = new ArrayList<>();
-				try {
-					objectifs =  Facade.getInstance().getObjectifService().findByUserId(id);
-					return Response.status(200).entity(objectifs).build();
+				objectifs =  Facade.getInstance().getObjectifService().findByUserId(id);
+				return Response.status(200).entity(objectifs).build();
 
-				} catch (ErrorExeption e) {
-					return Response.status(500).entity(e.getExeptionMessage()).build();
-				} 
-			} catch (ErrorExeption e1) {
-				return Response.status(401).entity(e1.getExeptionMessage()).build();
-			}
+			} catch (ErrorExeption e) {
+				String message = e.getExeptionMessage();
+				return Response.status(200).entity(message).build();
+			} 
+		} catch (ErrorExeption e1) {
+			String message = e1.getExeptionMessage();
+			return Response.status(200).entity(message).build();
+		}
 	 }
 	
 	@GET
@@ -93,12 +94,15 @@ public class EmaAPIService {
 				return Response.status(200).entity(tasks).build();
 
 			} catch (ErrorExeption e) {
-				return Response.status(200).entity(e.getExeptionMessage()).build();
+				String message = e.getExeptionMessage();
+				return Response.status(200).entity(message).build();
 			}
 		} catch (ErrorExeption e1) {
-			return Response.status(401).entity(e1.getExeptionMessage()).build();
+			String message = e1.getExeptionMessage();
+			return Response.status(200).entity(message).build();
 		}
 	 }
+
 }
 
 

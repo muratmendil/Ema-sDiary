@@ -27,8 +27,9 @@ public class ObjectifServiceImpl implements ObjectifService {
 	public Objectif createObjectif(Objectif objectif) throws ErrorExeption {		
 		if(objectif.fieldNotEmpty()){
 			return objectifDao.createObjectif(objectif);
+		}else{
+			throw new ErrorExeption("Null value", "Un ou plusieurs propiété de objectif est null");
 		}
-		throw new ErrorExeption("Null value", "Un ou plusieurs propiété de objectif est null");
 	}
 
 	@Override
@@ -36,8 +37,9 @@ public class ObjectifServiceImpl implements ObjectifService {
 		List<Objectif> objectifs = objectifDao.findByUserId(id);
 		if(objectifs.size() == 0){
 			throw new ErrorExeption("Aucun objectif", "Cette utilisateur n'a aucun objectif");
+		}else{
+			return objectifs;
 		}
-		return objectifs;
 	}
 
 	@Override

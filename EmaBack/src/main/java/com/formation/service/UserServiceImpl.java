@@ -19,9 +19,15 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User createUser(User user) throws ErrorExeption {
 		if(user.newAccountfieldNotEmpty()){
-			return userDao.createUser(user);
+			User newUser = userDao.createUser(user);
+			if(newUser != null){
+				return newUser;
+			}else{
+				throw new ErrorExeption("Email existant", "Vous avez deja un compte");
+			}
+		}else{
+			throw new ErrorExeption("Champs vide", "Un ou plusieurs champs sont vide");
 		}
-		throw new ErrorExeption("Champs vide", "Un ou plusieurs champs sont vide");
 	}
 
 	@Override
@@ -29,16 +35,24 @@ public class UserServiceImpl implements UserService {
 		User user = userDao.findById(id);
 		if(user != null){
 			return user;
+		}else{
+			throw new ErrorExeption("User inexistant", "ce user n'existe pas");
 		}
-		throw new ErrorExeption("User inexistant", "ce user n'existe pas");
 	}
 
 	@Override
 	public User findByEmail(String email, String password) throws ErrorExeption {
 		if(email != null  && password != null){
-			return userDao.findByEmail(email, password);
+			User user=  userDao.findByEmail(email, password);
+			if(user != null){
+				return user;
+			}else{
+				throw new ErrorExeption("User inexistant", "ce user n'existe pas");
+			}
+		}else{
+			throw new ErrorExeption("Champs vides", "Les champs sont vides");
 		}
-		throw new ErrorExeption("Champs vide", "Un ou plusieurs champs sont vide");
+		
 	}
 
 	@Override

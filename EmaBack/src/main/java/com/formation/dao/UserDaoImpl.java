@@ -26,7 +26,8 @@ public class UserDaoImpl implements UserDao, Serializable {
 
 	@Override
 	public User createUser(User user) {
-		return userManager.merge(user);
+		User newUser = userManager.merge(user);
+		return newUser;
 	}
 
 	@Override

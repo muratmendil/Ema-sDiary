@@ -20,8 +20,9 @@ public class TaskServiceImpl implements TaskService{
 	public Task createTask(Task task) throws ErrorExeption{
 		if(task.fieldNotEmpty()){
 			return taskDao.createTask(task);
+		}else{
+			throw new ErrorExeption("Champs vide", "Un ou plusieurs champs sont vide");	
 		}
-		throw new ErrorExeption("Champs vide", "Un ou plusieurs champs sont vide");
 	}
 
 	@Override
@@ -29,8 +30,9 @@ public class TaskServiceImpl implements TaskService{
 		Task task = taskDao.findById(id);
 		if(task == null){
 			throw new ErrorExeption("Null value", "Cette tache n'existe pas");
+		}else{
+			return task;
 		}
-		return task;
 	}
 
 	@Override
@@ -43,7 +45,8 @@ public class TaskServiceImpl implements TaskService{
 		List<Task> tasks = taskDao.findByObjectifId(id);
 		if(tasks.size() == 0){
 			throw new ErrorExeption("Aucune tache", "Cette utilisateur n'a aucune tache");
+		}else{
+			return tasks;
 		}
-		return tasks;
 	}
 }
