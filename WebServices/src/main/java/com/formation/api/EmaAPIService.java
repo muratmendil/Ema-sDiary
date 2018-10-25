@@ -102,7 +102,6 @@ public class EmaAPIService {
 			return Response.status(200).entity(message).build();
 		}
 	 }
-
 }
 
 
