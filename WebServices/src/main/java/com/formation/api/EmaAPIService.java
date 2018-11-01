@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.ws.rs.GET;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 
 @Path("/ema")
@@ -50,11 +51,10 @@ public class EmaAPIService {
 	public Response getObjectifs(@PathParam("id") int id){
 		try {
 			User user =  Facade.getInstance().getUserService().findById(id);
-			List<Objectif> objectifs = new ArrayList<>();
+			List<Objectif> objectifs = new ArrayList<>();			
 			try {
-				objectifs =  Facade.getInstance().getObjectifService().findByUserId(id);
-				return Response.status(200).entity(objectifs).build();
-
+			   objectifs =  Facade.getInstance().getObjectifService().findByUserId(id);
+		       return Response.status(200).entity(objectifs).build();
 			} catch (ErrorExeption e) {
 				String message = e.getExeptionMessage();
 				return Response.status(200).entity(message).build();
@@ -64,6 +64,31 @@ public class EmaAPIService {
 			return Response.status(200).entity(message).build();
 		}
 	 }
+	
+	@GET
+	@Path("user/{id}/objectifs/tasks")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getObjectifsTask(@PathParam("id") int id){
+		try {
+			User user =  Facade.getInstance().getUserService().findById(id);
+			List<Task> tasks = null;
+			try {
+				tasks =  Facade.getInstance().getTaskService().findByUserId(id);
+
+			    final GenericEntity<List<Task>> entity
+			        = new GenericEntity<List<Task>>(tasks) {};
+				return Response.status(200).entity(entity).build();
+
+			} catch (ErrorExeption e) {
+				String message = e.getExeptionMessage();
+				return Response.status(200).entity(message).build();
+			}
+		} catch (ErrorExeption e1) {
+			String message = e1.getExeptionMessage();
+			return Response.status(200).entity(message).build();
+		}
+	 }
+	
 	
 	@GET
 	@Path("user/{userId}/objectif/{objectifId}/tasks")
@@ -85,6 +110,7 @@ public class EmaAPIService {
 			return Response.status(200).entity(message).build();
 		}
 	 }
+	
 }
 
 

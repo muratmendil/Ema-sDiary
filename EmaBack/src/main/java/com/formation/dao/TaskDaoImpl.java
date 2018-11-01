@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,6 +53,23 @@ public class TaskDaoImpl implements TaskDao {
 		try {
 			tasks = taskManager.createNativeQuery(sql).setParameter(1, id).getResultList();
 		} catch (NoResultException e) {
+		}
+		return tasks;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Task> findByUserId(int id) {
+		String sql = "SELECT task.* FROM task AS task LEFT JOIN objectif AS objectif ON task.objectif_id = objectif.objectif_id LEFT JOIN user AS user ON objectif.user_id = user.user_id WHERE user.user_id = ?";
+		List<Task> tasks = null;
+		try {
+			 TypedQuery<Task> query =
+				      (TypedQuery<Task>) taskManager.createNativeQuery(sql, Task.class).setParameter(1, id);
+				  tasks = query.getResultList();
+
+				  System.out.println(tasks.get(0));
+		} catch (NoResultException e) {
+			
 		}
 		return tasks;
 	}

@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,9 +39,13 @@ public class ObjectifDaoImpl implements ObjectifDao {
 	@Override
 	public List<Objectif> findByUserId(int id) {
 		String sql = "SELECT objectif.* FROM objectif AS objectif WHERE user_Id = ?";
-		List<Objectif> objectifs = new ArrayList<Objectif>();
+		List<Objectif> objectifs = null;
 		try {
-			objectifs = objectifManager.createNativeQuery(sql).setParameter(1, id).getResultList();
+			 TypedQuery<Objectif> query =
+				      (TypedQuery<Objectif>) objectifManager.createNativeQuery(sql, Objectif.class).setParameter(1, id);
+				  objectifs = query.getResultList();
+				  System.out.println(objectifs.size());
+
 		} catch (NoResultException e) {
 		}
 		return objectifs;
