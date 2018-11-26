@@ -43,6 +43,10 @@ public class User implements Serializable {
 	@Column(name = "lastName")
 	@Size(min = 2, max = 20)
 	private String lastName;
+	
+	@Column(name = "name")
+	@Size(min = 2, max = 20)
+	private String name;
 
 	@Column(unique = true, name = "email")
 	@Size(min = 10, max = 30)
@@ -116,7 +120,10 @@ public class User implements Serializable {
 		this.birthDate = birthDate;
 	}
 	
-
+	public void setName(String name) {
+		this.name = name;
+	}
+	
 	public String getName() {
 		return firstName + " " + lastName;
 	}
