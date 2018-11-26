@@ -69,9 +69,10 @@ public class EmaAPIService {
 	@Path("user/{id}/objectifs/tasks")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getObjectifsTask(@PathParam("id") int id){
+		List<Task> tasks = new ArrayList<>();
+
 		try {
 			User user =  Facade.getInstance().getUserService().findById(id);
-			List<Task> tasks = null;
 			try {
 				tasks =  Facade.getInstance().getTaskService().findByUserId(id);
 
@@ -81,11 +82,10 @@ public class EmaAPIService {
 
 			} catch (ErrorExeption e) {
 				String message = e.getExeptionMessage();
-				return Response.status(200).entity(message).build();
+				return Response.status(200).entity(tasks).build();
 			}
 		} catch (ErrorExeption e1) {
-			String message = e1.getExeptionMessage();
-			return Response.status(200).entity(message).build();
+			return Response.status(200).entity(tasks).build();
 		}
 	 }
 	
@@ -94,23 +94,33 @@ public class EmaAPIService {
 	@Path("user/{userId}/objectif/{objectifId}/tasks")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getObjectifTask(@PathParam("userId") int userId, @PathParam("objectifId") int objectifId){
+		List<Task> tasks = new ArrayList<>();
 		try {
 			User user =  Facade.getInstance().getUserService().findById(userId);
-			List<Task> tasks = new ArrayList<>();
 			try {
 				tasks =  Facade.getInstance().getTaskService().findByObjectifId(objectifId);
 				return Response.status(200).entity(tasks).build();
 
 			} catch (ErrorExeption e) {
-				String message = e.getExeptionMessage();
-				return Response.status(200).entity(message).build();
+				return Response.status(200).entity(tasks).build();
 			}
 		} catch (ErrorExeption e1) {
-			String message = e1.getExeptionMessage();
-			return Response.status(200).entity(message).build();
+			return Response.status(200).entity(tasks).build();
 		}
 	 }
 	
+	
+	@POST
+	@Path("/newTask")
+	@Produces(MediaType.APPLICATION_JSON)
+	 public Response createTask(Task task){
+		try {
+			Task newTask =  Facade.getInstance().getTaskService().createTask(task);
+			return Response.ok().entity(newTask).build();
+		} catch (ErrorExeption e) {
+			return Response.status(Response.Status.UNAUTHORIZED).entity(e.getExeptionMessage()).build();
+		} 
+	 }
 }
 
 

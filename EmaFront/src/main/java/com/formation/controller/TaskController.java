@@ -149,9 +149,9 @@ public class TaskController implements Serializable {
 		Task task = null;
 		try {
 			task = taskService.findById(eventId);
-			task.setName(this.task.getName());
-			task.setStartDate(this.task.getStartDate());
-			task.setEndDate(this.task.getEndDate());
+			task.setTitle(this.task.getTitle());
+			task.setStart(this.task.getStart());
+			task.setEnd(this.task.getEnd());
 			task.setPlace(this.task.getPlace());
 			task.setPriorityLevel(this.task.getPriorityLevel()); 
 		} catch (ErrorExeption e) {
@@ -177,8 +177,8 @@ public class TaskController implements Serializable {
 		Task task = null;
 		try {
 			task = taskService.findById(eventId);
-			task.setStartDate(eventStart);
-			task.setEndDate(eventEnd);
+			task.setStart(eventStart);
+			task.setEnd(eventEnd);
 			task.setObjectifId(selectObjectifId);
 		} catch (ErrorExeption e) {
 			System.out.println(e.getExeptionMessage());

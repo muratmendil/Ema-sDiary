@@ -53,7 +53,7 @@ public class TaskServiceImpl implements TaskService{
 	@Override
 	public List<Task> findByUserId(int id) throws ErrorExeption {
 		List<Task> tasks = taskDao.findByUserId(id);
-		if(tasks == null){
+		if(tasks.size() == 0){
 			throw new ErrorExeption("Aucune tache", "Cette utilisateur n'a aucune tache");
 		}else{
 			return tasks;

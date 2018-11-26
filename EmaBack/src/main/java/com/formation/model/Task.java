@@ -4,15 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.xml.bind.annotation.XmlRootElement;
-
-import org.springframework.transaction.annotation.Transactional;
 
 @Entity
 public class Task implements Serializable {
@@ -24,15 +17,15 @@ public class Task implements Serializable {
 	@Column(name = "task_id")
 	private int id;
 	
-	@Column(name = "name")
-	private String name;
+	@Column(name = "title")
+	private String title;
 	
 
-	@Column(name = "startDate")
-	private String startDate;
+	@Column(name = "start")
+	private String start;
 	
-	@Column(name = "endDate")
-	private String endDate;
+	@Column(name = "end")
+	private String end;
 
 	@Column(name = "place")
 	private String place;
@@ -57,30 +50,7 @@ public class Task implements Serializable {
 		this.id = id;
 	}
 
-	
-	public String getName() {
-		return name;
-	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getStartDate() {
-		return startDate;
-	}
-
-	public void setStartDate(String startDate) {
-		this.startDate = startDate;
-	}
-
-	public String getEndDate() {
-		return endDate;
-	}
-
-	public void setEndDate(String endDate) {
-		this.endDate = endDate;
-	}
 
 	public String getPlace() {
 		return place;
@@ -105,10 +75,33 @@ public class Task implements Serializable {
 	public void setPriorityLevel(int priorityLevel) {
 		this.priorityLevel = priorityLevel;
 	}
-
 	
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getStart() {
+		return start;
+	}
+
+	public void setStart(String start) {
+		this.start = start;
+	}
+
+	public String getEnd() {
+		return end;
+	}
+
+	public void setEnd(String end) {
+		this.end = end;
+	}
+
 	public boolean fieldNotEmpty(){
-		if(this.name != null && this.startDate != null && this.endDate != null && this.place != null){
+		if(this.title != null && this.start != null && this.end != null && this.place != null){
 			return true;
 		}
 		return false;
@@ -131,9 +124,10 @@ public class Task implements Serializable {
 		this.objectifColor = objectifColor;
 	}
 
+	
 	@Override
 	public String toString() {
-		return "Task [id=" + id + ", name=" + name + ", startDate=" + startDate + ", endDate=" + endDate + ", place="
+		return "Task [id=" + id + ", title=" + title + ", start=" + start + ", end=" + end + ", place="
 				+ place + ", successLevel=" + successLevel + ", priorityLevel=" + priorityLevel + ", objectifColor="
 				+ objectifColor + ", objectifId=" + objectifId + "]";
 	}

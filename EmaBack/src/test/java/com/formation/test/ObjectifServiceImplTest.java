@@ -54,9 +54,9 @@ public class ObjectifServiceImplTest {
 		} 
 		
 		Objectif ob = new Objectif();
-		ob.setName("Anglais");
-		ob.setStartDate("2018/08/22 12:00");
-		ob.setEndDate("2018/08/23 12:00");
+		ob.setTitle("Anglais");
+		ob.setStart("2018/08/22 12:00");
+		ob.setEnd("2018/08/23 12:00");
 		ob.setUserId(createUser.getId());
 		
 		Objectif createObjectif = null;
@@ -90,9 +90,9 @@ public class ObjectifServiceImplTest {
 		} 
 		
 		Objectif ob = new Objectif();
-		ob.setName("Anglais");
-		ob.setStartDate("2018/08/22 12:00");
-		ob.setEndDate("2018/08/23 12:00");
+		ob.setTitle("Anglais");
+		ob.setStart("2018/08/22 12:00");
+		ob.setEnd("2018/08/23 12:00");
 		
 		Objectif createObjectif = null;
 		try {
@@ -137,15 +137,15 @@ public class ObjectifServiceImplTest {
 		} 
 		
 		Objectif ob = new Objectif();
-		ob.setName("Francais");
-		ob.setStartDate("2018/08/22 12:00");
-		ob.setEndDate("2018/08/23 12:00");
+		ob.setTitle("Francais");
+		ob.setStart("2018/08/22 12:00");
+		ob.setEnd("2018/08/23 12:00");
 		ob.setUserId(createUser.getId());
 		
 		Objectif ob2 = new Objectif();
-		ob2.setName("Espagnole");
-		ob2.setStartDate("2018/08/22 12:00");
-		ob2.setEndDate("2018/08/23 12:00");
+		ob2.setTitle("Espagnole");
+		ob2.setStart("2018/08/22 12:00");
+		ob2.setEnd("2018/08/23 12:00");
 		ob2.setUserId(createUser.getId());
 		
 		Objectif createObjectif = null;

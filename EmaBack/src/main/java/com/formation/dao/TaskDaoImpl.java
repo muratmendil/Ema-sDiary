@@ -66,8 +66,6 @@ public class TaskDaoImpl implements TaskDao {
 			 TypedQuery<Task> query =
 				      (TypedQuery<Task>) taskManager.createNativeQuery(sql, Task.class).setParameter(1, id);
 				  tasks = query.getResultList();
-
-				  System.out.println(tasks.get(0));
 		} catch (NoResultException e) {
 			
 		}
