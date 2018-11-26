@@ -1,36 +1,19 @@
 package com.formation.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.CascadeType;
 
 
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.validation.constraints.Size;
-
-import org.springframework.transaction.annotation.Transactional;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
 
 @Entity
 public class User implements Serializable {
-
+	
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
 	@GeneratedValue
 	@Column(name = "user_id")
@@ -44,14 +27,18 @@ public class User implements Serializable {
 	@Size(min = 2, max = 20)
 	private String lastName;
 	
+<<<<<<< HEAD
 	@Column(name = "name")
 	@Size(min = 2, max = 20)
 	private String name;
 
+=======
+>>>>>>> 7459edf5e14d2c51317c24d6b0029e14aca1d301
 	@Column(unique = true, name = "email")
 	@Size(min = 10, max = 30)
 	private String email;
-
+	
+	
 	@Column(name = "password")
 	@Size(min = 4, max = 20)
 	private String password;
@@ -61,7 +48,7 @@ public class User implements Serializable {
 	
 	@Column(name = "role")
 	private String role;
-	
+
 	public String getRole() {
 		return role;
 	}
@@ -70,7 +57,6 @@ public class User implements Serializable {
 		this.role = role;
 	}
 
-	
 	public int getId() {
 		return id;
 	}

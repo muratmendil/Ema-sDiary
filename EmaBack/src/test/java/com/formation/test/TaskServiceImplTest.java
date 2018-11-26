@@ -59,9 +59,9 @@ public class TaskServiceImplTest {
 		
 		Task task = new Task();
 		Objectif ob = new Objectif();
-		ob.setName("Espagnol");
-		ob.setStartDate("2018/08/22 12:00");
-		ob.setEndDate("2018/08/23 12:00");
+		ob.setTitle("Espagnol");
+		ob.setStart("2018/08/22 12:00");
+		ob.setEnd("2018/08/23 12:00");
 		ob.setUserId(createUser.getId());
 
 		Task createTask = null;
@@ -75,9 +75,9 @@ public class TaskServiceImplTest {
 			Assert.assertNull(createObjectif);
 		} 
 		
-		task.setName("Verre irréguliers");
-		task.setStartDate("2018/08/22 12:00");
-		task.setEndDate("2018/08/23 12:00");
+		task.setTitle("Verre irréguliers");
+		task.setStart("2018/08/22 12:00");
+		task.setEnd("2018/08/23 12:00");
 		task.setPlace("Paris");
 		task.setPriorityLevel(2);
 		
@@ -125,9 +125,9 @@ public class TaskServiceImplTest {
 		} 
 		Task task = new Task();
 		Objectif ob = new Objectif();
-		ob.setName("Espagnol");
-		ob.setStartDate("2018/08/22 12:00");
-		ob.setEndDate("2018/08/23 12:00");
+		ob.setTitle("Espagnol");
+		ob.setStart("2018/08/22 12:00");
+		ob.setEnd("2018/08/23 12:00");
 		ob.setUserId(user.getId());
 		
 		Task createTask = null;
@@ -141,9 +141,9 @@ public class TaskServiceImplTest {
 			Assert.assertNull(createObjectif);
 		} 
 		
-		task.setName("Verre irréguliers");
-		task.setStartDate("2018/08/22 12:00");
-		task.setEndDate("2018/08/23 12:00");
+		task.setTitle("Verre irréguliers");
+		task.setStart("2018/08/22 12:00");
+		task.setEnd("2018/08/23 12:00");
 		task.setPlace("Paris");
 		task.setPriorityLevel(2);
 		task.setObjectifId(createObjectif.getId());

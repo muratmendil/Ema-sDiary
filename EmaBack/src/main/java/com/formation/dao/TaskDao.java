@@ -10,4 +10,6 @@ public interface TaskDao {
  Task findById(int id);
  List<Task> findByObjectifId(int id);
  void deleteTask(int id);
+ List<Task> findByUserId(int id);
+
 }
