@@ -26,14 +26,11 @@ public class User implements Serializable {
 	@Column(name = "lastName")
 	@Size(min = 2, max = 20)
 	private String lastName;
-	
-<<<<<<< HEAD
+
 	@Column(name = "name")
 	@Size(min = 2, max = 20)
 	private String name;
 
-=======
->>>>>>> 7459edf5e14d2c51317c24d6b0029e14aca1d301
 	@Column(unique = true, name = "email")
 	@Size(min = 10, max = 30)
 	private String email;
