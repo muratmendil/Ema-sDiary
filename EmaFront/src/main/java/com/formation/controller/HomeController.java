@@ -158,4 +158,10 @@ public class HomeController implements Serializable {
 		} */
 		return null;
 	}
+	
+	public String logOut(){
+		SessionUtils session = SessionUtils.getInstance();
+		session.invalide();
+		return "/index";
+	}
 }

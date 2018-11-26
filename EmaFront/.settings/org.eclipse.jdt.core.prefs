@@ -6,4 +6,8 @@ org.eclipse.jdt.core.compiler.problem.assertIdentifier=error
 org.eclipse.jdt.core.compiler.problem.enumIdentifier=error
 org.eclipse.jdt.core.compiler.problem.forbiddenReference=warning
 org.eclipse.jdt.core.compiler.release=disabled
+<<<<<<< HEAD
 org.eclipse.jdt.core.compiler.source=1.8
+=======
+org.eclipse.jdt.core.compiler.source=1.5
+>>>>>>> 891a8afdf16abef8f79ba5d6f9a729bde405f1bf
