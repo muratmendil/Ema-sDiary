@@ -41,8 +41,6 @@ public class TaskDaoImpl implements TaskDao {
 		Query query = taskManager.createNativeQuery(sql, Task.class);
 		query.setParameter(1, id);
 		int res = query.executeUpdate();
-		System.out.println("++++++++++++");
-		System.out.println(res);
 	}
 
 	@SuppressWarnings("unchecked")
