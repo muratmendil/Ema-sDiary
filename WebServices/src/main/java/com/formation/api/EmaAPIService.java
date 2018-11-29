@@ -49,9 +49,9 @@ public class EmaAPIService {
 	@Path("user/{id}/objectifs")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getObjectifs(@PathParam("id") int id){
+		List<Objectif> objectifs = new ArrayList<>();			
 		try {
 			User user =  Facade.getInstance().getUserService().findById(id);
-			List<Objectif> objectifs = new ArrayList<>();			
 			try {
 			   objectifs =  Facade.getInstance().getObjectifService().findByUserId(id);
 		       return Response.status(200).entity(objectifs).build();
@@ -60,8 +60,7 @@ public class EmaAPIService {
 				return Response.status(200).entity(message).build();
 			} 
 		} catch (ErrorExeption e1) {
-			String message = e1.getExeptionMessage();
-			return Response.status(200).entity(message).build();
+			return Response.status(200).entity(objectifs).build();
 		}
 	 }
 	
@@ -117,6 +116,18 @@ public class EmaAPIService {
 		try {
 			Task newTask =  Facade.getInstance().getTaskService().createTask(task);
 			return Response.ok().entity(newTask).build();
+		} catch (ErrorExeption e) {
+			return Response.status(Response.Status.UNAUTHORIZED).entity(e.getExeptionMessage()).build();
+		} 
+	 }
+	
+	@POST
+	@Path("/newObjectif")
+	@Produces(MediaType.APPLICATION_JSON)
+	 public Response createObjectif(Objectif objectif){
+		try {
+			Objectif newObjectif =  Facade.getInstance().getObjectifService().createObjectif(objectif);
+			return Response.ok().entity(newObjectif).build();
 		} catch (ErrorExeption e) {
 			return Response.status(Response.Status.UNAUTHORIZED).entity(e.getExeptionMessage()).build();
 		} 
