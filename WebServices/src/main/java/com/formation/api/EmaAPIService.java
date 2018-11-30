@@ -5,7 +5,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
-
 import com.formation.exeption.ErrorExeption;
 import com.formation.facade.Facade;
 import com.formation.model.User;
@@ -18,7 +17,6 @@ import javax.ws.rs.core.MediaType;
 @Path("/ema")
 public class EmaAPIService {
 
-	
 	@GET
 	@Path("/get")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -34,38 +32,33 @@ public class EmaAPIService {
 
 		return Response.status(200).entity(user).build();
 	}
-	
+
 	@POST
 	@Path("/login")
 	@Produces(MediaType.APPLICATION_JSON)
-	 public Response loginUser(User user){
-		
+	public Response loginUser(User user) {
+
 		User newUser = new User();
 		try {
-			System.out.println("Enter" +user);
+			System.out.println("Enter" + user);
 			user.setBirthDate("7 mars");
 			user.setFirstName("Emilin");
 			user.setLastName("Dadie");
-			user.setRole("admin");	
-						newUser =  Facade.getInstance().getUserService().findByEmail(user.getEmail(), user.getPassword());
+			user.setRole("admin");
+			newUser = Facade.getInstance().getUserService().findByEmail(user.getEmail(), user.getPassword());
 		} catch (ErrorExeption e) {
 			e.getMessage();
 		}
 		return Response.status(200).entity(newUser).build();
 
-	 }
-	
+	}
+
 	@POST
 	@Path("/signUp")
 	@Produces(MediaType.APPLICATION_JSON)
-	 public Response signUpUser(
-			 @QueryParam("firstName") String firstName,
-			 @QueryParam("lastName") String lastName,
-			 @QueryParam("email") String email,
-			 @QueryParam("password") String password,
-			 @QueryParam("birthDate") String birthDate,
-			 @QueryParam("role") String role
-			 ){
+	public Response signUpUser(@QueryParam("firstName") String firstName, @QueryParam("lastName") String lastName,
+			@QueryParam("email") String email, @QueryParam("password") String password,
+			@QueryParam("birthDate") String birthDate, @QueryParam("role") String role) {
 		User user = new User();
 		user.setFirstName(firstName);
 		user.setLastName(lastName);
@@ -74,13 +67,11 @@ public class EmaAPIService {
 		user.setBirthDate(birthDate);
 		user.setRole(role);
 		try {
-			user =  Facade.getInstance().getUserService().createUser(user);
+			user = Facade.getInstance().getUserService().createUser(user);
 		} catch (ErrorExeption e) {
 			user = null;
 			return Response.status(200).entity(user).build();
 		}
 		return Response.status(200).entity(user).build();
-	 }
+	}
 }
-
-
