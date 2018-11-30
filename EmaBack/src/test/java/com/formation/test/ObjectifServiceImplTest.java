@@ -57,10 +57,11 @@ public class ObjectifServiceImplTest {
 		ob.setName("Anglais");
 		ob.setStartDate("2018/08/22 12:00");
 		ob.setEndDate("2018/08/23 12:00");
+		ob.setUserId(createUser.getId());
 		
 		Objectif createObjectif = null;
 		try {
-			createObjectif = objectifService.createObjectif(createUser.getId(), ob);
+			createObjectif = objectifService.createObjectif(ob);
 			Assert.assertNotNull(createObjectif);
 			System.out.println("Success");
 		} catch (ErrorExeption e) {
@@ -95,7 +96,7 @@ public class ObjectifServiceImplTest {
 		
 		Objectif createObjectif = null;
 		try {
-			createObjectif = objectifService.createObjectif(createUser.getId(), ob);
+			createObjectif = objectifService.createObjectif(ob);
 			Assert.assertNotNull(createObjectif);
 			System.out.println("Success");
 		} catch (ErrorExeption e) {
@@ -139,18 +140,20 @@ public class ObjectifServiceImplTest {
 		ob.setName("Francais");
 		ob.setStartDate("2018/08/22 12:00");
 		ob.setEndDate("2018/08/23 12:00");
+		ob.setUserId(createUser.getId());
 		
 		Objectif ob2 = new Objectif();
 		ob2.setName("Espagnole");
 		ob2.setStartDate("2018/08/22 12:00");
 		ob2.setEndDate("2018/08/23 12:00");
+		ob2.setUserId(createUser.getId());
 		
 		Objectif createObjectif = null;
 		Objectif createObjectif2 = null;
 		try {
-			createObjectif = objectifService.createObjectif(createUser.getId(), ob);
+			createObjectif = objectifService.createObjectif(ob);
 			Assert.assertNotNull(createObjectif);
-			createObjectif2 = objectifService.createObjectif(createUser.getId(), ob2);
+			createObjectif2 = objectifService.createObjectif(ob2);
 			Assert.assertNotNull(createObjectif2);
 			System.out.println("Success");
 		} catch (ErrorExeption e) {
@@ -161,7 +164,7 @@ public class ObjectifServiceImplTest {
 		
 		List<Objectif> obs = null;
 		try {
-			obs = objectifService.getAll(createUser.getId());
+			obs = objectifService.findByUserId(createUser.getId());
 		} catch (ErrorExeption e) {
 			System.out.println(e.getExeptionMessage());
 		}

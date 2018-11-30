@@ -8,18 +8,26 @@ import javax.persistence.CascadeType;
 
 
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Size;
 
+import org.codehaus.jackson.map.annotate.JsonFilter;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 
 @Entity
-@Transactional
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -50,7 +58,6 @@ public class User implements Serializable {
 	
 	@Column(name = "role")
 	private String role;
-
 	
 	public String getRole() {
 		return role;
@@ -60,8 +67,6 @@ public class User implements Serializable {
 		this.role = role;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy="user", cascade = CascadeType.ALL)
-	private List<Objectif> objectifs = new ArrayList<Objectif>();
 	
 	public int getId() {
 		return id;
@@ -112,19 +117,12 @@ public class User implements Serializable {
 		this.birthDate = birthDate;
 	}
 	
-	
-	public List<Objectif> getObjectifs() {
-		return objectifs;
-	}
-
-	public void setObjectifs(List<Objectif> objectifs) {
-		this.objectifs = objectifs;
-	}
 
 	public String getName() {
 		return firstName + " " + lastName;
 	}
 
+	
 	public boolean newAccountfieldNotEmpty(){
 		if(this.firstName != null && this.lastName != null && this.email != null && this.birthDate != null && this.password != null){
 			return true;
@@ -135,7 +133,6 @@ public class User implements Serializable {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", password=" + password + ", birthDate=" + birthDate + "]";
+				+ ", password=" + password + ", birthDate=" + birthDate + ", role=" + role + "]";
 	}
-	
 }

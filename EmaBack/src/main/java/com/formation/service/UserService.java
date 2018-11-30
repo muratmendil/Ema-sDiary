@@ -8,7 +8,7 @@ import com.formation.model.User;
 
 public interface UserService {
 	User createUser(User user) throws ErrorExeption;
-	User findById(int id);
+	User findById(int id) throws ErrorExeption;;
 	User findByEmail(String email, String password) throws ErrorExeption;
 	List<User> findById();
 	void deleteUser(int id);

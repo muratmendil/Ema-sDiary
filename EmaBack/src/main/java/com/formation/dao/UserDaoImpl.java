@@ -7,10 +7,13 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.formation.model.User;  
+import com.formation.model.User;
 
 @Repository
 @Transactional
@@ -35,7 +38,6 @@ public class UserDaoImpl implements UserDao, Serializable {
 	public String logout() {
 		String user = null;
 		String identifier = user;
-
 		return "index";
 	}
 
@@ -48,7 +50,7 @@ public class UserDaoImpl implements UserDao, Serializable {
 
 		User user = null;
 		try {
-			user = (User) query.getSingleResult();
+		    user = (User) query.getSingleResult();
 		} catch (NoResultException e) {
 		}
 		return user;

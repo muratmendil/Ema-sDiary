@@ -4,6 +4,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.formation.config.RootConfig;
+import com.formation.service.ObjectifService;
+import com.formation.service.TaskService;
 import com.formation.service.UserService;
 
 public class Facade {
@@ -29,4 +31,11 @@ public class Facade {
 		return ctx.getBean(UserService.class);
 	}
 	
+	public ObjectifService getObjectifService(){
+		return ctx.getBean(ObjectifService.class);
+	}
+	
+	public TaskService getTaskService(){
+		return ctx.getBean(TaskService.class);
+	}
 }

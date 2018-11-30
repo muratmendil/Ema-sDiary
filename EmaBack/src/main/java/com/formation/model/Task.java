@@ -6,7 +6,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import org.springframework.transaction.annotation.Transactional;
@@ -15,9 +17,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Entity
 public class Task implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -43,20 +42,12 @@ public class Task implements Serializable {
 
 	@Column(name = "priorityLevel")
 	private int priorityLevel;
-
-	@ManyToOne
-	private Objectif objectif;
-
-	private String color;
 	
-	public String getColor() {
-		return color;
-	}
+	@Column(name = "objectifColor")
+	private String objectifColor;
 
-	public void setColor(String color) {
-		this.color = color;
-	}
-
+	@Column(name = "objectif_id")
+	private int objectifId;
 	
 	public int getId() {
 		return id;
@@ -115,26 +106,36 @@ public class Task implements Serializable {
 		this.priorityLevel = priorityLevel;
 	}
 
-	public Objectif getObjectif() {
-		return objectif;
-	}
-
-	public void setObjectif(Objectif objectif) {
-		this.objectif = objectif;
-	}
-
 	
 	public boolean fieldNotEmpty(){
-		if(this.name != null && this.startDate != null && this.endDate != null && this.place != null && this.objectif != null){
+		if(this.name != null && this.startDate != null && this.endDate != null && this.place != null){
 			return true;
 		}
 		return false;
 	}
+
+	public int getObjectifId() {
+		return objectifId;
+	}
+
+	public void setObjectifId(int objectifId) {
+		this.objectifId = objectifId;
+	}
+
 	
+	public String getObjectifColor() {
+		return objectifColor;
+	}
+
+	public void setObjectifColor(String objectifColor) {
+		this.objectifColor = objectifColor;
+	}
+
 	@Override
 	public String toString() {
 		return "Task [id=" + id + ", name=" + name + ", startDate=" + startDate + ", endDate=" + endDate + ", place="
-				+ place + ", successLevel=" + successLevel + ", priorityLevel=" + priorityLevel + ", objectif="
-				+ objectif + "]";
+				+ place + ", successLevel=" + successLevel + ", priorityLevel=" + priorityLevel + ", objectifColor="
+				+ objectifColor + ", objectifId=" + objectifId + "]";
 	}
+
 }

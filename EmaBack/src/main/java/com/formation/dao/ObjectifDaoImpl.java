@@ -6,10 +6,10 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import javax.persistence.Query;
 
 import com.formation.model.Objectif;
 import com.formation.model.User;
@@ -18,7 +18,8 @@ import com.formation.model.User;
 @Repository
 @Transactional
 public class ObjectifDaoImpl implements ObjectifDao {
-	
+
+		
 	@PersistenceContext
 	private EntityManager objectifManager;
 	
@@ -29,19 +30,25 @@ public class ObjectifDaoImpl implements ObjectifDao {
 			ob = objectifManager.merge(objectif);
 
 		} catch (NoResultException e) {
-
 		}
 		return ob;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public Objectif findById(int id) {
-		return objectifManager.find(Objectif.class, id);
+	public List<Objectif> findByUserId(int id) {
+		String sql = "SELECT objectif.* FROM objectif AS objectif WHERE user_Id = ?";
+		List<Objectif> objectifs = new ArrayList<Objectif>();
+		try {
+			objectifs = objectifManager.createNativeQuery(sql).setParameter(1, id).getResultList();
+		} catch (NoResultException e) {
+		}
+		return objectifs;
 	}
 
 	@Override
-	public List<Objectif> getAll(int id) {
-		User user =objectifManager.find(User.class, id); 
-		return user.getObjectifs();
+	public Objectif findById(int id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

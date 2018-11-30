@@ -23,39 +23,26 @@ public class ObjectifServiceImpl implements ObjectifService {
 	@Autowired
 	private UserDao userDao;
 	
-	
 	@Override
-	public Objectif createObjectif(int id, Objectif objectif) throws ErrorExeption {
-		Objectif newObjectif = objectif;
-		
-		if(newObjectif.fieldNotEmpty()){
-			User user = userDao.findById(id);
-			List<Objectif> objectifs = user.getObjectifs();
-			Objectif finalObjectif;
-			objectifs.add(newObjectif);
-			user.setObjectifs(objectifs);
-			newObjectif.setUser(user);
-			finalObjectif = objectifDao.createObjectif(newObjectif);
-			return finalObjectif;
+	public Objectif createObjectif(Objectif objectif) throws ErrorExeption {		
+		if(objectif.fieldNotEmpty()){
+			return objectifDao.createObjectif(objectif);
 		}
 		throw new ErrorExeption("Null value", "Un ou plusieurs propiété de objectif est null");
 	}
 
 	@Override
-	public Objectif findById(int id) throws ErrorExeption {
-		Objectif objectif = objectifDao.findById(id);
-		if(objectif == null){
-			throw new ErrorExeption("Null value", "Ce user n'a aucun objectif");
-		}
-		return objectif;
-	}
-
-	@Override
-	public List<Objectif> getAll(int id) throws ErrorExeption{
-		List<Objectif> objectifs = objectifDao.getAll(id);
+	public List<Objectif> findByUserId(int id) throws ErrorExeption {
+		List<Objectif> objectifs = objectifDao.findByUserId(id);
 		if(objectifs.size() == 0){
 			throw new ErrorExeption("Aucun objectif", "Cette utilisateur n'a aucun objectif");
 		}
 		return objectifs;
+	}
+
+	@Override
+	public Objectif findById(int id) throws ErrorExeption {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
