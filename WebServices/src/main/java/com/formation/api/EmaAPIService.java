@@ -13,6 +13,8 @@ import com.formation.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.GenericEntity;
@@ -119,6 +121,14 @@ public class EmaAPIService {
 		} catch (ErrorExeption e) {
 			return Response.status(Response.Status.UNAUTHORIZED).entity(e.getExeptionMessage()).build();
 		} 
+	 }
+	
+	@DELETE
+	@Path("/deleteTask/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	 public Response deleteTask(@PathParam("id") int id){
+			 Facade.getInstance().getTaskService().deleteTask(id);
+			 return Response.ok().entity(true).build();
 	 }
 	
 	@POST
