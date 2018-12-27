@@ -64,6 +64,7 @@ public class RootConfig {
 		transactionManager.setEntityManagerFactory(emf);
 		return transactionManager;
 	}
+	
 	@Bean
 	public Jackson2ObjectMapperBuilder jacksonBuilder() {
 	    Jackson2ObjectMapperBuilder b = new Jackson2ObjectMapperBuilder();

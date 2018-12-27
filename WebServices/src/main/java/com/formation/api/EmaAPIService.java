@@ -1,10 +1,11 @@
 package com.formation.api;
 
 import javax.ws.rs.POST;
-
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+
 import com.formation.exeption.ErrorExeption;
 import com.formation.facade.Facade;
 import com.formation.model.Objectif;
@@ -13,6 +14,8 @@ import com.formation.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.GenericEntity;
@@ -20,7 +23,7 @@ import javax.ws.rs.core.MediaType;
 
 @Path("/ema")
 public class EmaAPIService {
-		
+	
 	@POST
 	@Path("/login")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -119,6 +122,14 @@ public class EmaAPIService {
 		} catch (ErrorExeption e) {
 			return Response.status(Response.Status.UNAUTHORIZED).entity(e.getExeptionMessage()).build();
 		} 
+	 }
+	
+	@DELETE
+	@Path("/deleteTask/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	 public Response deleteTask(@PathParam("id") int id){
+			 Facade.getInstance().getTaskService().deleteTask(id);
+			 return Response.ok().entity(true).build();
 	 }
 	
 	@POST
