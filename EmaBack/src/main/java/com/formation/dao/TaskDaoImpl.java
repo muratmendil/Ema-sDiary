@@ -47,10 +47,13 @@ public class TaskDaoImpl implements TaskDao {
 	@Override
 	public List<Task> findByObjectifId(int id) {
 		String sql = "SELECT task.* FROM task AS task WHERE objectif_id = ?";
-		List<Task> tasks = new ArrayList<Task>();
+		List<Task> tasks = null;
 		try {
-			tasks = taskManager.createNativeQuery(sql).setParameter(1, id).getResultList();
+			 TypedQuery<Task> query =
+				      (TypedQuery<Task>) taskManager.createNativeQuery(sql, Task.class).setParameter(1, id);
+				  tasks = query.getResultList();
 		} catch (NoResultException e) {
+			
 		}
 		return tasks;
 	}

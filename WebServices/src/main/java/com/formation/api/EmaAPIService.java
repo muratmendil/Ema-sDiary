@@ -1,10 +1,12 @@
 package com.formation.api;
 
 import javax.ws.rs.POST;
-
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+
 import com.formation.exeption.ErrorExeption;
 import com.formation.facade.Facade;
 import com.formation.model.Objectif;
@@ -13,6 +15,8 @@ import com.formation.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.GenericEntity;
@@ -20,7 +24,7 @@ import javax.ws.rs.core.MediaType;
 
 @Path("/ema")
 public class EmaAPIService {
-		
+	
 	@POST
 	@Path("/login")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -121,6 +125,14 @@ public class EmaAPIService {
 		} 
 	 }
 	
+	@DELETE
+	@Path("/deleteTask/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	 public Response deleteTask(@PathParam("id") int id){
+			 Facade.getInstance().getTaskService().deleteTask(id);
+			 return Response.ok().entity(true).build();
+	 }
+	
 	@POST
 	@Path("/newObjectif")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -128,6 +140,18 @@ public class EmaAPIService {
 		try {
 			Objectif newObjectif =  Facade.getInstance().getObjectifService().createObjectif(objectif);
 			return Response.ok().entity(newObjectif).build();
+		} catch (ErrorExeption e) {
+			return Response.status(Response.Status.UNAUTHORIZED).entity(e.getExeptionMessage()).build();
+		} 
+	 }
+	
+	@PUT
+	@Path("/updateTask")
+	@Produces(MediaType.APPLICATION_JSON)
+	 public Response updateTask(Task task){
+		try {
+			Task newTask =  Facade.getInstance().getTaskService().createTask(task);
+			return Response.ok().entity(newTask).build();
 		} catch (ErrorExeption e) {
 			return Response.status(Response.Status.UNAUTHORIZED).entity(e.getExeptionMessage()).build();
 		} 
