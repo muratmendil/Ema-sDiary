@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.formation.model.Objectif;
+import com.formation.model.Task;
 import com.formation.model.User;
 
 
@@ -37,7 +38,7 @@ public class ObjectifDaoImpl implements ObjectifDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Objectif> findByUserId(int id) {
+	public List<Objectif> findAllByUserId(int id) {
 		String sql = "SELECT objectif.* FROM objectif AS objectif WHERE user_Id = ?";
 		List<Objectif> objectifs = null;
 		try {
@@ -53,7 +54,6 @@ public class ObjectifDaoImpl implements ObjectifDao {
 
 	@Override
 	public Objectif findById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return objectifManager.find(Objectif.class, id);
 	}
 }
