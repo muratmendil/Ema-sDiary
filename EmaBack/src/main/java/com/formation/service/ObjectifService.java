@@ -8,5 +8,5 @@ import com.formation.model.Objectif;
 public interface ObjectifService {
 	Objectif createObjectif(Objectif objectif) throws ErrorExeption;
 	Objectif findById(int id) throws ErrorExeption;
-	List<Objectif> findByUserId(int id) throws ErrorExeption;
+	List<Objectif> findAllByUserId(int id) throws ErrorExeption;
 }

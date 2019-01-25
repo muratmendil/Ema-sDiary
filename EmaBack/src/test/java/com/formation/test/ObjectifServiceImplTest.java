@@ -93,7 +93,8 @@ public class ObjectifServiceImplTest {
 		ob.setTitle("Anglais");
 		ob.setStart("2018/08/22 12:00");
 		ob.setEnd("2018/08/23 12:00");
-		
+		ob.setUserId(createUser.getId());
+
 		Objectif createObjectif = null;
 		try {
 			createObjectif = objectifService.createObjectif(ob);
@@ -164,7 +165,7 @@ public class ObjectifServiceImplTest {
 		
 		List<Objectif> obs = null;
 		try {
-			obs = objectifService.findByUserId(createUser.getId());
+			obs = objectifService.findAllByUserId(createUser.getId());
 		} catch (ErrorExeption e) {
 			System.out.println(e.getExeptionMessage());
 		}

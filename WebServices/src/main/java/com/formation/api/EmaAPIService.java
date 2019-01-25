@@ -57,7 +57,7 @@ public class EmaAPIService {
 		try {
 			User user =  Facade.getInstance().getUserService().findById(id);
 			try {
-			   objectifs =  Facade.getInstance().getObjectifService().findByUserId(id);
+			   objectifs =  Facade.getInstance().getObjectifService().findAllByUserId(id);
 		       return Response.status(200).entity(objectifs).build();
 			} catch (ErrorExeption e) {
 				String message = e.getExeptionMessage();

@@ -11,6 +11,7 @@ import com.formation.dao.ObjectifDao;
 import com.formation.dao.UserDao;
 import com.formation.exeption.ErrorExeption;
 import com.formation.model.Objectif;
+import com.formation.model.Task;
 import com.formation.model.User;
 
 
@@ -33,8 +34,8 @@ public class ObjectifServiceImpl implements ObjectifService {
 	}
 
 	@Override
-	public List<Objectif> findByUserId(int id) throws ErrorExeption {
-		List<Objectif> objectifs = objectifDao.findByUserId(id);
+	public List<Objectif> findAllByUserId(int id) throws ErrorExeption {
+		List<Objectif> objectifs = objectifDao.findAllByUserId(id);
 		if(objectifs.size() == 0){
 			throw new ErrorExeption("Aucun objectif", "Cette utilisateur n'a aucun objectif");
 		}else{
@@ -44,7 +45,11 @@ public class ObjectifServiceImpl implements ObjectifService {
 
 	@Override
 	public Objectif findById(int id) throws ErrorExeption {
-		// TODO Auto-generated method stub
-		return null;
+		Objectif ob = objectifDao.findById(id);
+		if(ob == null){
+			throw new ErrorExeption("Null value", "Cette objectif n'existe pas");
+		}else{
+			return ob;
+		}
 	}
 }
