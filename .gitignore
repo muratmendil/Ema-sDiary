@@ -203,4 +203,4 @@ buildSrc/build
 /spring-*/build
 /src/asciidoc/build
 target/
-EmaBack/target/classes/META-INF/maven/com.formation/EmaBack/pom.properties
+*.properties
