@@ -36,7 +36,7 @@ public class EmaAPIService {
 			return Response.status(Response.Status.UNAUTHORIZED).entity(e.getExeptionMessage()).build();
 		} 
 	 }
-	
+
 	@POST
 	@Path("/signUp")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -125,6 +125,19 @@ public class EmaAPIService {
 		} 
 	 }
 	
+	
+	@GET
+	@Path("/user/{userId}/task/{taskId}")
+	@Produces(MediaType.APPLICATION_JSON)
+	 public Response getTask(@PathParam("userId") int userId, @PathParam("taskId") int taskId){
+		try {
+			Task task =  Facade.getInstance().getTaskService().findById(taskId);
+			return Response.ok().entity(task).build();
+		} catch (ErrorExeption e) {
+			return Response.status(Response.Status.UNAUTHORIZED).entity(e.getExeptionMessage()).build();
+		} 
+	 }
+	
 	@DELETE
 	@Path("/deleteTask/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -140,6 +153,18 @@ public class EmaAPIService {
 		try {
 			Objectif newObjectif =  Facade.getInstance().getObjectifService().createObjectif(objectif);
 			return Response.ok().entity(newObjectif).build();
+		} catch (ErrorExeption e) {
+			return Response.status(Response.Status.UNAUTHORIZED).entity(e.getExeptionMessage()).build();
+		} 
+	 }
+	
+	@GET
+	@Path("user/{userId}/objectif/{objectifId}")
+	@Produces(MediaType.APPLICATION_JSON)
+	 public Response getObjectif(@PathParam("userId") int userId, @PathParam("objectifId") int objectifId){
+		try {
+			Objectif objectif =  Facade.getInstance().getObjectifService().findById(objectifId);
+			return Response.ok().entity(objectif).build();
 		} catch (ErrorExeption e) {
 			return Response.status(Response.Status.UNAUTHORIZED).entity(e.getExeptionMessage()).build();
 		} 

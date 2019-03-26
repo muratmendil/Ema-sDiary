@@ -1,4 +1,4 @@
-package com.formation.ema;
+package com.formation;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,6 +11,7 @@ public class EmaBootApplicationTests {
 
 	@Test
 	public void contextLoads() {
+		
 	}
 
 }
