@@ -32,6 +32,10 @@ public class TaskApi {
 	private TaskService taskService;
 	
 
+	@GetMapping("test")
+	public String todo() {
+		return "iuiii";
+	}
 	
 	@GetMapping("user/{id}/objectifs/tasks")
 	public List<Task> getObjectifsTask(@PathVariable(value = "id") int id){

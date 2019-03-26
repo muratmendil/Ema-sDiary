@@ -29,8 +29,8 @@ public class SwaggerConfig {
     private ApiInfo apiInfo() {
     	return new ApiInfo(
     	"Ema Application",
-    	"Api pour Ecom-catalogs",
-    	"API Categories-Products",
+    	"Api pour Ema Apps",
+    	"API Ema application",
     	"Terms of service",
     	new Contact("MM", "www.formation.com", "mm@gmail.com"),
     	"License Apache 2.0", "http://www.apache.org/licenses/LICENSE-2.0", Collections.emptyList());
