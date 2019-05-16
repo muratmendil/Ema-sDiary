@@ -17,7 +17,7 @@ public class EmaBootApplication {
 	}
 	
 	@Bean
-	 public CorsFilter corsFilter()
+    public CorsFilter corsFilter()
     {
         final CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
