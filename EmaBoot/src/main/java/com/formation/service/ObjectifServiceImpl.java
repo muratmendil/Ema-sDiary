@@ -36,6 +36,7 @@ public class ObjectifServiceImpl implements ObjectifService {
 	@Override
 	public List<Objectif> findAllByUserId(int id) throws ErrorExeption {
 		List<Objectif> objectifs = objectifDao.findAllByUserId(id);
+		System.out.println(objectifs.size());
 		if(objectifs.size() == 0){
 			throw new ErrorExeption("Aucun objectif", "Cette utilisateur n'a aucun objectif");
 		}else{

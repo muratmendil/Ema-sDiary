@@ -2,6 +2,8 @@ package com.formation.api;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,25 +14,36 @@ import com.formation.service.UserService;
 
 @RestController
 public class UserApi {
-
-	@Autowired
-	private UserService userService;
+	
+	@Autowired UserService userService;
 	
 	@PostMapping("/login")
-	 public User loginUser(@Valid @RequestBody User user){
+	 public ResponseEntity<User> loginUser(@Valid @RequestBody User user){
 		try {
-			return userService.findByEmail(user.getEmail(), user.getPassword());
+			User logUser = userService.findByEmail(user.getEmail(), user.getPassword());
+			return ResponseEntity.ok(logUser);
 		} catch (ErrorExeption e) {
-			return new User();
+			return ResponseEntity.ok(new User());
 		} 
 	 }
 	
 	@PostMapping("/signUp")
-	 public User signUpUser(@Valid @RequestBody User user){
+	 public ResponseEntity<User> signUpUser(@Valid @RequestBody User user){
 		try {
-			return userService.createUser(user);
+			User newUser = userService.createUser(user);
+			return ResponseEntity.ok(newUser);
 		} catch (ErrorExeption e) {
-			return new User();
+			return ResponseEntity.ok(new User());
 		} 
 	 }
+	
+	@GetMapping("test2")
+	public User getTest2() {
+		try {
+			User logUser = userService.findByEmail("dadie.emilin", "toto");
+			return logUser;
+		} catch (ErrorExeption e) {
+			return new User();
+		} 	
+	}
 }
