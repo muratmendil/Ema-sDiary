@@ -16,32 +16,31 @@ public class Task implements Serializable {
 	@GeneratedValue
 	@Column(name = "task_id")
 	private int id;
-	
+
 	@Column(name = "title")
 	private String title;
-	
 
 	@Column(name = "start")
 	private String start;
-	
+
 	@Column(name = "end")
 	private String end;
 
 	@Column(name = "place")
 	private String place;
-	
+
 	@Column(name = "successLevel")
 	private int successLevel;
 
 	@Column(name = "priorityLevel")
 	private int priorityLevel;
-	
+
 	@Column(name = "objectifColor")
 	private String objectifColor;
 
 	@Column(name = "objectif_id")
 	private int objectifId;
-	
+
 	public int getId() {
 		return id;
 	}
@@ -49,8 +48,6 @@ public class Task implements Serializable {
 	public void setId(int id) {
 		this.id = id;
 	}
-
-
 
 	public String getPlace() {
 		return place;
@@ -75,7 +72,7 @@ public class Task implements Serializable {
 	public void setPriorityLevel(int priorityLevel) {
 		this.priorityLevel = priorityLevel;
 	}
-	
+
 	public String getTitle() {
 		return title;
 	}
@@ -100,8 +97,8 @@ public class Task implements Serializable {
 		this.end = end;
 	}
 
-	public boolean fieldNotEmpty(){
-		if(this.title != null && this.start != null && this.end != null && this.place != null){
+	public boolean fieldNotEmpty() {
+		if (this.title != null && this.start != null && this.end != null && this.place != null) {
 			return true;
 		}
 		return false;
@@ -115,7 +112,6 @@ public class Task implements Serializable {
 		this.objectifId = objectifId;
 	}
 
-	
 	public String getObjectifColor() {
 		return objectifColor;
 	}
@@ -124,12 +120,10 @@ public class Task implements Serializable {
 		this.objectifColor = objectifColor;
 	}
 
-	
 	@Override
 	public String toString() {
-		return "Task [id=" + id + ", title=" + title + ", start=" + start + ", end=" + end + ", place="
-				+ place + ", successLevel=" + successLevel + ", priorityLevel=" + priorityLevel + ", objectifColor="
+		return "Task [id=" + id + ", title=" + title + ", start=" + start + ", end=" + end + ", place=" + place
+				+ ", successLevel=" + successLevel + ", priorityLevel=" + priorityLevel + ", objectifColor="
 				+ objectifColor + ", objectifId=" + objectifId + "]";
 	}
-
 }

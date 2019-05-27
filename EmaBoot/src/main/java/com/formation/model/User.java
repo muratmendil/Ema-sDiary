@@ -2,7 +2,6 @@ package com.formation.model;
 
 import java.io.Serializable;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,9 +10,9 @@ import javax.validation.constraints.Size;
 
 @Entity
 public class User implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue
 	@Column(name = "user_id")
@@ -34,15 +33,14 @@ public class User implements Serializable {
 	@Column(unique = true, name = "email")
 	@Size(min = 10, max = 30)
 	private String email;
-	
-	
+
 	@Column(name = "password")
 	@Size(min = 4, max = 20)
 	private String password;
 
 	@Column(name = "birthDate")
 	private String birthDate;
-	
+
 	@Column(name = "role")
 	private String role;
 
@@ -82,7 +80,6 @@ public class User implements Serializable {
 		return email;
 	}
 
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
@@ -102,18 +99,18 @@ public class User implements Serializable {
 	public void setBirthDate(String birthDate) {
 		this.birthDate = birthDate;
 	}
-	
+
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	public String getName() {
 		return firstName + " " + lastName;
 	}
 
-	
-	public boolean newAccountfieldNotEmpty(){
-		if(this.firstName != null && this.lastName != null && this.email != null && this.birthDate != null && this.password != null){
+	public boolean newAccountfieldNotEmpty() {
+		if (this.firstName != null && this.lastName != null && this.email != null && this.birthDate != null
+				&& this.password != null) {
 			return true;
 		}
 		return false;

@@ -1,16 +1,14 @@
 package com.formation.model;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-
 @Entity
-public class Objectif implements Serializable{
+public class Objectif implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -21,18 +19,18 @@ public class Objectif implements Serializable{
 
 	@Column(name = "title")
 	private String title;
-	
+
 	@Column(name = "start")
 	private String start;
-	
+
 	@Column(name = "user_id")
 	private int userId;
-	
+
 	@Column(name = "end")
 	private String end;
 
 	private String color;
-	
+
 	public String getColor() {
 		return color;
 	}
@@ -41,8 +39,6 @@ public class Objectif implements Serializable{
 		this.color = color;
 	}
 
-
-
 	public int getId() {
 		return id;
 	}
@@ -50,8 +46,7 @@ public class Objectif implements Serializable{
 	public void setId(int id) {
 		this.id = id;
 	}
-	
-	
+
 	public String getTitle() {
 		return title;
 	}
@@ -84,14 +79,10 @@ public class Objectif implements Serializable{
 		this.userId = userId;
 	}
 
-	public boolean fieldNotEmpty(){
-		if(this.title != null && this.start != null && this.end != null){
+	public boolean fieldNotEmpty() {
+		if (this.title != null && this.start != null && this.end != null) {
 			return true;
 		}
 		return false;
 	}
-
-	
-
 }
-	
